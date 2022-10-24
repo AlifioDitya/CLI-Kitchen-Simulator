@@ -2,7 +2,7 @@
 
 #include <stdio.h>
 #include "../boolean.h"
-#include "Point.h"
+#include "point.h"
 
 /* *** Konstruktor *** */
 void CreatePoint (Point * P, float X, float Y) {
