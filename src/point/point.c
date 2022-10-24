@@ -5,7 +5,7 @@
 #include "point.h"
 
 /* *** Konstruktor *** */
-void CreatePoint (Point * P, float X, float Y) {
+void CreatePoint (Point * P, int X, int Y) {
 /* Membentuk sebuah Point dari komponen-komponennya */
 /* I.S P tidak terdefinisi, F.S P terdefinisi bertipe Point */
 // KAMUS LOKAL
@@ -24,7 +24,7 @@ void BacaPoint (Point * P) {
 /* I.S. Sembarang */
 /* F.S. P terdefinisi */
 // KAMUS LOKAL
-    float X, Y;
+    int X, Y;
 // ALGORITMA
     scanf("%f %f", &X, &Y);
     CreatePoint(P, X, Y);
@@ -63,7 +63,7 @@ Point NextY (Point P) {
     return result;
 }
 
-Point PlusDelta (Point P, float deltaX, float deltaY) {
+Point PlusDelta (Point P, int deltaX, int deltaY) {
 /* Mengirim salinan P yang absisnya adalah Absis(P) + deltaX dan ordinatnya adalah Ordinat(P) + deltaY */
 // KAMUS LOKAL
     Point result;
@@ -74,7 +74,7 @@ Point PlusDelta (Point P, float deltaX, float deltaY) {
     return result;
 }
 
-void Geser (Point *P, float deltaX, float deltaY) {
+void Geser (Point *P, int deltaX, int deltaY) {
 /* I.S. P terdefinisi */
 /* F.S. P digeser, absisnya sebesar deltaX dan ordinatnya sebesar deltaY */
 // KAMUS LOKAL
