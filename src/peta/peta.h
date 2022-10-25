@@ -2,6 +2,7 @@
 #define PETA_H
 
 #include "../boolean.h"
+#include "../simulator/simulator.h"
 
 #define ROW_CAP 100
 #define COL_CAP 100
@@ -54,10 +55,33 @@ void displayPeta(Peta p);
 /* F.S. Nilai p(i,j) ditulis ke layar per baris per kolom, masing-masing elemen per baris 
    dipisahkan sebuah spasi. Baris terakhir diakhiri dengan newline */
 /* Proses: Menulis nilai setiap elemen p ke layar dengan traversal per baris dan per kolom */
-/* Contoh: menulis peta 3x3
-# # #
-# # #
-# # #
+/* Contoh: menulis peta 10x10
+* * * * * * * * * * * *
+* S                   *
+*         T     X     *
+*   M           X     *
+*               X     *
+*         X X X X     *
+*   X                 *
+*   X             C   *
+*   X X X     F       *
+*                     *
+*             B       *
+* * * * * * * * * * * *
 */
+
+/* Operasi menggerakkan user pada peta */
+void moveEast(Simulator *s, Peta *p);
+/* Menggerakkan posisi user ke kanan pada peta*/
+void moveWest(Simulator *s, Peta *p);
+/* Menggerakkan posisi user ke kiri pada peta*/
+void moveNorth(Simulator *s, Peta *p);
+/* Menggerakkan posisi user ke atas pada peta*/
+void moveSouth(Simulator *s, Peta *p);
+/* Menggerakkan posisi user ke bawah pada peta*/
+
+/* Mengetahui posisi pada peta */
+void isInRadius(Simulator *s, Peta *p, char Symbol);
+/* Mengecek apabila symbol ada pada sekitar user */
 
 #endif
