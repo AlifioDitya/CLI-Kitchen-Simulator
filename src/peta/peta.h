@@ -1,0 +1,65 @@
+#ifndef PETA_H
+#define PETA_H
+
+#include "../boolean.h"
+
+#define ROW_CAP 100
+#define COL_CAP 100
+
+typedef char ElType;
+typedef struct {
+    ElType mem[ROW_CAP][COL_CAP];
+    int rowEff; /* banyaknya/ukuran baris yg terdefinisi */
+    int colEff; /* banyaknya/ukuran kolom yg terdefinisi */
+} Peta;
+
+/* *** Konstruktor membentuk Matrix peta *** */
+void createPeta(int nRows, int nCols, Peta *p);
+/* Membentuk sebuah peta "kosong" yang siap diisi berukuran nRow x nCol di "ujung kiri" memori */
+/* I.S. nRow dan nCol adalah valid untuk memori matriks yang dibuat */
+/* F.S. Matriks m sesuai dengan definisi di atas terbentuk */
+
+/* *** Selektor *** */
+#define ROW_EFF(P) (P).rowEff
+#define COL_EFF(P) (P).colEff
+#define ELMT(P, i, j) (P).mem[(i)][(j)]
+
+/* *** Getter *** */
+boolean isIdxValid(int i, int j);
+/* Mengirimkan true jika i, j adalah index yang valid untuk matriks peta */
+int getLastIdxRow(Peta p);
+/* Mengirimkan Index baris terbesar p */
+int getLastIdxCol(Peta p);
+/* Mengirimkan Index kolom terbesar p */
+boolean isIdxEff(Peta p, int i, int j);
+/* Mengirimkan true jika i, j adalah Index efektif bagi p */
+ElType getElmtDiagonal(Peta p, int i);
+/* Mengirimkan elemen diagonal p(i,i) */
+
+/* ********** Assignment Peta ********** */
+void copyMatrix(Peta pIn, Peta *pOut);
+/* Melakukan assignment pOut <- pIn */
+
+/* ********** KELOMPOK BACA/TULIS ********** */
+void readPeta(Peta *p, int nRow, int nCol);
+/* I.S. isIdxValid(nRow,nCol) */
+/* F.S. p terdefinisi nilai elemen efektifnya, berukuran nRow x nCol */
+/* Proses: Melakukan CreatePeta(m,nRow,nCol) dan mengisi nilai efektifnya */
+/* Selanjutnya membaca nilai elemen per baris dan kolom */
+/* Contoh: Jika nRow = 3 dan nCol = 3, maka contoh cara membaca isi matriks peta :
+# # #
+# # #
+# # # 
+*/
+void displayPeta(Peta p);
+/* I.S. m terdefinisi */
+/* F.S. Nilai p(i,j) ditulis ke layar per baris per kolom, masing-masing elemen per baris 
+   dipisahkan sebuah spasi. Baris terakhir diakhiri dengan newline */
+/* Proses: Menulis nilai setiap elemen p ke layar dengan traversal per baris dan per kolom */
+/* Contoh: menulis peta 3x3
+# # #
+# # #
+# # #
+*/
+
+#endif
