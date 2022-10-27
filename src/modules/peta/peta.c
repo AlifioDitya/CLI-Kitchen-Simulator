@@ -54,11 +54,18 @@ void readPeta(char* filename, Peta *pOut, Simulator *s) {
 /* I.S. isIdxValid(nRow,nCol) */
 /* F.S. p terdefinisi nilai elemen efektifnya, berukuran nRow x nCol */
 /* Proses: Melakukan CreatePeta(m,nRow,nCol) dan mengisi nilai efektifnya */
-/* Selanjutnya membaca nilai elemen per baris dan kolom */
-/* Contoh: Jika nRow = 3 dan nCol = 3, maka contoh cara membaca isi matriks peta :
-# # #
-# # #
-# # # 
+/* Selanjutnya membaca nilai elemen per baris dan kolom dari file */
+/* Contoh: Jika nRow = 10 dan nCol = 10, maka cara membaca isi matriks peta dari file :
+S#########
+####T##X##
+#M#####X##
+#######X##
+####XXXX##
+#X########
+#X######C#
+#XXX##F###
+##########
+######B###
 */
     int i, j;
     int nRow, nCol;
