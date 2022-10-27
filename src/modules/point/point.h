@@ -14,6 +14,7 @@ typedef struct {
 #define Absis(P) (P).X
 #define Ordinat(P) (P).Y
 
+#define POINT_UNDEF (-1)
 
 /* *** Konstruktor *** */
 void CreatePoint (Point * P, int X, int Y);

@@ -9,7 +9,7 @@ void IgnoreBlanks()
     /* Mengabaikan satu atau beberapa BLANK
        I.S. : currentChar sembarang
        F.S. : currentChar ≠ BLANK atau currentChar = MARK */
-    while (currentChar == BLANK)
+    while (currentChar == BLANK || currentChar == NEWLINE)
     {
         ADV();
     }
@@ -62,7 +62,7 @@ void CopyWord()
               currentChar adalah karakter sesudah karakter terakhir yang diakuisisi.
               Jika panjang kata melebihi CAPACITY, maka sisa kata terpotong */
     currentWord.Length = 0;
-    while (currentChar != BLANK && currentChar != MARK)
+    while (currentChar != BLANK && currentChar != MARK && currentChar != NEWLINE)
     {
         if (currentWord.Length < NMax)
         { // jika lebih akan terpotong
@@ -74,3 +74,15 @@ void CopyWord()
     }
 }
 
+
+
+void STARTWORDFILE(char* filename) {
+    STARTFILE(filename);
+    IgnoreBlanks();
+    if (currentChar == MARK) {
+        endWord = true;
+    } else {
+        endWord = false;
+        CopyWord();
+    }
+}

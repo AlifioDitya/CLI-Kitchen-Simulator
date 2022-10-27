@@ -7,6 +7,7 @@
 #include "../boolean.h"
 
 #define MARK '.'
+#define NEWLINE '\n'
 /* State Mesin */
 extern char currentChar;
 extern boolean EOP;
@@ -25,5 +26,8 @@ void ADV();
    F.S. : currentChar adalah karakter berikutnya dari currentChar yang lama,
           currentChar mungkin = MARK
           Jika  currentChar = MARK maka EOP akan menyala (true) */
+
+void STARTFILE(char* filename);
+// Membaca file dengan char machine
 
 #endif

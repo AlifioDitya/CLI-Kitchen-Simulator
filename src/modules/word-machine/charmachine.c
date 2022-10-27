@@ -40,3 +40,12 @@ void ADV()
               fclose(pita);
        }
 }
+
+void STARTFILE(char* filename) {
+       pita = fopen(filename, "r");
+       if (pita == NULL) {
+              printf("File tidak ada. Exiting...");
+       } else {
+              ADV();
+       }
+}

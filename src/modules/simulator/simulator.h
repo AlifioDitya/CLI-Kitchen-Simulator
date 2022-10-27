@@ -7,7 +7,7 @@
 
 typedef struct {
     char* name;
-    Point loc;
+    Point loc;  // Koordinat (0,0) ada pada kiri atas matriks peta, koordinat == indeks matriks.
     // Inventory inv;
 } Simulator;
 
@@ -15,7 +15,7 @@ typedef struct {
 #define Loc(S) (S).loc
 
 /* Konstruktor */
-void CreateSimulation (char* name, int x, int y, Simulator *s);
+void CreateSimulation (char* name, Simulator *s);
 // I.S Simulator sembarang
 // F.S Membuat simulasi baru dengan properti name dan lokasi terisi
 
