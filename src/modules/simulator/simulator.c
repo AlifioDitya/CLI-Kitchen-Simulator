@@ -4,10 +4,10 @@
 #include "../point/point.c"
 
 /* Konstruktor */
-void CreateSimulation (char* name, Simulator *s) {
+void CreateSimulation (Simulator *s) {
 // I.S Simulator sembarang
-// F.S Membuat simulasi baru dengan properti name dan lokasi terisi
-    Name(*s) = name;
+// F.S Membuat simulasi kosong
+    Name(*s) = "";
     CreatePoint(&Loc(*s), POINT_UNDEF, POINT_UNDEF);
 }
 

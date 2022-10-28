@@ -45,10 +45,17 @@ void readPeta(char* filename, Peta *pOut, Simulator *s);
 /* F.S. p terdefinisi nilai elemen efektifnya, berukuran nRow x nCol */
 /* Proses: Melakukan CreatePeta(m,nRow,nCol) dan mengisi nilai efektifnya */
 /* Selanjutnya membaca nilai elemen per baris dan kolom */
-/* Contoh: Jika nRow = 3 dan nCol = 3, maka contoh cara membaca isi matriks peta :
-# # #
-# # #
-# # # 
+/* Contoh: Jika nRow = 10 dan nCol = 10, maka cara membaca isi matriks peta dari file :
+S#########
+####T##X##
+#M#####X##
+#######X##
+####XXXX##
+#X########
+#X######C#
+#XXX##F###
+##########
+######B###
 */
 void displayPeta(Peta p);
 /* I.S. m terdefinisi */
@@ -81,7 +88,7 @@ void moveSouth(Simulator *s, Peta *p);
 /* Menggerakkan posisi user ke bawah pada peta*/
 
 /* Mengetahui posisi pada peta */
-void isInRadius(Simulator *s, Peta *p, char Symbol);
+boolean isObjectInRadius(Simulator s, Peta p, char object);
 /* Mengecek apabila symbol ada pada sekitar user */
 
 #endif

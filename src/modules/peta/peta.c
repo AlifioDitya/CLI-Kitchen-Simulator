@@ -92,8 +92,6 @@ S#########
             for (i=0; i<currentWord.Length; i++) {
                 if (currentWord.TabWord[i] == 'S') {
                     ELMT(*pOut, loc-2, i) = 'S';
-                    // Absis(Loc(*s)) = i;
-                    // Ordinat(Loc(*s)) = loc-2;
                     setLocation(i, loc-2, s);
                 } else {
                     ELMT(*pOut, loc-2, i) = currentWord.TabWord[i];
@@ -169,3 +167,75 @@ void displayPeta(Peta p) {
     }
 }
 
+/* Operasi menggerakkan user pada peta */
+void moveEast(Simulator *s, Peta *p) {
+/* Menggerakkan posisi user ke kanan pada peta*/
+    ElType temp;
+    if (isIdxEff(*p, Ordinat(Loc(*s)), (Absis(Loc(*s)) + 1)) && ELMT(*p, Ordinat(Loc(*s)), (Absis(Loc(*s)) + 1)) == '#') {
+        temp = ELMT(*p, Ordinat(Loc(*s)), (Absis(Loc(*s))));
+        ELMT(*p, Ordinat(Loc(*s)), (Absis(Loc(*s)))) = ELMT(*p, Ordinat(Loc(*s)), (Absis(Loc(*s)) + 1));
+        ELMT(*p, Ordinat(Loc(*s)), (Absis(Loc(*s)) + 1)) = temp;
+        shiftPoint(&Loc(*s), 1, 0);
+    } else {
+        printf("Tidak bisa bergerak ke timur!\n");
+    }
+}
+
+void moveWest(Simulator *s, Peta *p) {
+/* Menggerakkan posisi user ke kiri pada peta*/
+    ElType temp;
+    if (isIdxEff(*p, Ordinat(Loc(*s)), (Absis(Loc(*s)) - 1)) && ELMT(*p, Ordinat(Loc(*s)), (Absis(Loc(*s)) - 1)) == '#') {
+        temp = ELMT(*p, Ordinat(Loc(*s)), Absis(Loc(*s)));
+        ELMT(*p, Ordinat(Loc(*s)), Absis(Loc(*s))) = ELMT(*p, Ordinat(Loc(*s)), (Absis(Loc(*s)) - 1));
+        ELMT(*p, Ordinat(Loc(*s)), (Absis(Loc(*s)) - 1)) = temp;
+        shiftPoint(&Loc(*s), (-1), 0);
+    } else {
+        printf("Tidak bisa bergerak ke barat!\n");
+    }
+}
+
+void moveNorth(Simulator *s, Peta *p) {
+/* Menggerakkan posisi user ke atas pada peta*/
+    ElType temp;
+    if (isIdxEff(*p, (Ordinat(Loc(*s)) - 1), Absis(Loc(*s))) && ELMT(*p, (Ordinat(Loc(*s)) - 1), Absis(Loc(*s))) == '#') {
+        temp = ELMT(*p, Ordinat(Loc(*s)), Absis(Loc(*s)));
+        ELMT(*p, Ordinat(Loc(*s)), Absis(Loc(*s))) = ELMT(*p, (Ordinat(Loc(*s)) - 1), Absis(Loc(*s)));
+        ELMT(*p, (Ordinat(Loc(*s)) - 1), Absis(Loc(*s))) = temp;
+        shiftPoint(&Loc(*s), 0, (-1));
+    } else {
+        printf("Tidak bisa bergerak ke utara!\n");
+    }
+}
+
+void moveSouth(Simulator *s, Peta *p) {
+/* Menggerakkan posisi user ke bawah pada peta*/
+    ElType temp;
+    if (isIdxEff(*p, (Ordinat(Loc(*s)) + 1), Absis(Loc(*s))) && ELMT(*p, (Ordinat(Loc(*s)) + 1), Absis(Loc(*s))) == '#') {
+        temp = ELMT(*p, Ordinat(Loc(*s)), Absis(Loc(*s)));
+        ELMT(*p, Ordinat(Loc(*s)), Absis(Loc(*s))) = ELMT(*p, (Ordinat(Loc(*s)) + 1), Absis(Loc(*s)));
+        ELMT(*p, (Ordinat(Loc(*s)) + 1), Absis(Loc(*s))) = temp;
+        shiftPoint(&Loc(*s), 0, 1);
+    } else {
+        printf("Tidak bisa bergerak ke selatan!\n");
+    }
+}
+
+/* Mengetahui posisi pada peta */
+boolean isObjectInRadius(Simulator s, Peta p, char object) {
+/* Mengecek apabila object ada pada sekitar user */
+    int i, j;
+    boolean found;
+
+    found = false;
+    for (i=0; i<3; i++) {
+        for (j=0; j<3; j++) {
+            if (isIdxEff(p, i, j) && i != Ordinat(Loc(s)) && j != Absis(Loc(s))) {
+                if (ELMT(p, i, j) == object) {
+                    found = true;
+                    break;
+                }
+            }
+        }
+    }
+    return found;
+}

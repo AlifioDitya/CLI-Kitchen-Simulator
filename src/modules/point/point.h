@@ -46,7 +46,7 @@ Point NextY (Point P);
 /* Mengirim salinan P dengan ordinat ditambah satu */
 Point PlusDelta (Point P, int deltaX, int deltaY);
 /* Mengirim salinan P yang absisnya adalah Absis(P) + deltaX dan ordinatnya adalah Ordinat(P) + deltaY */
-void Geser (Point *P, int deltaX, int deltaY);
+void shiftPoint (Point *P, int deltaX, int deltaY);
 /* I.S. P terdefinisi */
 /* F.S. P digeser, absisnya sebesar deltaX dan ordinatnya sebesar deltaY */
 

@@ -74,7 +74,7 @@ Point PlusDelta (Point P, int deltaX, int deltaY) {
     return result;
 }
 
-void Geser (Point *P, int deltaX, int deltaY) {
+void shiftPoint (Point *P, int deltaX, int deltaY) {
 /* I.S. P terdefinisi */
 /* F.S. P digeser, absisnya sebesar deltaX dan ordinatnya sebesar deltaY */
 // KAMUS LOKAL

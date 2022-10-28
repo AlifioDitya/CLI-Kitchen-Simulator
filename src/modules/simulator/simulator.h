@@ -15,9 +15,9 @@ typedef struct {
 #define Loc(S) (S).loc
 
 /* Konstruktor */
-void CreateSimulation (char* name, Simulator *s);
+void CreateSimulation (Simulator *s);
 // I.S Simulator sembarang
-// F.S Membuat simulasi baru dengan properti name dan lokasi terisi
+// F.S Membuat simulasi kosong
 
 /* Setter */
 void setName(char* name, Simulator *s);
