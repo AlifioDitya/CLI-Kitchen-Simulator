@@ -219,7 +219,7 @@ void moveSouth(Simulator *s, Peta *p) {
         printf("Tidak bisa bergerak ke selatan!\n");
     }
 }
-
+  
 /* Mengetahui posisi pada peta */
 boolean isObjectInRadius(Simulator s, Peta p, char object) {
 /* Mengecek apabila object ada pada sekitar user */
