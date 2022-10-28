@@ -8,7 +8,7 @@ int main() {
 
     CreateSimulation(&s);
     setName("fio", &s);
-    char* filename = "map.txt";
+    char* filename = "../../data/map.txt";
     readPeta(filename, &p, &s);
     displayPeta(p);
     printf("\n");
