@@ -51,3 +51,37 @@ void setDeliveryTime(Makanan *m, TIME delivery) {
 // F.S Waktu delivery makanan terisi
     CreateTime(&DeliveryTime(*m), Hour(delivery), Minute(delivery), Second(delivery));
 }
+
+/* Membaca dari file */
+void readMakanan(char* filename, Makanan *m) {
+    int n, i, j;
+    int ID, HH, MM, SS;
+    TIME expire, delivery;
+
+    STARTWORDFILE(filename);
+    n = 0;
+    for (i=0; i<currentWord.Length; i++) {
+        n = n*10 + ((int) currentWord.TabWord[i]-48);
+    }
+    ADVWORD();
+
+    for (i=0; i<n; i++) {
+        ID = 0;
+        for (j=0; j<currentWord.Length; j++) {
+            ID = ID*10 + ((int) currentWord.TabWord[i]-48);
+        }
+        setID(m, ID);
+
+        strfy();
+        setFoodName(m, currentString);
+
+        createTIMEWord(&expire);
+        setExpiryDate(m, expire);
+        
+        createTIMEWord(&delivery);
+        setDeliveryTime(m, delivery);
+        
+        // enqueue(Inventory &inv);
+        ADVWORD();
+    }
+}
