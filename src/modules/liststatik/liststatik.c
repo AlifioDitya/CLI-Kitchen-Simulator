@@ -139,13 +139,8 @@ void extremeValues(ListStatik l, ElType *max, ElType *min) {
 };
 
 
-/* ********** MENAMBAH ELEMEN ********** */
-/* *** Menambahkan elemen terakhir *** */
+
 void insertFirst(ListStatik *l, ElType val)
-/* Proses: Menambahkan val sebagai elemen pertama List */
-/* I.S. List l boleh kosong, tetapi tidak penuh */
-/* F.S. val adalah elemen pertama l yang baru */
-/* *** Menambahkan elemen pada index tertentu *** */
 {
    // Kamus Lokal
    int last_idx,i;
@@ -157,10 +152,6 @@ void insertFirst(ListStatik *l, ElType val)
    ELMT(*l,0) = val;
 }
 void insertAt(ListStatik *l, ElType val, IdxType idx)
-/* Proses: Menambahkan val sebagai elemen pada index idx List */
-/* I.S. List l tidak kosong dan tidak penuh, idx merupakan index yang valid di l */
-/* F.S. val adalah elemen yang disisipkan pada index idx l */
-/* *** Menambahkan elemen terakhir *** */
 {
    // Kamus Lokal
    int last_idx,i;
@@ -172,9 +163,6 @@ void insertAt(ListStatik *l, ElType val, IdxType idx)
    ELMT(*l,idx) = val;
 }
 void insertLast(ListStatik *l, ElType val)
-/* Proses: Menambahkan val sebagai elemen terakhir List */
-/* I.S. List l boleh kosong, tetapi tidak penuh */
-/* F.S. val adalah elemen terakhir l yang baru */
 {
    // Kamus Lokal
    int last_idx;
@@ -183,14 +171,8 @@ void insertLast(ListStatik *l, ElType val)
    ELMT(*l,last_idx+1) = val;
 }
 
-/* ********** MENGHAPUS ELEMEN ********** */
-/* *** Menghapus elemen pertama *** */
+
 void deleteFirst(ListStatik *l, ElType *val)
-/* Proses : Menghapus elemen pertama List */
-/* I.S. List tidak kosong */
-/* F.S. val adalah nilai elemen pertama l sebelum penghapusan, */
-/*      Banyaknya elemen List berkurang satu */
-/*      List l mungkin menjadi kosong */
 {
    // Kamus Lokal
    int idx_val,i,last_idx;
@@ -203,13 +185,8 @@ void deleteFirst(ListStatik *l, ElType *val)
       ELMT(*l,i) = MARK;
    }
 }
-/* *** Menghapus elemen pada index tertentu *** */
+
 void deleteAt(ListStatik *l, ElType *val, IdxType idx)
-/* Proses : Menghapus elemen pada index idx List */
-/* I.S. List tidak kosong, idx adalah index yang valid di l */
-/* F.S. val adalah nilai elemen pada index idx l sebelum penghapusan, */
-/*      Banyaknya elemen List berkurang satu */
-/*      List l mungkin menjadi kosong */
 {
    // Kamus Lokal
    int i,last_idx;
@@ -222,13 +199,8 @@ void deleteAt(ListStatik *l, ElType *val, IdxType idx)
       ELMT(*l,i) = MARK;
    }
 }
-/* *** Menghapus elemen terakhir *** */
+
 void deleteLast(ListStatik *l, ElType *val)
-/* Proses : Menghapus elemen terakhir List */
-/* I.S. List tidak kosong */
-/* F.S. val adalah nilai elemen terakhir l sebelum penghapusan, */
-/*      Banyaknya elemen List berkurang satu */
-/*      List l mungkin menjadi kosong */
 {
    // Kamus Lokal
    int last_idx;
@@ -238,13 +210,8 @@ void deleteLast(ListStatik *l, ElType *val)
    ELMT(*l,last_idx) = MARK;
 }
 
-/* ********** SORTING ********** */
+
 void sortList(ListStatik *l, boolean asc)
-/* I.S. l boleh kosong */
-/* F.S. Jika asc = true, l terurut membesar */
-/*      Jika asc = false, l terurut mengecil */
-/* Proses : Mengurutkan l dengan salah satu algoritma sorting,
-   algoritma bebas */
 {
    // Kamus Lokal
    int i, j, last_idx, tmp;
