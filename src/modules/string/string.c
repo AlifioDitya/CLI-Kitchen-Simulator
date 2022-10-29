@@ -6,9 +6,8 @@
 String currentString;
 
 void strfy() {
+    IgnoreBlanks();
     currentString.Length = 0;
-    START();
-
     while (!endWord && currentChar != '\0' && currentChar != '\n') {
         if (currentString.Length < STR_CAP) {
             currentString.str[currentString.Length] = currentChar;

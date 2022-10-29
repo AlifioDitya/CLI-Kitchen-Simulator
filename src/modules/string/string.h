@@ -15,6 +15,6 @@ extern String currentString;
 void strfy();
 // I.S currenctString sembarang
 // F.S endWord = true, currentChar = MARK, currentString terisi oleh seluruh Word sebelum mark. 
-// Beda dari mesin kata, string mungkin mengandung BLANK di dalamnya.
+// Beda dari mesin kata, string mungkin mengandung BLANK di dalamnya, kecuali di awal kalimat.
 
 #endif
