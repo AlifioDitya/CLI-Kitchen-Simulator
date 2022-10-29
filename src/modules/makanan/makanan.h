@@ -4,14 +4,14 @@
 #include "../boolean.h"
 #include "../time/time.h"
 #include "../point/point.h"
-#include "../word-machine/wordmachine.h"
+#include "../string/string.h"
 
 #define IDType int
 #define ID_UNDEF (-1)
 
 typedef struct {
     IDType ID;
-    Word name;
+    String name;
     TIME expire;
     Point loc;
     TIME delivery;
@@ -19,28 +19,28 @@ typedef struct {
 
 /* Selektor */
 #define ID(M) (M).ID
+#define FoodName(M) (M).name
 #define Expire(M) (M).expire
-#define Loc(M) (M).Loc
+#define ActionLoc(M) (M).loc
 #define DeliveryTime(M) (M).delivery
 
 /* Konstruktor */
 void CreateMakanan(Makanan *m);
 // I.S Makanan sembarang
 // F.S Membuat object makanan kosong
-
 /* Setter */
 void setID(Makanan *m, IDType id);
 // I.S Makanan sembarang
 // ID makanan terisi
-void setFoodName(Makanan *m, Word name);
+void setFoodName(Makanan *m, String name);
 // I.S Makanan sembarang
 // Nama makanan terisi
 void setExpiryDate(Makanan *m, int HH, int MM, int SS);
 // I.S Makanan sembarang
 // Expired date makanan terisi
-void setFoodLocation(Makanan *m, int x, int y);
+void setActionLocation(Makanan *m, int x, int y);
 // I.S Makanan sembarang
-// F.S Lokasi makanan pada peta terisi 
+// F.S Lokasi aksi terhadap makanan pada peta terisi
 void setDeliveryTime(Makanan *m, int HH, int MM, int SS);
 // I.S Makanan sembarang
 // F.S Waktu delivery makanan terisi
