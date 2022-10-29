@@ -37,7 +37,7 @@ void setFoodName(Makanan *m, String name) {
 void setExpiryDate(Makanan *m, TIME expire) {
 // I.S Makanan sembarang
 // Expired date makanan terisi
-    CreateTime(&Expire(*m), Hour(expire), Minute(expire), Second(expire));
+    CreateTime(&Expire(*m), Day(expire), Hour(expire), Minute(expire));
 }
 
 void setActionLocation(Makanan *m, Point loc) {
@@ -49,7 +49,7 @@ void setActionLocation(Makanan *m, Point loc) {
 void setDeliveryTime(Makanan *m, TIME delivery) {
 // I.S Makanan sembarang
 // F.S Waktu delivery makanan terisi
-    CreateTime(&DeliveryTime(*m), Hour(delivery), Minute(delivery), Second(delivery));
+    CreateTime(&DeliveryTime(*m), Day(delivery), Hour(delivery), Minute(delivery));
 }
 
 /* Membaca dari file */
