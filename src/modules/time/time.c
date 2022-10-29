@@ -64,6 +64,31 @@ void BacaTIME (TIME * T) {
     CreateTime(T, HH, MM, SS);
 }
 
+void createTIMEWord(TIME *T) {
+// I.S Pita karakter sudah mulai dibaca
+// F.S Terbentuk T dengan komponennya yang dibaca dalam Word
+// Contoh: 1 0 0;
+// Akan terbaca Hour = 1, Minute = 0, Second = 0;
+    int HH, MM, SS;
+    int j;
+    HH = 0;
+    MM = 0;
+    SS = 0;
+    IgnoreBlanks();
+    for (j=0; j<currentWord.Length; j++) {
+        HH = HH*10 + ((int) currentWord.TabWord[j]-48);
+    }
+    ADVWORD();
+    for (j=0; j<currentWord.Length; j++) {
+        MM = MM*10 + ((int) currentWord.TabWord[j]-48);
+    }
+    ADVWORD();
+    for (j=0; j<currentWord.Length; j++) {
+        SS = SS*10 + ((int) currentWord.TabWord[j]-48);
+    }
+    ADVWORD();
+}
+
 void TulisTIME (TIME T) {
 /* I.S. : T sembarang */
 /* F.S. : Nilai T ditulis dg format HH:MM:SS */
