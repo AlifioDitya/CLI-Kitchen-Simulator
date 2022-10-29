@@ -25,9 +25,10 @@ typedef struct {
 #define DeliveryTime(M) (M).delivery
 
 /* Konstruktor */
-void CreateMakanan(Makanan *m);
+void CreateMakanan(Makanan *m, IDType ID, String name, TIME expire, Point loc, TIME delivery);
 // I.S Makanan sembarang
 // F.S Membuat object makanan kosong
+
 /* Setter */
 void setID(Makanan *m, IDType id);
 // I.S Makanan sembarang
@@ -35,13 +36,13 @@ void setID(Makanan *m, IDType id);
 void setFoodName(Makanan *m, String name);
 // I.S Makanan sembarang
 // Nama makanan terisi
-void setExpiryDate(Makanan *m, int HH, int MM, int SS);
+void setExpiryDate(Makanan *m, TIME expire);
 // I.S Makanan sembarang
 // Expired date makanan terisi
-void setActionLocation(Makanan *m, int x, int y);
+void setActionLocation(Makanan *m, Point loc);
 // I.S Makanan sembarang
 // F.S Lokasi aksi terhadap makanan pada peta terisi
-void setDeliveryTime(Makanan *m, int HH, int MM, int SS);
+void setDeliveryTime(Makanan *m, TIME delivery);
 // I.S Makanan sembarang
 // F.S Waktu delivery makanan terisi
 
