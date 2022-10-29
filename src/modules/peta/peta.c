@@ -6,12 +6,12 @@
 
 /* *** Konstruktor membentuk Matrix peta *** */
 void createPeta(int nRows, int nCols, Peta *p) {
-    ROW_EFF(*p) = nRows;
-    COL_EFF(*p) = nCols;
-}
 /* Membentuk sebuah peta "kosong" yang siap diisi berukuran nRow x nCol di "ujung kiri" memori */
 /* I.S. nRow dan nCol adalah valid untuk memori matriks yang dibuat */
 /* F.S. Matriks m sesuai dengan definisi di atas terbentuk */
+    ROW_EFF(*p) = nRows;
+    COL_EFF(*p) = nCols;
+}
 
 /* *** Getter *** */
 boolean isIdxValid(int i, int j) {
