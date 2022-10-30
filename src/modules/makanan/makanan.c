@@ -80,6 +80,12 @@ void readMakanan(char* filename, Makanan *m) {
         
         createTIMEWord(&delivery);
         setDeliveryTime(m, delivery);
+
+        ADVWORD();
+        // if (isBuy(currentWord)) { Locate(p, 'T') }
+        // else if (isChop) { Locate(p, 'C') }
+        // else if (isFry) { Locate(p, 'F') }
+        // else if (isBoil) { Locate(p, 'B') }
         
         // enqueue(Inventory &inv);
         ADVWORD();
