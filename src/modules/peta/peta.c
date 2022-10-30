@@ -3,6 +3,7 @@
 #include "peta.h"
 #include "../word-machine/charmachine.c"
 #include "../word-machine/wordmachine.c"
+#include "../point/point.c"
 
 /* *** Konstruktor membentuk Matrix peta *** */
 void createPeta(int nRows, int nCols, Peta *p) {
@@ -238,4 +239,30 @@ boolean isObjectInRadius(Simulator s, Peta p, char object) {
         }
     }
     return found;
+}
+
+Point Locate(Peta p, char object) {
+/* Mengembalikan posisi (koordinat) pertama kali ditemukan object bertipe char dalam peta */
+/* Mengembalikan POINT_UNDEF jika object tidak dalam peta */
+    int i, j;
+    Point loc;
+    boolean found;
+
+    found = false; 
+    for (i=0; i<ROW_EFF(p); i++) {
+        for (j=0; j<COL_EFF(p); j++) {
+            if (ELMT(p, i, j) == object) {
+                CreatePoint(&loc, j, i);
+                found = true;
+                break;
+            }
+        }
+    }
+
+    if (found) {
+        return loc;
+    } else {
+        CreatePoint(&loc, POINT_UNDEF, POINT_UNDEF);
+        return loc;
+    }
 }

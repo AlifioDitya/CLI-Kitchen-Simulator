@@ -3,6 +3,7 @@
 
 #include "../boolean.h"
 #include "../simulator/simulator.h"
+#include "../point/point.h"
 
 #define ROW_CAP 100
 #define COL_CAP 100
@@ -90,5 +91,9 @@ void moveSouth(Simulator *s, Peta *p);
 /* Mengetahui posisi pada peta */
 boolean isObjectInRadius(Simulator s, Peta p, char object);
 /* Mengecek apabila symbol ada pada sekitar user */
+Point Locate(Peta p, char object);
+/* Mencari posisi (koordinat) object bertipe char dalam peta */
+/* Mengembalikan POINT_UNDEF jika object tidak dalam peta */
+
 
 #endif
