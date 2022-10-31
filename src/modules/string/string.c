@@ -1,6 +1,6 @@
 #include <stdio.h>
-#include "string.h"
 #include "../boolean.h"
+#include "string.h"
 #include "../word-machine/wordmachine.c"
 
 String currentString;
@@ -16,5 +16,22 @@ void strfy() {
         } else {
             break;
         }
+    }
+}
+
+void startString() {
+// I.S currentString sembarang
+// I.S currentString diinisiasi untuk dibaca
+    START();
+    strfy();
+}
+
+void assignString(String a, String *b) {
+// Assign string a ke b
+    int i;
+
+    (*b).Length = (a).Length;
+    for (i=0; i<(*b).Length; i++) {
+        (*b).str[i] = (a).str[i];
     }
 }
