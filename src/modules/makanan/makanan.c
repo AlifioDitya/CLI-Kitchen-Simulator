@@ -3,6 +3,7 @@
 #include "../point/point.c"
 #include "../time/time.c"
 #include "../string/string.h"
+#include "../liststatik/liststatik.c"
 
 /* Konstruktor */
 void CreateMakanan(Makanan *m, IDType ID, String name, TIME expire, Point loc, TIME delivery) {
@@ -90,4 +91,8 @@ void readMakanan(char* filename, Makanan *m) {
         // enqueue(Inventory &inv);
         ADVWORD();
     }
+}
+
+Makanan getFoodByID(IDType ID, ListStatik l){
+    return ELMT(l,indexOf(l,ID));
 }
