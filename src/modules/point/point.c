@@ -1,7 +1,6 @@
 /* Realisasi Point */
 
 #include <stdio.h>
-#include "../boolean.h"
 #include "point.h"
 
 /* *** Konstruktor *** */

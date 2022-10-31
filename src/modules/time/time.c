@@ -5,9 +5,7 @@
 
 #include <stdio.h>
 #include "time.h"
-#include "../boolean.h"
 #include "../word-machine/wordmachine.c"
-
 
 /* REALISASI PRIMITIF                                                */
 /* ***************************************************************** */

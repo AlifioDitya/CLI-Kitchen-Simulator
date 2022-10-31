@@ -1,21 +1,23 @@
 #include <stdio.h>
-#include "../boolean.h"
+#include "./modules/boolean.h"
+#include "./util/util.c"
 
 int main() {
     int running = true;
-    char cmd[100];
+    Word cmd;
+    Peta p;
+    Simulator s;
 
-    printf("Selamat datang di BNMO!\n\n");
-    while (running) {
-        printf("Enter command : ");
-        scanf("%s", &cmd);
-        printf("\n");
+    Initiate(&s, &p);
+    Splash();
+    // while (running) {
+    //     inputCommand();
 
-        if (cmd[0] == 'E' && cmd[1] == 'X' && cmd[2] == 'I' && cmd[3] == 'T') {
-            running = false;
-            printf("Goodbye!\n");
-        } else {
-            printf("Main is running.\n\n");
-        }
-    }
+    //     if (isExit()) {
+    //         running = false;
+    //         printf("Goodbye!\n");
+    //     } else {
+    //         printf("Main is running.\n\n");
+    //     }
+    // }
 }

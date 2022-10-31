@@ -3,7 +3,7 @@
 
 #include "../boolean.h"
 #include "../simulator/simulator.h"
-#include "../point/point.h"
+// #include "../point/point.h"
 
 #define ROW_CAP 100
 #define COL_CAP 100
