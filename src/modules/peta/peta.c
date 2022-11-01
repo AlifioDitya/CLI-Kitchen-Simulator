@@ -50,7 +50,7 @@ void copyPeta(Peta pIn, Peta *pOut) {
 
 
 /* ********** KELOMPOK BACA/TULIS ********** */
-void readPeta(char* filename, Peta *pOut, Simulator *s) {
+void readPeta(char* filename, Peta *pOut) {
 /* I.S. isIdxValid(nRow,nCol) */
 /* F.S. p terdefinisi nilai elemen efektifnya, berukuran nRow x nCol */
 /* Proses: Melakukan CreatePeta(m,nRow,nCol) dan mengisi nilai efektifnya */
@@ -90,12 +90,13 @@ S#########
         } else {
             createPeta(nRow, nCol, pOut);
             for (i=0; i<currentWord.Length; i++) {
-                if (currentWord.TabWord[i] == 'S') {
-                    ELMT(*pOut, loc-2, i) = 'S';
-                    setLocation(i, loc-2, s);
-                } else {
-                    ELMT(*pOut, loc-2, i) = currentWord.TabWord[i];
-                }
+                // if (currentWord.TabWord[i] == 'S') {
+                //     ELMT(*pOut, loc-2, i) = 'S';
+                //     setLocation(i, loc-2, s);
+                // } else {
+                //     ELMT(*pOut, loc-2, i) = currentWord.TabWord[i];
+                // }
+                ELMT(*pOut, loc-2, i) = currentWord.TabWord[i];
                 if ((loc-1 == nRow) && (i == currentWord.Length-1)) {
                     done = true;
                 }

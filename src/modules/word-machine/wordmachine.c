@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "wordmachine.h"
 #include "charmachine.c"
+#include "../time/time.c"
 
 boolean endWord;
 Word currentWord;
@@ -86,4 +87,45 @@ void STARTWORDFILE(char* filename) {
         endWord = false;
         CopyWord();
     }
+}
+
+void ForceTerminate() {
+    endWord = true;
+    fclose(pita);
+    pita = NULL;
+}
+
+void printWord(Word w) {
+    int i;
+    for (i=0; i<w.Length; i++) {
+        printf("%c", w.TabWord[i]);
+    }
+    printf("\n");
+}
+
+void createTIMEWord(TIME *T) {
+// I.S Pita karakter sudah mulai dibaca
+// F.S Terbentuk T dengan komponennya yang dibaca dalam Word
+// Contoh: 1 0 0;
+// Akan terbaca Day = 1, Hour = 0, Minute = 0;
+    int D, H, M;
+    int j;
+    D = 0;
+    H = 0;
+    M = 0;
+    IgnoreBlanks();
+    for (j=0; j<currentWord.Length; j++) {
+        D = D*10 + ((int) currentWord.TabWord[j]-48);
+    }
+    ADVWORD();
+    for (j=0; j<currentWord.Length; j++) {
+        H = H*10 + ((int) currentWord.TabWord[j]-48);
+    }
+    ADVWORD();
+    for (j=0; j<currentWord.Length; j++) {
+        M = M*10 + ((int) currentWord.TabWord[j]-48);
+    }
+    ADVWORD();
+
+    CreateTime(T, D, H, M);
 }

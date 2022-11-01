@@ -1,5 +1,7 @@
 #include <stdio.h>
-#include "../modules/peta/peta.c"
+#include "../modules/makanan/makanan.c"
+// #include "../modules/peta/peta.c"
+// #include "../modules/time/time.c"
 // #include "../modules/boolean.h"
 // #include "../modules/simulator/simulator.c"
 // #include "../modules/string/string.c"
@@ -30,21 +32,41 @@ void Splash() {
     printf("Welcome to BNMO!");
 }
 
-void Initiate(Simulator *s, Peta *p) {
+void Initiate(Simulator *s, Peta *p, ListStatik *catalog) {
+    char* petaFileName = "src/data/map.txt";
+    char* makananFileName = "src/data/makanan.txt";
+    String name;
+
+    readPeta(petaFileName, p);
+    printf("\n");
 
     printf("Enter your name: ");
     startString();
-    // STARTWORD();
+    assignString(currentString, &name);
+    ForceTerminate();
     printf("\n");
 
-    for (int i=0; i<currentString.Length; i++) {
-        printf("%c", currentString.str[i]);
+    while (name.Length == 0) {
+        printf("Nama tidak boleh kosong!\n\n");
+        printf("Enter your name: ");
+        startString();
     }
+
+    CreateSimulation(s, name, Absis(Locate(*p, 'S')), Ordinat(Locate(*p, 'S')));
+    displayPeta(*p);
+    printf("Nama: ");
+    printString(Name(*s));
+    printf("Posisi user: ");
+    TulisPoint(Locate(*p, 'S'));
+    printf("\n");
+    printf("Absis: %d\n", Absis(Locate(*p, 'S')));
+    printf("Ordinat: %d\n", Ordinat(Locate(*p, 'S')));
     printf("\n");
 
-    CreateSimulation(s, currentString, POINT_UNDEF, POINT_UNDEF);
-    readPeta("C:/Users/Alifio/Kuliah/Semester 3/Algoritma dan Struktur Data/Tubes/Tubes-Alstrukdat-D/src/data/map.txt", p, s);  // User location is assigned here
-    printf("\n");
+    // CreateListStatik(catalog);
+    // readMakanan(makananFileName, *p, catalog);
+    
+
 }
 
 void inputCommand() {
