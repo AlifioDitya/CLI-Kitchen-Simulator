@@ -127,7 +127,15 @@ boolean isWordEqual(Word w1, Word w2) {
     return true;
 }
 
-Word createWord(char kata[], int length) {
+void assignWord(Word a, Word *b) {
+    int i;
+    (*b).Length = (a).Length;
+    for (i=0; i<(*b).Length; i++) {
+        (*b).TabWord[i] = (a).TabWord[i];
+    }
+}
+
+void createWord(char* kata, int length, Word *w) {
     /* Membuat suatu Word dari masukan array of char dan panjang word */
 
     // KAMUS
@@ -141,5 +149,6 @@ Word createWord(char kata[], int length) {
         temp.TabWord[i] = kata[i];
     }
 
-    return temp;
+    assignWord(temp, w);
 }
+

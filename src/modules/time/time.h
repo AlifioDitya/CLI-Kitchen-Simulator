@@ -33,15 +33,6 @@ boolean IsTIMEValid (int D, int H, int M);
 void CreateTime (TIME * T, int D, int H, int M);
 /* Membentuk sebuah TIME dari komponen-komponennya yang valid */
 /* Prekondisi : D, H, M valid untuk membentuk TIME */
-
-/* ***************************************************************** */
-/* KELOMPOK BACA/TULIS                                               */
-/* ***************************************************************** */
-void createTIMEWord(TIME *T);
-// I.S Pita karakter sudah mulai dibaca
-// F.S Terbentuk T dengan komponennya yang dibaca dalam Word
-// Contoh: 1 0 0;
-// Akan terbaca Day = 1, Hour = 0, Minute = 0;
    
 void TulisTIME (TIME T);
 /* I.S. : T sembarang */

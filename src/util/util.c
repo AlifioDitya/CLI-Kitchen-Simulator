@@ -6,30 +6,28 @@
 // #include "../modules/simulator/simulator.c"
 // #include "../modules/string/string.c"
 
-boolean isExit() {
-    if (currentWord.Length == 4 && currentWord.TabWord[0] == 'E' && currentWord.TabWord[1] == 'X' && currentWord.TabWord[2] == 'I' && currentWord.TabWord[3] == 'T') {
-        return true;
-    } else {
-        return false;
-    }
+boolean isExit(Word w) {
+    Word temp;
+    createWord("EXIT", 4, &temp);
+    return (isWordEqual(w, temp));
 }
 
-boolean isStart() {
-    if (currentWord.Length == 5 && currentWord.TabWord[0] == 'S' && currentWord.TabWord[1] == 'T' && currentWord.TabWord[2] == 'A' && currentWord.TabWord[3] == 'R' && currentWord.TabWord[4] == 'T') {
-        return true;
-    } else {
-        return false;
-    }
+boolean isStart(Word w) {
+    Word temp;
+    createWord("START", 5, &temp);
+    return (isWordEqual(w, temp));
 }
 
-void Splash() {
+void Splash(String name) {
     printf("  ;)( ;\n");
     printf(" :----:     o8Oo./\n");
     printf("C|====| ._o8o8o8Oo_.\n");
     printf(" |    |  \\========/\n");
     printf(" `----'   `------'\n");
     printf("\n");
-    printf("Welcome to BNMO!");
+    printf("Welcome to BNMO, ");
+    printString(name);
+    printf("!\n");
 }
 
 void Initiate(Simulator *s, Peta *p, ListStatik *catalog) {
@@ -41,10 +39,8 @@ void Initiate(Simulator *s, Peta *p, ListStatik *catalog) {
     printf("\n");
 
     printf("Enter your name: ");
-    // STARTWORD();
     startString();
     assignString(currentString, &name);
-    // ForceTerminate();
     printf("\n");
 
     // while (currentString.Length == 0) {
@@ -54,16 +50,20 @@ void Initiate(Simulator *s, Peta *p, ListStatik *catalog) {
     //     assignString(currentString, &name);
     // }
 
+
     CreateSimulation(s, name, Absis(Locate(*p, 'S')), Ordinat(Locate(*p, 'S')));
-    displayPeta(*p);
-    printf("Nama: ");
-    printString(Name(*s));
-    printf("Posisi user: ");
-    TulisPoint(Locate(*p, 'S'));
-    printf("\n");
-    printf("Absis: %d\n", Absis(Locate(*p, 'S')));
-    printf("Ordinat: %d\n", Ordinat(Locate(*p, 'S')));
-    printf("\n");
+
+    Splash(name);
+
+    // printf("Nama: ");
+    // printString(Name(*s));
+    // printf("\n");
+    // printf("Posisi user: ");
+    // TulisPoint(Locate(*p, 'S'));
+    // printf("\n");
+    // printf("Absis: %d\n", Absis(Locate(*p, 'S')));
+    // printf("Ordinat: %d\n", Ordinat(Locate(*p, 'S')));
+    // printf("\n");
 
     CreateListStatik(catalog);
     readMakanan(makananFileName, *p, catalog);
@@ -71,9 +71,10 @@ void Initiate(Simulator *s, Peta *p, ListStatik *catalog) {
 
 }
 
-void inputCommand() {
+void inputCommand(Word *cmd) {
     printf("Enter command : ");
     STARTWORD();
+    assignWord(currentWord, cmd);
     printf("\n");
 }
 

@@ -24,13 +24,7 @@ void setID(Makanan *m, IDType id) {
 void setFoodName(Makanan *m, String name) {
 // I.S Makanan sembarang, String name terdefinisi
 // Nama makanan terisi
-    int i;
-    i = 0;
-
-    FoodName(*m).Length = name.Length;
-    while (i < name.Length) {
-        FoodName(*m).str[i] = name.str[i];
-    }
+    assignString(name, &FoodName(*m));
 }
 
 void setExpiryDate(Makanan *m, TIME expire) {
@@ -52,19 +46,29 @@ void setDeliveryTime(Makanan *m, TIME delivery) {
 }
 
 boolean isBuy(Word w) {
-    return (w.Length == 3 && w.TabWord[0] == 'B' && w.TabWord[1] == 'U' && w.TabWord[2] == 'Y');
+    Word temp;
+    createWord("BUY", 3, &temp);
+    return (isWordEqual(w, temp));
 }
 boolean isChop(Word w) {
-    return (w.Length == 4 && w.TabWord[0] == 'C' && w.TabWord[1] == 'H' && w.TabWord[2] == 'O' && w.TabWord[3] == 'P');
+    Word temp;
+    createWord("CHOP", 4, &temp);
+    return (isWordEqual(w, temp));
 }
 boolean isFry(Word w) {
-    return (w.Length == 3 && w.TabWord[0] == 'F' && w.TabWord[1] == 'R' && w.TabWord[2] == 'Y');
+    Word temp;
+    createWord("FRY", 3, &temp);
+    return (isWordEqual(w, temp));
 }
 boolean isBoil(Word w) {
-    return (w.Length == 4 && w.TabWord[0] == 'B' && w.TabWord[1] == 'O' && w.TabWord[2] == 'I' && w.TabWord[3] == 'L');
+    Word temp;
+    createWord("BOIL", 4, &temp);
+    return (isWordEqual(w, temp));
 }
 boolean isMix(Word w) {
-    return (w.Length == 3 && w.TabWord[0] == 'M' && w.TabWord[1] == 'I' && w.TabWord[2] == 'X');
+    Word temp;
+    createWord("MIX", 3, &temp);
+    return (isWordEqual(w, temp));
 }
 
 
@@ -80,8 +84,8 @@ void readMakanan(char* filename, Peta p, ListStatik *l) {
     for (i=0; i<currentWord.Length; i++) {
         n = n*10 + ((int) currentWord.TabWord[i]-48);
     }
-    printf("N = ");
-    printWord(currentWord);
+    // printf("N = ");
+    // printWord(currentWord);
     ADVWORD();
 
     for (i=0; i<n; i++) {
@@ -90,13 +94,14 @@ void readMakanan(char* filename, Peta p, ListStatik *l) {
             ID = ID*10 + ((int) currentWord.TabWord[i]-48);
         }
         setID(&currMakanan, ID);
-        printf("ID = ");
-        printWord(currentWord);
+        // printf("ID = ");
+        // printWord(currentWord);
 
         strfy();
-        printf("Name = ");
-        printString(currentString);
-        // setFoodName(&currMakanan, currentString);
+        setFoodName(&currMakanan, currentString);
+        // printf("Name = ");
+        // printString(currentString);
+        // print("\n");
 
         ADVWORD();
         DD = 0;
@@ -116,8 +121,8 @@ void readMakanan(char* filename, Peta p, ListStatik *l) {
         
         CreateTime(&expire, DD, HH, MM);
         setExpiryDate(&currMakanan, expire);
-        printf("Expiry date = ");
-        TulisTIME(Expire(currMakanan));
+        // printf("Expiry date = ");
+        // TulisTIME(Expire(currMakanan));
         
         ADVWORD();
         DD = 0;
@@ -137,11 +142,11 @@ void readMakanan(char* filename, Peta p, ListStatik *l) {
         
         CreateTime(&delivery, DD, HH, MM);
         setDeliveryTime(&currMakanan, delivery);
-        printf("Delivery time = ");
-        TulisTIME(DeliveryTime(currMakanan));
+        // printf("Delivery time = ");
+        // TulisTIME(DeliveryTime(currMakanan));
 
         ADVWORD();
-        printWord(currentWord);
+        // printWord(currentWord);
         if (isBuy(currentWord)) {
             CreatePoint(&ActionLoc(currMakanan), Absis(Locate(p, 'T')), Ordinat(Locate(p, 'T')));
         } else if (isChop(currentWord)) {
@@ -155,12 +160,16 @@ void readMakanan(char* filename, Peta p, ListStatik *l) {
         } else {
             CreatePoint(&ActionLoc(currMakanan), POINT_UNDEF, POINT_UNDEF);
         }
-        printf("Action = ");
-        printf("Absis : %d, Ordinat : %d\n", Absis(ActionLoc(currMakanan)), Ordinat(ActionLoc(currMakanan)));
-        TulisPoint(ActionLoc(currMakanan));
+        // printf("Action = ");
+        // printf("Absis : %d, Ordinat : %d\n", Absis(ActionLoc(currMakanan)), Ordinat(ActionLoc(currMakanan)));
+        // TulisPoint(ActionLoc(currMakanan));
         
         insertLast(l, currMakanan);
-        ADVWORD();
+        if (i != (n-1)) {
+            ADVWORD();
+        } else {
+            endWord = true;
+        }
     }
 }
 

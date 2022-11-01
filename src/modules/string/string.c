@@ -57,5 +57,4 @@ void printString(String a) {
     for (i=0; i<(a).Length; i++) {
         printf("%c", (a).str[i]);
     }
-    printf("\n");
 }
