@@ -1,48 +1,11 @@
-#include "../time/time.h"
-#include "../makanan/makanan.h"
-#include "tree.h"
-#include "../point/point.c"
-#include "../peta/peta.h"
-#include "../liststatik/liststatik.h"
+#include "time.h"
+// #include "food.h"
+// #include "inventory.h"
+// #include "resep.c"
 #include <string.h>
 #include <stdio.h>
 
-extern ListStatik katalog;
-Peta p;
-ListStatik katalogByProses(ListStatik katalog, str proses){
-    ListStatik Proses;
-    CreateListStatik(&Proses);
-    if(proses == "BOIL"){
-        for(int i = 0; i<listLength(katalog); i++){
-            if(isPointSame(ActionLoc(Elmt(katalog, i)), Locate(p, 'B'))){
-                insertLast(&Proses, Elmt(katalog,i));
-            }
-        }
-    }
-    else if(proses = "CHOP"){
-        for(int i = 0; i<listLength(katalog); i++){
-            if(isPointSame(ActionLoc(Elmt(katalog, i)), Locate(p, 'C'))){
-                insertLast(&Proses,Elmt(katalog,i));
-            }
-        }
-    }
-    else if(proses = "FRY"){
-        for(int i = 0; i<listLength(katalog); i++){
-            if(isPointSame(ActionLoc(Elmt(katalog, i)), Locate(p, 'F'))){
-                insertLast(&Proses,Elmt(katalog,i));
-            }
-        }
-    }
-    else if(proses = "MIX"){
-        for(int i = 0; i<listLength(katalog); i++){
-            if(isPointSame(ActionLoc(Elmt(katalog, i)), Locate(p, 'M'))){
-                insertLast(&Proses,Elmt(katalog,i));
-            }
-        }
-    }
-    return Proses;
-}
-
+extern food[] dummy;
 void Boil (){
     List Rebus;
     int target;
