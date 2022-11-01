@@ -82,3 +82,7 @@ void shiftPoint (Point *P, int deltaX, int deltaY) {
     Absis(*P) += deltaX;
     Ordinat(*P) += deltaY;
 }
+
+boolean isPointSame (Point A, Point B) {
+    return (A.X == B.X && A.Y == B.Y);
+}
