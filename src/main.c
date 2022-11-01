@@ -18,8 +18,10 @@ int main() {
         if (isExit()) {
             running = false;
             printf("Goodbye!\n");
-        } else {
+        } else if (isStart()) {
             printf("Main is running.\n\n");
+        } else {
+            printf("Command not valid.\n\n");
         }
     }
 }
