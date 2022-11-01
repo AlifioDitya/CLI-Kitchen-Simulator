@@ -7,17 +7,19 @@ int main() {
     Word cmd;
     Peta p;
     Simulator s;
+    TIME currentTime;
+    ListStatik Catalog;
 
-    Initiate(&s, &p);
-    Splash();
-    // while (running) {
-    //     inputCommand();
+    Initiate(&s, &p, &Catalog);
 
-    //     if (isExit()) {
-    //         running = false;
-    //         printf("Goodbye!\n");
-    //     } else {
-    //         printf("Main is running.\n\n");
-    //     }
-    // }
+    while (running) {
+        inputCommand();
+
+        if (isExit()) {
+            running = false;
+            printf("Goodbye!\n");
+        } else {
+            printf("Main is running.\n\n");
+        }
+    }
 }

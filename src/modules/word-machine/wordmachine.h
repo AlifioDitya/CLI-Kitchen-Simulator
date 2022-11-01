@@ -49,4 +49,6 @@ void CopyWord();
 void STARTWORDFILE(char* filename);
 // Start word dari file
 
+void STOPWORD();
+
 #endif

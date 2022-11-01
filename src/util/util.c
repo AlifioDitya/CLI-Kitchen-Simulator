@@ -41,16 +41,18 @@ void Initiate(Simulator *s, Peta *p, ListStatik *catalog) {
     printf("\n");
 
     printf("Enter your name: ");
+    // STARTWORD();
     startString();
     assignString(currentString, &name);
-    ForceTerminate();
+    // ForceTerminate();
     printf("\n");
 
-    while (name.Length == 0) {
-        printf("Nama tidak boleh kosong!\n\n");
-        printf("Enter your name: ");
-        startString();
-    }
+    // while (currentString.Length == 0) {
+    //     printf("Nama tidak boleh kosong!\n\n");
+    //     printf("Enter your name: ");
+    //     startString();
+    //     assignString(currentString, &name);
+    // }
 
     CreateSimulation(s, name, Absis(Locate(*p, 'S')), Ordinat(Locate(*p, 'S')));
     displayPeta(*p);
@@ -63,9 +65,9 @@ void Initiate(Simulator *s, Peta *p, ListStatik *catalog) {
     printf("Ordinat: %d\n", Ordinat(Locate(*p, 'S')));
     printf("\n");
 
-    // CreateListStatik(catalog);
-    // readMakanan(makananFileName, *p, catalog);
-    
+    CreateListStatik(catalog);
+    readMakanan(makananFileName, *p, catalog);
+    printf("\n");
 
 }
 

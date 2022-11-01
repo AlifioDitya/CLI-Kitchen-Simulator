@@ -1,8 +1,7 @@
 #include <stdio.h>
 #include "makanan.h"
-#include "../point/point.c"
-#include "../time/time.c"
-#include "../string/string.h"
+#include "../liststatik/liststatik.c"
+#include "../peta/peta.c"
 
 /* Konstruktor */
 void CreateMakanan(Makanan *m, IDType ID, String name, TIME expire, Point loc, TIME delivery) {
@@ -52,17 +51,37 @@ void setDeliveryTime(Makanan *m, TIME delivery) {
     CreateTime(&DeliveryTime(*m), Day(delivery), Hour(delivery), Minute(delivery));
 }
 
+boolean isBuy(Word w) {
+    return (w.Length == 3 && w.TabWord[0] == 'B' && w.TabWord[1] == 'U' && w.TabWord[2] == 'Y');
+}
+boolean isChop(Word w) {
+    return (w.Length == 4 && w.TabWord[0] == 'C' && w.TabWord[1] == 'H' && w.TabWord[2] == 'O' && w.TabWord[3] == 'P');
+}
+boolean isFry(Word w) {
+    return (w.Length == 3 && w.TabWord[0] == 'F' && w.TabWord[1] == 'R' && w.TabWord[2] == 'Y');
+}
+boolean isBoil(Word w) {
+    return (w.Length == 4 && w.TabWord[0] == 'B' && w.TabWord[1] == 'O' && w.TabWord[2] == 'I' && w.TabWord[3] == 'L');
+}
+boolean isMix(Word w) {
+    return (w.Length == 3 && w.TabWord[0] == 'M' && w.TabWord[1] == 'I' && w.TabWord[2] == 'X');
+}
+
+
 /* Membaca dari file */
-void readMakanan(char* filename, Makanan *m) {
-    int n, i, j;
-    int ID, HH, MM, SS;
+void readMakanan(char* filename, Peta p, ListStatik *l) {
+    int n, i, j, k;
+    int ID, DD, HH, MM;
     TIME expire, delivery;
+    Makanan currMakanan;
 
     STARTWORDFILE(filename);
     n = 0;
     for (i=0; i<currentWord.Length; i++) {
         n = n*10 + ((int) currentWord.TabWord[i]-48);
     }
+    printf("N = ");
+    printWord(currentWord);
     ADVWORD();
 
     for (i=0; i<n; i++) {
@@ -70,24 +89,77 @@ void readMakanan(char* filename, Makanan *m) {
         for (j=0; j<currentWord.Length; j++) {
             ID = ID*10 + ((int) currentWord.TabWord[i]-48);
         }
-        setID(m, ID);
+        setID(&currMakanan, ID);
+        printf("ID = ");
+        printWord(currentWord);
 
         strfy();
-        setFoodName(m, currentString);
-
-        createTIMEWord(&expire);
-        setExpiryDate(m, expire);
-        
-        createTIMEWord(&delivery);
-        setDeliveryTime(m, delivery);
+        printf("Name = ");
+        printString(currentString);
+        // setFoodName(&currMakanan, currentString);
 
         ADVWORD();
-        // if (isBuy(currentWord)) { Locate(p, 'T') }
-        // else if (isChop) { Locate(p, 'C') }
-        // else if (isFry) { Locate(p, 'F') }
-        // else if (isBoil) { Locate(p, 'B') }
+        DD = 0;
+        for (k=0; k<currentWord.Length; k++) {
+            DD = DD*10 + ((int) currentWord.TabWord[k]-48);
+        }
+        ADVWORD();
+        HH = 0;
+        for (k=0; k<currentWord.Length; k++) {
+            HH = HH*10 + ((int) currentWord.TabWord[k]-48);
+        }
+        ADVWORD();
+        MM = 0;
+        for (k=0; k<currentWord.Length; k++) {
+            MM = MM*10 + ((int) currentWord.TabWord[k]-48);
+        }
         
-        // enqueue(Inventory &inv);
+        CreateTime(&expire, DD, HH, MM);
+        setExpiryDate(&currMakanan, expire);
+        printf("Expiry date = ");
+        TulisTIME(Expire(currMakanan));
+        
+        ADVWORD();
+        DD = 0;
+        for (k=0; k<currentWord.Length; k++) {
+            DD = DD*10 + ((int) currentWord.TabWord[k]-48);
+        }
+        ADVWORD();
+        HH = 0;
+        for (k=0; k<currentWord.Length; k++) {
+            HH = HH*10 + ((int) currentWord.TabWord[k]-48);
+        }
+        ADVWORD();
+        MM = 0;
+        for (k=0; k<currentWord.Length; k++) {
+            MM = MM*10 + ((int) currentWord.TabWord[k]-48);
+        }
+        
+        CreateTime(&delivery, DD, HH, MM);
+        setDeliveryTime(&currMakanan, delivery);
+        printf("Delivery time = ");
+        TulisTIME(DeliveryTime(currMakanan));
+
+        ADVWORD();
+        printWord(currentWord);
+        if (isBuy(currentWord)) {
+            CreatePoint(&ActionLoc(currMakanan), Absis(Locate(p, 'T')), Ordinat(Locate(p, 'T')));
+        } else if (isChop(currentWord)) {
+            CreatePoint(&ActionLoc(currMakanan), Absis(Locate(p, 'C')), Ordinat(Locate(p, 'C')));
+        } else if (isFry(currentWord)) {
+            CreatePoint(&ActionLoc(currMakanan), Absis(Locate(p, 'F')), Ordinat(Locate(p, 'F')));
+        } else if (isBoil(currentWord)) {
+            CreatePoint(&ActionLoc(currMakanan), Absis(Locate(p, 'B')), Ordinat(Locate(p, 'B')));
+        } else if (isMix(currentWord)) {
+            CreatePoint(&ActionLoc(currMakanan), Absis(Locate(p, 'M')), Ordinat(Locate(p, 'M')));
+        } else {
+            CreatePoint(&ActionLoc(currMakanan), POINT_UNDEF, POINT_UNDEF);
+        }
+        printf("Action = ");
+        printf("Absis : %d, Ordinat : %d\n", Absis(ActionLoc(currMakanan)), Ordinat(ActionLoc(currMakanan)));
+        TulisPoint(ActionLoc(currMakanan));
+        
+        insertLast(l, currMakanan);
         ADVWORD();
     }
 }
