@@ -8,6 +8,8 @@
 #include "tree.h"
 #include "../word-machine/wordmachine.c"
 #include "../word-machine/charmachine.c"
+#include "../makanan/makanan.c"
+#include "../peta/peta.c"
 
 
 /* Selektor */
@@ -103,19 +105,23 @@ Address searchByID(ElType id, BinTree resep) {
    }
 }
 
-void printListResep(BinTree resep) {   // Masih nunggu adt makanan
+void printListResep(BinTree resep, Peta p) {   // Masih nunggu adt makanan
    int i = 0;
    int idx = 1;
    Address fc;
-   food target, bahan;
+   Makanan target, bahan;
 
    if (FCHD(resep) != NULL && resep != NULL) {
-      target = searchFoodByID(INFO(resep));
+      target = getFoodByID(INFO(resep));
       int nBahan = length(listBahan(resep).bahan);
 
-      printf("%d. %s\n%d - ", idx, target.name, target.location);
+
+      printf("%d. %s\n", idx, target.name);
+      showProcess(target, p);
+      printf(" - ");
+
       for (i; i<nBahan; i++) {
-         bahan = searchFoodByID(listBahan(resep).bahan[i]);
+         bahan = getFoodByID(listBahan(resep).bahan[i]);
          printf("%s", bahan.name);
          if (i<nBahan-1) {
             printf(" - ");
@@ -131,6 +137,21 @@ void printListResep(BinTree resep) {   // Masih nunggu adt makanan
    printListResep(fc);
    printListResep(NSBG(resep));
 }
+
+void showProcess (Makanan target, Peta p) {
+
+   if (isPointSame(target.loc, Locate(Peta p, "B")) {
+      printf("BOIL"); 
+   } else if (isPointSame(target.loc, Locate(Peta p, "C")) {
+      printf("CHOP"); 
+   } else if (isPointSame(target.loc, Locate(Peta p, "F")) {
+      printf("FRY"); 
+   } else {
+      printf("MIX"); 
+   }
+
+}
+
 
 listIDBahan listBahan(Address targetMakanan) {
 
