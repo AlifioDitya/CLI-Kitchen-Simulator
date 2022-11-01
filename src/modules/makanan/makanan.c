@@ -96,5 +96,5 @@ void readMakanan(char* filename, Makanan *m) {
 Makanan getFoodByID(IDType ID, ListStatik l){
     // I.S. ID Sembarang
     // membaca makanan dari file catalog
-    return ELMT(l,indexOf(l,ID));
+    return Elmt(l,indexOf(l,ID));
 }
