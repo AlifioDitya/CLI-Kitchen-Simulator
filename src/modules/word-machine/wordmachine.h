@@ -52,4 +52,7 @@ void STARTWORDFILE(char* filename);
 boolean isWordEqual(Word w1, Word w2);
 /* Mengembalikan true bila kata w1 dan kata w2 sama dan sebaliknya */
 
+Word createWord(char kata[], int length);
+/* Membuat suatu Word dari masukan array of char dan panjang word */
+
 #endif

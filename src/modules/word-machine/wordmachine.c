@@ -126,3 +126,20 @@ boolean isWordEqual(Word w1, Word w2) {
 
     return true;
 }
+
+Word createWord(char kata[], int length) {
+    /* Membuat suatu Word dari masukan array of char dan panjang word */
+
+    // KAMUS
+    Word temp;
+    int i;
+
+    // ALGORITMA
+    temp.Length = length;
+
+    for (i = 0; i < length; i++) {
+        temp.TabWord[i] = kata[i];
+    }
+
+    return temp;
+}
