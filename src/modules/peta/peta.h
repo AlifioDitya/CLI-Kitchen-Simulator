@@ -3,6 +3,7 @@
 
 #include "../boolean.h"
 #include "../simulator/simulator.h"
+// #include "../point/point.h"
 
 #define ROW_CAP 100
 #define COL_CAP 100
@@ -40,7 +41,7 @@ void copyPeta(Peta pIn, Peta *pOut);
 /* Melakukan assignment pOut <- pIn */
 
 /* ********** KELOMPOK BACA/TULIS ********** */
-void readPeta(char* filename, Peta *pOut, Simulator *s);
+void readPeta(char* filename, Peta *pOut);
 /* I.S. isIdxValid(nRow,nCol) */
 /* F.S. p terdefinisi nilai elemen efektifnya, berukuran nRow x nCol */
 /* Proses: Melakukan CreatePeta(m,nRow,nCol) dan mengisi nilai efektifnya */
@@ -90,5 +91,9 @@ void moveSouth(Simulator *s, Peta *p);
 /* Mengetahui posisi pada peta */
 boolean isObjectInRadius(Simulator s, Peta p, char object);
 /* Mengecek apabila symbol ada pada sekitar user */
+Point Locate(Peta p, char object);
+/* Mencari posisi (koordinat) object bertipe char dalam peta */
+/* Mengembalikan POINT_UNDEF jika object tidak dalam peta */
+
 
 #endif

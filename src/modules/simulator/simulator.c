@@ -1,21 +1,21 @@
 #include <stdio.h>
-#include "../boolean.h"
 #include "simulator.h"
 #include "../point/point.c"
+#include "../string/string.c"
 
 /* Konstruktor */
-void CreateSimulation (Simulator *s) {
+void CreateSimulation (Simulator *s, String name, int x, int y) {
 // I.S Simulator sembarang
 // F.S Membuat simulasi kosong
-    Name(*s) = "";
-    CreatePoint(&Loc(*s), POINT_UNDEF, POINT_UNDEF);
+    setName(name, s);
+    setLocation(x, y, s);
 }
 
 /* Setter */
-void setName(char* name, Simulator *s) {
+void setName(String name, Simulator *s) {
 // I.S Nama pengguna pada simulator sembarang
 // F.S Nama pengguna terisi
-    Name(*s) = name;
+    assignString(name, &(*s).name);
 }
 
 void setLocation(int x, int y, Simulator *s) {

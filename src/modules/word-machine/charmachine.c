@@ -3,6 +3,7 @@
 
 #include "charmachine.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 char currentChar;
 boolean EOP;
@@ -44,7 +45,8 @@ void ADV()
 void STARTFILE(char* filename) {
        pita = fopen(filename, "r");
        if (pita == NULL) {
-              printf("File tidak ada. Exiting...");
+              printf("File tidak ada. Exiting...\n");
+              exit(1);
        } else {
               ADV();
        }

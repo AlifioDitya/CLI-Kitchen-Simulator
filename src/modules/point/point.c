@@ -1,7 +1,6 @@
 /* Realisasi Point */
 
 #include <stdio.h>
-#include "../boolean.h"
 #include "point.h"
 
 /* *** Konstruktor *** */
@@ -15,21 +14,6 @@ void CreatePoint (Point * P, int X, int Y) {
 }
 
 /* *** KELOMPOK Interaksi dengan I/O device, BACA/TULIS  *** */ 
-void BacaPoint (Point * P) {
-/* Membaca nilai absis dan ordinat dari keyboard dan membentuk 
-   Point P berdasarkan dari nilai absis dan ordinat tersebut */
-/* Komponen X dan Y dibaca dalam 1 baris, dipisahkan 1 buah spasi */
-/* Contoh: 1 2 
-   akan membentuk Point <1,2> */
-/* I.S. Sembarang */
-/* F.S. P terdefinisi */
-// KAMUS LOKAL
-    int X, Y;
-// ALGORITMA
-    scanf("%f %f", &X, &Y);
-    CreatePoint(P, X, Y);
-}
-
 void TulisPoint (Point P) {
 /* Nilai P ditulis ke layar dengan format "(X,Y)" 
    tanpa spasi, enter, atau karakter lain di depan, belakang, 
@@ -39,7 +23,7 @@ void TulisPoint (Point P) {
 /* F.S. P tertulis di layar dengan format "(X,Y)" */
 // KAMUS
 // ALGORITMA
-    printf("(%.2f,%.2f)", Absis(P), Ordinat(P));
+    printf("(%d,%d)\n", Absis(P), Ordinat(P));
 }
 
 /* *** KELOMPOK OPERASI LAIN TERHADAP TYPE *** */ 
