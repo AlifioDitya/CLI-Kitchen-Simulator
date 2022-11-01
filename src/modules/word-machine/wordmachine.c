@@ -129,3 +129,23 @@ void createTIMEWord(TIME *T) {
 
     CreateTime(T, D, H, M);
 }
+
+boolean isWordEqual(Word w1, Word w2) {
+    /* Mengembalikan true bila kata w1 dan kata w2 sama dan sebaliknya */
+
+    // KAMUS
+    int i;
+
+    // ALGORITMA
+    if (w1.Length != w2.Length) {
+        return false;
+    }
+
+    for (i = 0; i < w1.Length; i++) {
+        if (w1.TabWord[i] != w2.TabWord[i]) {
+            return false;
+        }
+    }
+
+    return true;
+}
