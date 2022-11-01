@@ -41,7 +41,7 @@ void copyPeta(Peta pIn, Peta *pOut);
 /* Melakukan assignment pOut <- pIn */
 
 /* ********** KELOMPOK BACA/TULIS ********** */
-void readPeta(char* filename, Peta *pOut, Simulator *s);
+void readPeta(char* filename, Peta *pOut);
 /* I.S. isIdxValid(nRow,nCol) */
 /* F.S. p terdefinisi nilai elemen efektifnya, berukuran nRow x nCol */
 /* Proses: Melakukan CreatePeta(m,nRow,nCol) dan mengisi nilai efektifnya */
