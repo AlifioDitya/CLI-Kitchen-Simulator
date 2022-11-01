@@ -5,6 +5,8 @@
 #ifndef TIME_H
 #define TIME_H
 
+#define TIME_UNDEF (-1)
+
 #include "boolean.h" 
 
 /* *** Definisi TYPE TIME <HH:MM:SS> *** */
