@@ -163,3 +163,9 @@ void readMakanan(char* filename, Peta p, ListStatik *l) {
         ADVWORD();
     }
 }
+
+Makanan getFoodByID(IDType ID, ListStatik l){
+    // I.S. ID Sembarang
+    // membaca makanan dari file catalog
+    return Elmt(l,indexOf(l,ID));
+}
