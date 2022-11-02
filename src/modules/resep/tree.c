@@ -10,7 +10,7 @@
 #include "../word-machine/charmachine.c"
 #include "../makanan/makanan.c"
 #include "../peta/peta.c"
-
+#include "../liststatik/liststatik.c"
 
 /* Selektor */
 #define CAPACITY 100
@@ -24,7 +24,7 @@ typedef struct treeNode {
 
 typedef struct {
     int bahan[CAPACITY];
-} listIDBahan;
+} ListIDBahan;
 
 #define ELMT(l, i) (l).bahan[(i)]
 
@@ -34,12 +34,12 @@ typedef struct {
 
 typedef Address BinTree;
 
-void CreateList(listIDBahan * List) {
-    int i = 0;
+void CreateListBahan(ListIDBahan * List) {
+   int i = 0;
 
-    for (i; i<CAPACITY; i++) {
-        ELMT(*List,i) = VAL_UNDEF;
-    }
+   for (i; i<CAPACITY; i++) {
+      ELMT(*List,i) = VAL_UNDEF;
+   }
 }
 
 BinTree NewTree (ElType info, BinTree fc, BinTree nsb) {
@@ -86,77 +86,10 @@ Address newTreeNode(ElType val) {
    return p;
 }
 
-
-Address searchByID(ElType id, BinTree resep) {
-
-   ElType root = INFO(resep);
-   Address fc = FCHD(resep);  
-
-   if (root == id) {
-      return resep;
-   } 
-
-   if (fc != NULL) {
-      searchByID(id, fc);
-   }
-   
-   if (NSBG(resep) != NULL) { 
-      searchByID(id, NSBG(resep));
-   }
-}
-
-void printListResep(BinTree resep, Peta p) {   // Masih nunggu adt makanan
-   int i = 0;
-   int idx = 1;
-   Address fc;
-   Makanan target, bahan;
-
-   if (FCHD(resep) != NULL && resep != NULL) {
-      target = getFoodByID(INFO(resep));
-      int nBahan = length(listBahan(resep).bahan);
-
-
-      printf("%d. %s\n", idx, target.name);
-      showProcess(target, p);
-      printf(" - ");
-
-      for (i; i<nBahan; i++) {
-         bahan = getFoodByID(listBahan(resep).bahan[i]);
-         printf("%s", bahan.name);
-         if (i<nBahan-1) {
-            printf(" - ");
-         } else {
-            printf("\n");
-         };
-      }
-
-      idx++;
-   }
-
-   fc = FCHD(resep);
-   printListResep(fc);
-   printListResep(NSBG(resep));
-}
-
-void showProcess (Makanan target, Peta p) {
-
-   if (isPointSame(target.loc, Locate(Peta p, "B")) {
-      printf("BOIL"); 
-   } else if (isPointSame(target.loc, Locate(Peta p, "C")) {
-      printf("CHOP"); 
-   } else if (isPointSame(target.loc, Locate(Peta p, "F")) {
-      printf("FRY"); 
-   } else {
-      printf("MIX"); 
-   }
-
-}
-
-
-listIDBahan listBahan(Address targetMakanan) {
+ListIDBahan listBahan(Address targetMakanan) {
 
    Address fc = FCHD(targetMakanan);
-   listIDBahan listID;
+   ListIDBahan listID;
    int i = 0;
 
    CreateList(&listID);
@@ -169,10 +102,85 @@ listIDBahan listBahan(Address targetMakanan) {
    return listID;
 }
 
-// File parser
+
+Address searchByID(ElType id, BinTree resep) {
+
+   ElType root = INFO(resep);
+   Address fc = FCHD(resep);
+   Address p;  
+
+   if (root == id) {
+      p = resep;
+   } 
+
+   if (fc != NULL && p == NULL) {
+      return searchByID(id, fc);
+   }
+   
+   if (NSBG(resep) != NULL && p == NULL) { 
+      return searchByID(id, NSBG(resep));
+   }
+
+   return p;
+
+}
+
+void printListResep(BinTree resep, Peta p, ListStatik l) {   // Masih nunggu adt makanan
+   int i = 0;
+   int idx = 1;
+   Address fc;
+   Makanan target, bahan;
+
+   if (FCHD(resep) != NULL && resep != NULL) {
+      target = getFoodByID(INFO(resep), l);
+      int nBahan = length(listBahan(resep).bahan);
+
+
+      printf("%d. %s\n", idx, target.name);
+      showProcess(target, p);
+      printf(" - ");
+
+      for (i; i<nBahan; i++) {
+         bahan = getFoodByID(listBahan(resep).bahan[i], l);
+         printf("%s", bahan.name);
+         if (i<nBahan-1) {
+            printf(" - ");
+         } else {
+            printf("\n");
+         };
+      }
+
+      idx++;
+   }
+
+   fc = FCHD(resep);
+   printListResep(fc, p, l);
+   printListResep(NSBG(resep), p, l);
+}
+
+void showProcess (Makanan target, Peta p) {
+
+   if (isPointSame(target.loc, Locate(p, "B"))) {
+      printf("BOIL"); 
+   } else if (isPointSame(target.loc, Locate(p, "C"))) {
+      printf("CHOP"); 
+   } else if (isPointSame(target.loc, Locate(p, "F"))) {
+      printf("FRY"); 
+   } else {
+      printf("MIX"); 
+   }
+
+}
+
+
+
+// // File parser
 // BinTree readFromFile(Word pathname) { 
 
-//    FILE *fp = fopen(pathname + ".txt", "r");
+//    FILE *fp = fopen("config_resep.txt", "r");
+
+//    STARTWORD()
+
 
 
 
