@@ -1,16 +1,19 @@
 #include <stdio.h>
 #include "peta.c"
-#include "../simulator/simulator.c"
+// #include "../simulator/simulator.c"
 
 int main() {
     Peta p;
     Simulator s;
+    String name;
 
-    CreateSimulation(&s);
-    setName("fio", &s);
-    char* filename = "../../data/map.txt";
-    readPeta(filename, &p, &s);
+    startString();
+    setName(name, &s);
+
+    char* filename = "src/data/map.txt";
+    readPeta(filename, &p);
     displayPeta(p);
+    CreateSimulation(&s, name, Absis(Locate(p, 'S')), Ordinat(Locate(p, 'S')));
     printf("\n");
 
     printf("nRow = %d\n", ROW_EFF(p));

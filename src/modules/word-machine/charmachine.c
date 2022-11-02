@@ -3,6 +3,7 @@
 
 #include "charmachine.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 char currentChar;
 boolean EOP;
@@ -34,7 +35,7 @@ void ADV()
 
        /* Algoritma */
        retval = fscanf(pita, "%c", &currentChar);
-       EOP = (currentChar == MARK);
+       EOP = (currentChar == MARK );
        if (EOP)
        {
               fclose(pita);
@@ -44,8 +45,13 @@ void ADV()
 void STARTFILE(char* filename) {
        pita = fopen(filename, "r");
        if (pita == NULL) {
-              printf("File tidak ada. Exiting...");
+              printf("File tidak ada. Exiting...\n");
+              exit(1);
        } else {
               ADV();
        }
+}
+
+void STOP() {
+       fclose(pita);
 }

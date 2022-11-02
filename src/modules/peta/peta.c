@@ -1,8 +1,8 @@
 #include <stdio.h>
-#include "../boolean.h"
 #include "peta.h"
-#include "../word-machine/charmachine.c"
-#include "../word-machine/wordmachine.c"
+#include "../simulator/simulator.c"
+// #include "../point/point.c"
+// #include "../word-machine/wordmachine.c"
 
 /* *** Konstruktor membentuk Matrix peta *** */
 void createPeta(int nRows, int nCols, Peta *p) {
@@ -50,7 +50,7 @@ void copyPeta(Peta pIn, Peta *pOut) {
 
 
 /* ********** KELOMPOK BACA/TULIS ********** */
-void readPeta(char* filename, Peta *pOut, Simulator *s) {
+void readPeta(char* filename, Peta *pOut) {
 /* I.S. isIdxValid(nRow,nCol) */
 /* F.S. p terdefinisi nilai elemen efektifnya, berukuran nRow x nCol */
 /* Proses: Melakukan CreatePeta(m,nRow,nCol) dan mengisi nilai efektifnya */
@@ -90,12 +90,7 @@ S#########
         } else {
             createPeta(nRow, nCol, pOut);
             for (i=0; i<currentWord.Length; i++) {
-                if (currentWord.TabWord[i] == 'S') {
-                    ELMT(*pOut, loc-2, i) = 'S';
-                    setLocation(i, loc-2, s);
-                } else {
-                    ELMT(*pOut, loc-2, i) = currentWord.TabWord[i];
-                }
+                ELMT(*pOut, loc-2, i) = currentWord.TabWord[i];
                 if ((loc-1 == nRow) && (i == currentWord.Length-1)) {
                     done = true;
                 }
@@ -238,4 +233,30 @@ boolean isObjectInRadius(Simulator s, Peta p, char object) {
         }
     }
     return found;
+}
+
+Point Locate(Peta p, char object) {
+/* Mengembalikan posisi (koordinat) pertama kali ditemukan object bertipe char dalam peta */
+/* Mengembalikan POINT_UNDEF jika object tidak dalam peta */
+    int i, j;
+    Point loc;
+    boolean found;
+
+    found = false; 
+    for (i=0; i<ROW_EFF(p); i++) {
+        for (j=0; j<COL_EFF(p); j++) {
+            if (ELMT(p, i, j) == object) {
+                CreatePoint(&loc, j, i);
+                found = true;
+                break;
+            }
+        }
+    }
+
+    if (found) {
+        return loc;
+    } else {
+        CreatePoint(&loc, POINT_UNDEF, POINT_UNDEF);
+        return loc;
+    }
 }
