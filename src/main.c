@@ -1,15 +1,18 @@
 #include <stdio.h>
 #include "./modules/boolean.h"
-#include "./util/util.c"
+#include "./util/util.h"
 
 int main() {
-    int running = true;
+    // KAMUS
+    boolean running;
     Word cmd;
     Peta p;
     Simulator s;
     TIME currentTime;
     ListStatik Catalog;
 
+    // ALGORITMA
+    running = true;
     Initiate(&s, &p, &Catalog);
 
     if (isExit(cmd)) {

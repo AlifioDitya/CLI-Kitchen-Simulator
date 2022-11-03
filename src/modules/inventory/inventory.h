@@ -36,19 +36,19 @@ void CreateInventory(Inventory *I);
 /* F.S. Terbentuk list kosong */
 
 /****************** TEST LIST KOSONG ******************/
-boolean isEmpty(Inventory I);
+boolean isEmptyInventory(Inventory I);
 /* Mengirim true jika list kosong */
 
 /****************** GETTER SETTER ******************/
-Infotype getElmt(Inventory I, int idx);
+Infotype getElmtInventory(Inventory I, int idx);
 /* I.S. I terdefinisi, idx indeks yang valid dalam I, yaitu 0..length(I) - 1 */
 /* F.S. Mengembalikan nilai elemen I pada indeks idx */
 
-void setElmt(Inventory *I, int idx, Infotype val);
+void setElmtInventory(Inventory *I, int idx, Infotype val);
 /* I.S. I terdefinisi, idx indeks yang valid dalam I, yaitu 0..length(I) - 1 */
 /* F.S. Mengubah elemen I pada indeks ke-idx menjadi val */
 
-int indexOf(Inventory I, Infotype val);
+int indexOfInventory(Inventory I, Infotype val);
 /* I.S. I, val terdefinisi */
 /* F.S. Mencari apakah ada elemen list I yang bernilai val */
 /* Jika ada, mengembalikan indeks elemen pertama I yang bernilai val */
@@ -56,19 +56,19 @@ int indexOf(Inventory I, Infotype val);
 
 /****************** PRIMITIF BERDASARKAN NILAI ******************/
 /*** PENAMBAHAN ELEMEN ***/
-void insert(Inventory *I, Infotype val);
+void insertInventory(Inventory *I, Infotype val);
 /* I.S. l mungkin kosong */
 /* F.S. Melakukan alokasi sebuah elemen dan */
 /* menambahkan elemen dengan nilai val terurut berdasarkan expiry time jika alokasi berhasil. */
 /* Jika alokasi gagal: I.S. = F.S. */
 
 /*** PENGHAPUSAN ELEMEN ***/
-void deleteFirst(Inventory *I, Infotype *val);
+void deleteFirstInventory(Inventory *I, Infotype *val);
 /* I.S. List I tidak kosong  */
 /* F.S. Elemen pertama list dihapus: nilai info disimpan pada val */
 /*      dan alamat elemen pertama di-dealokasi */
 
-void deleteAt(Inventory *I, int idx, Infotype *val);
+void deleteAtInventory(Inventory *I, int idx, Infotype *val);
 /* I.S. list tidak kosong, idx indeks yang valid dalam I, yaitu 0..length(I) - 1 */
 /* F.S. val diset dengan elemen I pada indeks ke-idx. */
 /*      Elemen I pada indeks ke-idx dihapus dari I */
@@ -84,7 +84,7 @@ void displayInventory(Inventory I);
 /* Jika list kosong : menulis "Inventory Kosong" */
 /* Diakhiri dengan newline */
 
-int invLength(Inventory I);
+int LengthInventory(Inventory I);
 /* Mengirimkan banyaknya elemen list; mengirimkan 0 jika list kosong */
 
 #endif

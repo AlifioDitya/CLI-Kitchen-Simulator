@@ -1,7 +1,7 @@
 #include <stdio.h>
-#include "../boolean.h"
 #include "string.h"
-#include "../word-machine/wordmachine.c"
+#include "../boolean.h"
+#include "../word-machine/wordmachine.h"
 
 boolean endWord;
 String currentString;
@@ -20,8 +20,8 @@ void strfy() {
 }
 
 void startString() {
-// I.S currentString sembarang
-// I.S currentString diinisiasi untuk dibaca
+    // I.S currentString sembarang
+    // I.S currentString diinisiasi untuk dibaca
     START();
     IgnoreBlanks();
     if (currentChar == MARK || currentChar == NEWLINE) {
@@ -43,7 +43,7 @@ void advString() {
 }
 
 void assignString(String a, String *b) {
-// Assign string a ke b
+    // Assign string a ke b
     int i;
 
     (*b).Length = (a).Length;
@@ -54,7 +54,7 @@ void assignString(String a, String *b) {
 
 void printString(String a) {
     int i;
-    for (i=0; i<(a).Length; i++) {
+    for (i=0; i < (a).Length; i++) {
         printf("%c", (a).str[i]);
     }
 }
