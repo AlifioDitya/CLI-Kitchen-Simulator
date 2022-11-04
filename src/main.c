@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "./modules/boolean.h"
-#include "./util/util.h"
+#include "./modules/menu/menu.h"
 
 int main() {
     boolean running = true;
@@ -62,7 +62,7 @@ int main() {
                 inputCommand(&cmd);
 
                 Word temp;
-                createWord("0", 1, &temp);
+                createWord("0", 1);
                 if (isWordEqual(cmd, temp)) {
                     frying = false;
                 } else {
