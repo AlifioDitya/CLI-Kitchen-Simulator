@@ -1,110 +1,188 @@
 #include <stdio.h>
 #include "wordmachine.h"
-#include "charmachine.c"
-#include "../time/time.c"
 
 boolean endWord;
 Word currentWord;
 
-void IgnoreBlanks()
-{
+/* Pemrosesan Mesin Kata Input */
+void IGNOREBLANKS() {
     /* Mengabaikan satu atau beberapa BLANK
        I.S. : currentChar sembarang
        F.S. : currentChar ≠ BLANK atau currentChar = MARK */
-    while (currentChar == BLANK || currentChar == NEWLINE)
-    {
+
+    // KAMUS
+
+    // ALGORITMA
+    while (currentChar == BLANK || currentChar == MARK) {
         ADV();
     }
 }
 
-void STARTWORD()
-{
+void STARTWORD() {
     /* I.S. : currentChar sembarang
        F.S. : endWord = true, dan currentChar = MARK;
               atau endWord = false, currentWord adalah kata yang sudah diakuisisi,
               currentChar karakter pertama sesudah karakter terakhir kata */
+    
+    // KAMUS
+
+    // ALGORITMA
     START();
-    IgnoreBlanks();
-    if (currentChar == MARK)
-    {
+    IGNOREBLANKS();
+    if (currentChar == MARK) {
         endWord = true;
-    }
-    else
-    {
+    } else {
         endWord = false;
-        CopyWord();
+        COPYWORD();
     }
 }
 
-void ADVWORD()
-{
+void ADVWORD() {
     /* I.S. : currentChar adalah karakter pertama kata yang akan diakuisisi
        F.S. : currentWord adalah kata terakhir yang sudah diakuisisi,
               currentChar adalah karakter pertama dari kata berikutnya, mungkin MARK
               Jika currentChar = MARK, endWord = true.
        Proses : Akuisisi kata menggunakan procedure CopyWord */
-    IgnoreBlanks();
-    if (currentChar == MARK)
-    {
+    
+    // KAMUS
+
+    // ALGORITMA
+    IGNOREBLANKS();
+    if (currentChar == MARK) {
         endWord = true;
-    }
-    else
-    {
-        CopyWord();
-        IgnoreBlanks();
+    } else {
+        COPYWORD();
+        IGNOREBLANKS();
     }
 }
 
-void CopyWord()
-{
+void COPYWORD() {
     /* Mengakuisisi kata, menyimpan dalam currentWord
        I.S. : currentChar adalah karakter pertama dari kata
        F.S. : currentWord berisi kata yang sudah diakuisisi;
               currentChar = BLANK atau currentChar = MARK;
               currentChar adalah karakter sesudah karakter terakhir yang diakuisisi.
               Jika panjang kata melebihi CAPACITY, maka sisa kata terpotong */
-    currentWord.Length = 0;
-    while (currentChar != BLANK && currentChar != MARK && currentChar != NEWLINE)
-    {
-        if (currentWord.Length < NMax)
-        { // jika lebih akan terpotong
-            currentWord.TabWord[currentWord.Length++] = currentChar;
-            ADV();
+    
+    // KAMUS
+    int i;
+
+    // ALGORITMA
+    i = 0;
+    while (currentChar != BLANK && currentChar != MARK) {
+        if (i < NMax) {
+            currentWord.TabWord[i] = currentChar;
         }
-        else
-            break;
+        ADV();
+        i++;
+    }
+
+    if (i >= NMax) {
+        currentWord.Length = NMax;
+    } else {
+        currentWord.Length = i;
     }
 }
 
+/* Pemrosesan Mesin Kata File */
+void IGNOREBLANKSFILE() {
+    /* Mengabaikan satu atau beberapa BLANK
+       I.S. : currentChar sembarang
+       F.S. : currentChar ≠ BLANK atau currentChar = NEWLINE */
+    
+    // KAMUS
 
+    // ALGORITMA
+    while (currentChar == BLANK || currentChar == NEWLINE) {
+        ADVFILE();
+    }
+}
 
-void STARTWORDFILE(char* filename) {
+void STARTWORDFILE(char filename[]) {
+    /* Memulai Pembacaan Kata pada File */
+
+    // KAMUS
+
+    // ALGORITMA
     STARTFILE(filename);
-    IgnoreBlanks();
-    if (currentChar == MARK) {
+    IGNOREBLANKSFILE();
+
+    if (currentChar == NEWLINE) {
         endWord = true;
     } else {
         endWord = false;
-        CopyWord();
+        ADVWORDFILE();
     }
 }
 
-void ForceTerminate() {
-    endWord = true;
-    fclose(pita);
-    pita = NULL;
+void ADVWORDFILE() {
+    /* I.S. : currentChar adalah karakter pertama kata yang akan diakuisisi
+       F.S. : currentWord adalah kata terakhir yang sudah diakuisisi,
+              currentChar adalah karakter pertama dari kata berikutnya, mungkin NEWLINE
+              Jika currentChar = NEWLINE, endWord = true.
+       Proses : Akuisisi kata menggunakan procedure CopyWord */
+    
+    // KAMUS
+
+    // ALGORITMA
+    IGNOREBLANKSFILE();
+    if (currentChar == NEWLINE) {
+        endWord = true;
+    } else {
+        COPYWORDFILE();
+    }
 }
 
-void printWord(Word w) {
+void COPYWORDFILE() {
+    /* Mengakuisisi kata, menyimpan dalam currentWord
+       I.S. : currentChar adalah karakter pertama dari kata
+       F.S. : currentWord berisi kata yang sudah diakuisisi;
+              currentChar = BLANK atau currentChar = NEWLINE;
+              currentChar adalah karakter sesudah karakter terakhir yang diakuisisi.
+              Jika panjang kata melebihi CAPACITY, maka sisa kata terpotong */
+        
+    // KAMUS
     int i;
-    for (i=0; i<w.Length; i++) {
+
+    // ALGORITMA
+    i = 0;
+    while (currentChar != BLANK && currentChar != NEWLINE) {
+        if (i < NMax) {
+            currentWord.TabWord[i] = currentChar;
+        }
+
+        ADVFILE();
+        i++;
+    }
+
+    if (i >= NMax) {
+        currentWord.Length = NMax;
+    } else {
+        currentWord.Length = i;
+    }
+}
+
+void STOPWORDFILE() {
+    /* Memberhentikan Pembacaan Kata pada File */
+    
+    // KAMUS
+
+    // ALGORITMA
+    STOPFILE();
+}
+
+/* Pemrosesan Word */
+void printWord(Word w) {
+    /* Mengoutput isi Word w pada terminal */
+
+    // KAMUS
+    int i;
+
+    // ALGORITMA
+    for (i = 0; i < w.Length; i++) {
         printf("%c", w.TabWord[i]);
     }
     printf("\n");
-}
-
-void STOPWORD() {
-    STOP();
 }
 
 boolean isWordEqual(Word w1, Word w2) {
@@ -128,27 +206,30 @@ boolean isWordEqual(Word w1, Word w2) {
 }
 
 void assignWord(Word a, Word *b) {
+    /* Menduplikasi Word a dengan cara membuat Word b menjadi duplikat dari Word a */
+
+    // KAMUS
     int i;
+
+    // ALGORITMA
     (*b).Length = (a).Length;
-    for (i=0; i<(*b).Length; i++) {
+    for (i = 0; i < (*b).Length; i++) {
         (*b).TabWord[i] = (a).TabWord[i];
     }
 }
 
-void createWord(char* kata, int length, Word *w) {
+Word createWord(char str[], int len) {
     /* Membuat suatu Word dari masukan array of char dan panjang word */
 
     // KAMUS
-    Word temp;
     int i;
+    Word ret;
 
     // ALGORITMA
-    temp.Length = length;
-
-    for (i = 0; i < length; i++) {
-        temp.TabWord[i] = kata[i];
+    ret.Length = len;
+    for (i = 0; i < len; i++) {
+        ret.TabWord[i] = str[i];
     }
-
-    assignWord(temp, w);
+    
+    return ret;
 }
-

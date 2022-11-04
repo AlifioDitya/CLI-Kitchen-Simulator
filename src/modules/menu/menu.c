@@ -1,5 +1,6 @@
 #include <stdio.h>
-#include "../makanan/makanan.c"
+#include "menu.h"
+// #include "../modules/makanan/makanan.c"
 // #include "../modules/peta/peta.c"
 // #include "../modules/time/time.c"
 // #include "../modules/boolean.h"
@@ -8,13 +9,43 @@
 
 boolean isExit(Word w) {
     Word temp;
-    createWord("EXIT", 4, &temp);
+    createWord("EXIT", 4);
     return (isWordEqual(w, temp));
 }
 
 boolean isStart(Word w) {
     Word temp;
-    createWord("START", 5, &temp);
+    createWord("START", 5);
+    return (isWordEqual(w, temp));
+}
+
+boolean isBuy(Word w) {
+    Word temp;
+    createWord("BUY", 3);
+    return (isWordEqual(w, temp));
+}
+
+boolean isChop(Word w) {
+    Word temp;
+    createWord("CHOP", 4);
+    return (isWordEqual(w, temp));
+}
+
+boolean isFry(Word w) {
+    Word temp;
+    createWord("FRY", 3);
+    return (isWordEqual(w, temp));
+}
+
+boolean isBoil(Word w) {
+    Word temp;
+    createWord("BOIL", 4);
+    return (isWordEqual(w, temp));
+}
+
+boolean isMix(Word w) {
+    Word temp;
+    createWord("MIX", 3);
     return (isWordEqual(w, temp));
 }
 

@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "peta.h"
-#include "../simulator/simulator.c"
+// #include "../simulator/simulator.c"
 // #include "../point/point.c"
 // #include "../word-machine/wordmachine.c"
 

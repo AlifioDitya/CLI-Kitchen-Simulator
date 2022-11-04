@@ -1,12 +1,16 @@
 #include <stdio.h>
 #include "makanan.h"
-#include "../liststatik/liststatik.c"
-#include "../peta/peta.c"
+// #include "../liststatik/liststatik.c"
+// #include "../peta/peta.c"
 
 /* Konstruktor */
 void CreateMakanan(Makanan *m, IDType ID, String name, TIME expire, Point loc, TIME delivery) {
-// I.S Makanan sembarang
-// F.S Membuat object makanan kosong
+    // I.S Makanan sembarang
+    // F.S Membuat object makanan kosong
+
+    // KAMUS
+
+    // ALGORITMA
     setID(m, ID);
     setFoodName(m, name);
     setExpiryDate(m, expire);
@@ -16,14 +20,22 @@ void CreateMakanan(Makanan *m, IDType ID, String name, TIME expire, Point loc, T
 
 /* Setter */
 void setID(Makanan *m, IDType id) {
-// I.S Makanan sembarang
-// ID makanan terisi
+    // I.S Makanan sembarang
+    // ID makanan terisi
+
+    // KAMUS
+
+    // ALGORITMA
     ID(*m) = id;
 }
 
 void setFoodName(Makanan *m, String name) {
-// I.S Makanan sembarang, String name terdefinisi
-// Nama makanan terisi
+    // I.S Makanan sembarang, String name terdefinisi
+    // Nama makanan terisi
+
+    // KAMUS
+
+    // ALGORITMA
     assignString(name, &FoodName(*m));
 }
 
@@ -44,33 +56,6 @@ void setDeliveryTime(Makanan *m, TIME delivery) {
 // F.S Waktu delivery makanan terisi
     CreateTime(&DeliveryTime(*m), Day(delivery), Hour(delivery), Minute(delivery));
 }
-
-boolean isBuy(Word w) {
-    Word temp;
-    createWord("BUY", 3, &temp);
-    return (isWordEqual(w, temp));
-}
-boolean isChop(Word w) {
-    Word temp;
-    createWord("CHOP", 4, &temp);
-    return (isWordEqual(w, temp));
-}
-boolean isFry(Word w) {
-    Word temp;
-    createWord("FRY", 3, &temp);
-    return (isWordEqual(w, temp));
-}
-boolean isBoil(Word w) {
-    Word temp;
-    createWord("BOIL", 4, &temp);
-    return (isWordEqual(w, temp));
-}
-boolean isMix(Word w) {
-    Word temp;
-    createWord("MIX", 3, &temp);
-    return (isWordEqual(w, temp));
-}
-
 
 /* Membaca dari file */
 void readMakanan(char* filename, Peta p, ListStatik *l) {
