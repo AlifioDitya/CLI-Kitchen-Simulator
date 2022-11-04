@@ -153,24 +153,21 @@ void readMakanan(char* filename, Peta p, ListStatik *l) {
             CreatePoint(&ActionLoc(currMakanan), POINT_UNDEF, POINT_UNDEF);
         }
         
-        printf("ID : %d\n", ID(currMakanan));
-        printf("Food Name : ");
-        printString(FoodName(currMakanan));
-        printf("\n");
-        printf("Expiry date : ");
-        TulisTIME(Expire(currMakanan));
-        printf("Action location : ");
-        TulisPoint(ActionLoc(currMakanan));
-        printf("Delivery time :");
-        TulisTIME(DeliveryTime(currMakanan));
+        // printf("ID : %d\n", ID(currMakanan));
+        // printf("Food Name : ");
+        // printString(FoodName(currMakanan));
+        // printf("\n");
+        // printf("Expiry date : ");
+        // TulisTIME(Expire(currMakanan));
+        // printf("Action location : ");
+        // TulisPoint(ActionLoc(currMakanan));
+        // printf("Delivery time :");
+        // TulisTIME(DeliveryTime(currMakanan));
         
         insertLast(l, currMakanan);
-        printf("Makanan inserted -> ");
-        printf("Food name inserted : ");
-        printString(FoodName(Elmt(*l, getLastIdx(*l))));
-        printf(" ; ");
-        printf("ID-inserted : %d\n", ID(Elmt(*l, getLastIdx(*l))));
-        printf("\n\n");
+        // printf("Makanan inserted -> ");
+        // printString(FoodName(Elmt(*l, getLastIdx(*l))));
+        // printf("\n\n");
 
         if (i != (n-1)) {
             ADVWORD();
@@ -197,11 +194,11 @@ void printListMakanan(ListStatik l){
     IdxType i;
 // ALGORITMA
     printf("[");
-
+    
     for (i=0; i<=getLastIdx(l); i++) {
         printString(FoodName(Elmt(l,i)));
         if (i < getLastIdx(l)) {
-            printf(",");
+            printf(", ");
         }
     }
 

@@ -27,7 +27,7 @@ IdxType getFirstIdx(ListStatik l) {
 IdxType getLastIdx(ListStatik l) {
 /* Prekondisi : List l tidak kosong */
 /* Mengirimkan indeks elemen l terakhir */
-    return listLength(l) - 1 ;
+    return listLength(l) - 1;
 }; 
 
 /* ********** Test Indeks yang valid ********** */
@@ -88,6 +88,7 @@ void insertFirst(ListStatik *l, Makanan val) {
         Elmt(*l,i+1) = Elmt(*l,i);
     }
     Elmt(*l, 0) = val;
+    Neff(*l)++;
 }
 
 void insertAt(ListStatik *l, Makanan val, IdxType idx) {
@@ -102,6 +103,7 @@ void insertAt(ListStatik *l, Makanan val, IdxType idx) {
         Elmt(*l,i+1) = Elmt(*l,i);
     }
     Elmt(*l, idx) = val;   
+    Neff(*l)++;
 }
 
 void insertLast(ListStatik *l, Makanan val) {
@@ -114,6 +116,7 @@ void insertLast(ListStatik *l, Makanan val) {
     // CreatePoint(&ActionLoc(Elmt(*l, getLastIdx(*l)+1)), Absis(ActionLoc(val)), Ordinat(ActionLoc(val)));
     // CreateTime(&DeliveryTime(Elmt(*l, getLastIdx(*l)+1)), Day(DeliveryTime(val)), Hour(DeliveryTime(val)), Minute(DeliveryTime(val)));
     Elmt(*l, getLastIdx(*l)+1) = val;
+    Neff(*l)++;
 }
 
 void deleteFirst(ListStatik *l, Makanan *val) {
