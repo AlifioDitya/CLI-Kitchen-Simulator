@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "./modules/boolean.h"
-#include "./util/util.c"
+#include "./modules/menu/menu.c"
 
 int main() {
     boolean running = true;

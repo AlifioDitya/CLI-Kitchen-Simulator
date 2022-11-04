@@ -55,16 +55,6 @@ void Initiate(Simulator *s, Peta *p, ListStatik *catalog) {
 
     Splash(name);
 
-    // printf("Nama: ");
-    // printString(Name(*s));
-    // printf("\n");
-    // printf("Posisi user: ");
-    // TulisPoint(Locate(*p, 'S'));
-    // printf("\n");
-    // printf("Absis: %d\n", Absis(Locate(*p, 'S')));
-    // printf("Ordinat: %d\n", Ordinat(Locate(*p, 'S')));
-    // printf("\n");
-
     CreateListStatik(catalog);
     readMakanan(makananFileName, *p, catalog);
     printf("Catalog = ");

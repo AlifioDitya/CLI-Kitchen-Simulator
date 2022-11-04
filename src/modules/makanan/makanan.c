@@ -115,8 +115,6 @@ void readMakanan(char* filename, Peta p, ListStatik *l) {
         
         CreateTime(&expire, DD, HH, MM);
         setExpiryDate(&currMakanan, expire);
-        // printf("Expiry date = ");
-        // TulisTIME(Expire(currMakanan));
         
         ADVWORD();
         DD = 0;
