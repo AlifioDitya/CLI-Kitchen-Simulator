@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "menu.h"
-// #include "../modules/makanan/makanan.c"
+#include "../makanan/makanan.h"
 // #include "../modules/peta/peta.c"
 // #include "../modules/time/time.c"
 // #include "../modules/boolean.h"
@@ -8,43 +8,78 @@
 // #include "../modules/string/string.c"
 
 boolean isExit(Word w) {
+    /* Mengecek apakah w berisi kata EXIT */
+
+    // KAMUS
     Word temp;
+
+    // ALGORITMA
     createWord("EXIT", 4);
     return (isWordEqual(w, temp));
 }
 
 boolean isStart(Word w) {
+    /* Mengecek apakah w berisi kata START */
+
+    // KAMUS
     Word temp;
+
+    // ALGORITMA
     createWord("START", 5);
     return (isWordEqual(w, temp));
 }
 
 boolean isBuy(Word w) {
+    /* Mengecek apakah w berisi kata BUY */
+
+    // KAMUS
     Word temp;
+
+    // ALGORITMA
     createWord("BUY", 3);
     return (isWordEqual(w, temp));
 }
 
 boolean isChop(Word w) {
+    /* Mengecek apakah w berisi kata CHOP */
+
+    // KAMUS
     Word temp;
+
+    // ALGORITMA
     createWord("CHOP", 4);
     return (isWordEqual(w, temp));
 }
 
 boolean isFry(Word w) {
+    /* Mengecek apakah w berisi kata FRY */
+
+    // KAMUS
     Word temp;
+
+    // ALGORITMA
     createWord("FRY", 3);
     return (isWordEqual(w, temp));
 }
 
 boolean isBoil(Word w) {
+    /* Mengecek apakah w berisi kata BOIL */
+
+    // KAMUS
     Word temp;
+
+    // ALGORITMA
     createWord("BOIL", 4);
     return (isWordEqual(w, temp));
 }
 
 boolean isMix(Word w) {
+    /* Mengecek apakah w berisi kata MIX */
+
+    // KAMUS
     Word temp;
+
+    // ALGORITMA
     createWord("MIX", 3);
     return (isWordEqual(w, temp));
 }

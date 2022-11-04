@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "makanan.h"
+#include "../menu/menu.h"
 // #include "../liststatik/liststatik.c"
 // #include "../peta/peta.c"
 
