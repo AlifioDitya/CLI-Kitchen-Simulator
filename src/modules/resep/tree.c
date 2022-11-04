@@ -1,7 +1,7 @@
 /* File : tree.c */
 /* ADT pohon N-Ary */
 /* Representasi Address dengan pointer */
-/* ElType adalah integer */
+/* TreeElType adalah integer */
 
 #include "../boolean.h"
 #include <stdio.h>
@@ -12,23 +12,6 @@
 #include "../peta/peta.c"
 #include "../liststatik/liststatik.c"
 
-/* Selektor */
-#define CAPACITY 100
-#define VAL_UNDEF -1
-typedef struct treeNode* Address;
-typedef struct treeNode { 
-     ElType info;
-     Address firstChild;
-     Address nextSibling;
-} TreeNode;
-
-typedef struct {
-    int bahan[CAPACITY];
-} ListIDBahan;
-
-#define ELMT(l, i) (l).bahan[(i)]
-
-
 /* Definisi PohonBiner */
 /* pohon Biner kosong p = NULL */
 
@@ -38,11 +21,11 @@ void CreateListBahan(ListIDBahan * List) {
    int i = 0;
 
    for (i; i<CAPACITY; i++) {
-      ELMT(*List,i) = VAL_UNDEF;
+      ELMTLB(*List,i) = VAL_UNDEF;
    }
 }
 
-BinTree NewTree (ElType info, BinTree fc, BinTree nsb) {
+BinTree NewTree (TreeElType info, BinTree fc, BinTree nsb) {
 /* Menghasilkan sebuah pohon biner dari root, left_tree, dan right_tree, jika alokasi berhasil 
    Menghasilkan pohon kosong (NULL) jika alokasi gagal */
 
@@ -57,7 +40,7 @@ BinTree NewTree (ElType info, BinTree fc, BinTree nsb) {
 
 } 
 
-void CreateTree (ElType info, BinTree fc, BinTree nsb, BinTree *p) {
+void CreateTree (TreeElType info, BinTree fc, BinTree nsb, BinTree *p) {
 /* I.S. Sembarang
    F.S. Menghasilkan sebuah pohon p
    Menghasilkan sebuah pohon biner p dari akar, l, dan r, jika alokasi 
@@ -68,7 +51,7 @@ void CreateTree (ElType info, BinTree fc, BinTree nsb, BinTree *p) {
 
 }
 
-Address newTreeNode(ElType val) {
+Address newTreeNode(TreeElType val) {
 /* Alokasi sebuah address p, bernilai tidak NULL jika berhasil */
 /* Mengirimkan address hasil alokasi sebuah elemen bernilai val
    Jika alokasi berhasil, maka address tidak NULL, dan misalnya 
@@ -95,7 +78,7 @@ ListIDBahan listBahan(Address targetMakanan) {
    CreateList(&listID);
 
    while (fc != NULL) {
-      ELMT(listID,i) = INFO(fc);
+      ELMTLB(listID,i) = INFO(fc);
       fc = NSBG(fc);
    } 
 
@@ -103,9 +86,9 @@ ListIDBahan listBahan(Address targetMakanan) {
 }
 
 
-Address searchByID(ElType id, BinTree resep) {
+Address searchByID(TreeElType id, BinTree resep) {
 
-   ElType root = INFO(resep);
+   TreeElType root = INFO(resep);
    Address fc = FCHD(resep);
    Address p;  
 
@@ -171,19 +154,3 @@ void showProcess (Makanan target, Peta p) {
    }
 
 }
-
-
-
-// // File parser
-// BinTree readFromFile(Word pathname) { 
-
-//    FILE *fp = fopen("config_resep.txt", "r");
-
-//    STARTWORD()
-
-
-
-
-//    fclose(fp);
-
-// }

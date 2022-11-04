@@ -1,7 +1,7 @@
 /* File : bintree.h */
 /* ADT pohon biner */
 /* Representasi Address dengan pointer */
-/* ElType adalah integer */
+/* TreeElType adalah integer */
 
 #ifndef POHONBINER_H
 #define POHONBINER_H
@@ -13,31 +13,40 @@
 #define NSBG(p) (p)->nextSibling
 #define FCHD(p) (p)->firstChild
 
-typedef int ElType;
+#define CAPACITY 100
+#define VAL_UNDEF -1
+
+typedef int TreeElType;
 typedef struct treeNode* Address;
 typedef struct treeNode { 
-     ElType info;
+     TreeElType info;
      Address firstChild;
      Address nextSibling;
 } TreeNode;
+
+typedef struct {
+    int bahan[CAPACITY];
+} ListIDBahan;
+
+#define ELMTLB(l, i) (l).bahan[(i)]
 
 /* Definisi PohonBiner */
 /* pohon Biner kosong p = NULL */
 
 typedef Address BinTree;
 
-BinTree NewTree (ElType root, BinTree left_tree, BinTree right_tree); 
+BinTree NewTree (TreeElType root, BinTree left_tree, BinTree right_tree); 
 /* Menghasilkan sebuah pohon biner dari root, left_tree, dan right_tree, jika alokasi berhasil 
    Menghasilkan pohon kosong (NULL) jika alokasi gagal */
 
-void CreateTree (ElType root, BinTree left_tree, BinTree right_tree, BinTree *p);
+void CreateTree (TreeElType root, BinTree left_tree, BinTree right_tree, BinTree *p);
 /* I.S. Sembarang
    F.S. Menghasilkan sebuah pohon p
    Menghasilkan sebuah pohon biner p dari akar, l, dan r, jika alokasi 
    berhasil 
    Menghasilkan pohon p yang kosong (NULL) jika alokasi gagal */
 
-Address newTreeNode(ElType val);
+Address newTreeNode(TreeElType val);
 /* Alokasi sebuah address p, bernilai tidak NULL jika berhasil */
 /* Mengirimkan address hasil alokasi sebuah elemen bernilai val
    Jika alokasi berhasil, maka address tidak NULL, dan misalnya 
