@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "../modules/makanan/makanan.c"
+#include "../makanan/makanan.c"
 // #include "../modules/peta/peta.c"
 // #include "../modules/time/time.c"
 // #include "../modules/boolean.h"
