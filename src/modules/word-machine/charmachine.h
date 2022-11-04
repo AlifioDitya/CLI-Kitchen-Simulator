@@ -30,4 +30,6 @@ void ADV();
 void STARTFILE(char* filename);
 // Membaca file dengan char machine
 
+void STOP();
+
 #endif

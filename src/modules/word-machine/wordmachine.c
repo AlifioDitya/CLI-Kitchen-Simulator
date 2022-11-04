@@ -103,29 +103,52 @@ void printWord(Word w) {
     printf("\n");
 }
 
-void createTIMEWord(TIME *T) {
-// I.S Pita karakter sudah mulai dibaca
-// F.S Terbentuk T dengan komponennya yang dibaca dalam Word
-// Contoh: 1 0 0;
-// Akan terbaca Day = 1, Hour = 0, Minute = 0;
-    int D, H, M;
-    int j;
-    D = 0;
-    H = 0;
-    M = 0;
-    IgnoreBlanks();
-    for (j=0; j<currentWord.Length; j++) {
-        D = D*10 + ((int) currentWord.TabWord[j]-48);
-    }
-    ADVWORD();
-    for (j=0; j<currentWord.Length; j++) {
-        H = H*10 + ((int) currentWord.TabWord[j]-48);
-    }
-    ADVWORD();
-    for (j=0; j<currentWord.Length; j++) {
-        M = M*10 + ((int) currentWord.TabWord[j]-48);
-    }
-    ADVWORD();
-
-    CreateTime(T, D, H, M);
+void STOPWORD() {
+    STOP();
 }
+
+boolean isWordEqual(Word w1, Word w2) {
+    /* Mengembalikan true bila kata w1 dan kata w2 sama dan sebaliknya */
+
+    // KAMUS
+    int i;
+
+    // ALGORITMA
+    if (w1.Length != w2.Length) {
+        return false;
+    }
+
+    for (i = 0; i < w1.Length; i++) {
+        if (w1.TabWord[i] != w2.TabWord[i]) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+void assignWord(Word a, Word *b) {
+    int i;
+    (*b).Length = (a).Length;
+    for (i=0; i<(*b).Length; i++) {
+        (*b).TabWord[i] = (a).TabWord[i];
+    }
+}
+
+void createWord(char* kata, int length, Word *w) {
+    /* Membuat suatu Word dari masukan array of char dan panjang word */
+
+    // KAMUS
+    Word temp;
+    int i;
+
+    // ALGORITMA
+    temp.Length = length;
+
+    for (i = 0; i < length; i++) {
+        temp.TabWord[i] = kata[i];
+    }
+
+    assignWord(temp, w);
+}
+

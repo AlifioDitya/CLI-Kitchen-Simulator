@@ -35,7 +35,7 @@ void ADV()
 
        /* Algoritma */
        retval = fscanf(pita, "%c", &currentChar);
-       EOP = (currentChar == MARK);
+       EOP = (currentChar == MARK );
        if (EOP)
        {
               fclose(pita);
@@ -50,4 +50,8 @@ void STARTFILE(char* filename) {
        } else {
               ADV();
        }
+}
+
+void STOP() {
+       fclose(pita);
 }

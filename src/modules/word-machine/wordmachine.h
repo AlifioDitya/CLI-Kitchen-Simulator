@@ -49,4 +49,12 @@ void CopyWord();
 void STARTWORDFILE(char* filename);
 // Start word dari file
 
+boolean isWordEqual(Word w1, Word w2);
+/* Mengembalikan true bila kata w1 dan kata w2 sama dan sebaliknya */
+
+void assignWord(Word a, Word *b);
+
+void createWord(char* kata, int length, Word *w);
+/* Membuat suatu Word dari masukan array of char dan panjang word */
+
 #endif

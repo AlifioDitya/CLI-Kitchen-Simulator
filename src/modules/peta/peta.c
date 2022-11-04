@@ -90,12 +90,6 @@ S#########
         } else {
             createPeta(nRow, nCol, pOut);
             for (i=0; i<currentWord.Length; i++) {
-                // if (currentWord.TabWord[i] == 'S') {
-                //     ELMT(*pOut, loc-2, i) = 'S';
-                //     setLocation(i, loc-2, s);
-                // } else {
-                //     ELMT(*pOut, loc-2, i) = currentWord.TabWord[i];
-                // }
                 ELMT(*pOut, loc-2, i) = currentWord.TabWord[i];
                 if ((loc-1 == nRow) && (i == currentWord.Length-1)) {
                     done = true;
