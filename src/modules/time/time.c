@@ -126,6 +126,12 @@ TIME PrevNMinute (TIME T, int N) {
     return MinuteToTIME(TIMEToMinute(T)-N);
 }
 
+void AdvTime(TIME *T) {
+    Day(*T) = Day(NextMinute(*T));
+    Hour(*T) = Hour(NextMinute(*T));
+    Minute(*T) = Minute(NextMinute(*T));
+}
+
 /* *** Kelompok Operator Aritmetika *** */
 long Durasi (TIME TAw, TIME TAkh) {
 /* Mengirim TAkh-TAw dlm Menit, dengan kalkulasi */

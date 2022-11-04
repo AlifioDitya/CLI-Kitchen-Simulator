@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include "liststatik.h"
-// #include "../makanan/makanan.c"
 
 /* ********** KONSTRUKTOR ********** */
 void CreateListStatik(ListStatik *l) {
@@ -109,6 +108,11 @@ void insertLast(ListStatik *l, Makanan val) {
 /* Proses: Menambahkan val sebagai elemen terakhir List */
 /* I.S. List l boleh kosong, tetapi tidak penuh */
 /* F.S. val adalah elemen terakhir l yang baru */
+    // ID(Elmt(*l, getLastIdx(*l)+1)) = ID(val);
+    // assignString(FoodName(val), &FoodName(Elmt(*l, getLastIdx(*l)+1)));
+    // CreateTime(&Expire(Elmt(*l, getLastIdx(*l)+1)), Day(Expire(val)), Hour(Expire(val)), Minute(Expire(val)));
+    // CreatePoint(&ActionLoc(Elmt(*l, getLastIdx(*l)+1)), Absis(ActionLoc(val)), Ordinat(ActionLoc(val)));
+    // CreateTime(&DeliveryTime(Elmt(*l, getLastIdx(*l)+1)), Day(DeliveryTime(val)), Hour(DeliveryTime(val)), Minute(DeliveryTime(val)));
     Elmt(*l, getLastIdx(*l)+1) = val;
 }
 
@@ -157,26 +161,3 @@ void deleteLast(ListStatik *l, Makanan *val) {
     *val = Elmt(*l, listLength(*l)-1);
     Neff(*l)--;
 }
-
-/* Interaksi I/O */
-// void printList(ListStatik l){
-// /* Proses : Menuliskan isi List dengan traversal, List ditulis di antara kurung 
-//    siku; antara dua elemen dipisahkan dengan separator "koma", tanpa tambahan 
-//    karakter di depan, di tengah, atau di belakang, termasuk spasi dan enter */
-// /* I.S. l boleh kosong */
-// /* F.S. Jika l tidak kosong: [e1,e2,...,en] */
-// /* Jika List kosong : menulis [] */
-// // KAMUS
-//     IdxType i;
-// // ALGORITMA
-//     printf("[");
-
-//     for (i=0; i<=getLastIdx(l); i++) {
-//         printString(Foo(ELMT(l,i)));
-//         if (i < getLastIdx(l)) {
-//         printf(",");
-//         }
-//     }
-
-//     printf("]");
-// }

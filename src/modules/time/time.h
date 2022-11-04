@@ -59,6 +59,10 @@ TIME PrevMinute (TIME T);
 TIME PrevNMinute (TIME T, int N);
 /* Mengirim N Minute sebelum T dalam bentuk TIME */
 
+void AdvTime(TIME *T);
+/* I.S T terdefinisi */
+/* F.S Increment waktu T sebanyak 1 menit */
+
 /* *** Kelompok Operator Aritmetika *** */
 long Durasi (TIME TAw, TIME TAkh);
 /* Mengirim TAkh-TAw dlm menit, dengan kalkulasi */

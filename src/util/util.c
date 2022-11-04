@@ -67,8 +67,9 @@ void Initiate(Simulator *s, Peta *p, ListStatik *catalog) {
 
     CreateListStatik(catalog);
     readMakanan(makananFileName, *p, catalog);
+    printf("Catalog = ");
+    printListMakanan(*catalog);
     printf("\n");
-
 }
 
 void inputCommand(Word *cmd) {
