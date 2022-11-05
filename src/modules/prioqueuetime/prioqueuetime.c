@@ -1,9 +1,3 @@
-// Nama         : Farhan Nabil Suryono
-// NIM          : 13521114
-// Tanggal      : 7 Oktober 2022
-// Topik        : Latihan Praktikum 6
-// Deskripsi    : ADT Priority Queue
-
 #include "prioqueuetime.h"
 #include <stdio.h>
 #include <stdlib.h>

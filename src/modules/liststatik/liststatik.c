@@ -185,7 +185,7 @@ void readMakanan(char* filename, Peta p, ListStatik *l) {
         n = n*10 + ((int) currentWord.TabWord[i]-'0');
     }
     
-    ADVWORD();
+    ADVWORDFILE();
 
     for (i=0; i<n; i++) {
         ID = 0;
@@ -194,20 +194,20 @@ void readMakanan(char* filename, Peta p, ListStatik *l) {
         }
         setID(&currMakanan, ID);
 
-        strfy();
+        strfyFILE();
         setFoodName(&currMakanan, currentString);
 
-        ADVWORD();
+        ADVWORDFILE();
         DD = 0;
         for (k=0; k<currentWord.Length; k++) {
             DD = DD*10 + ((int) currentWord.TabWord[k]-48);
         }
-        ADVWORD();
+        ADVWORDFILE();
         HH = 0;
         for (k=0; k<currentWord.Length; k++) {
             HH = HH*10 + ((int) currentWord.TabWord[k]-48);
         }
-        ADVWORD();
+        ADVWORDFILE();
         MM = 0;
         for (k=0; k<currentWord.Length; k++) {
             MM = MM*10 + ((int) currentWord.TabWord[k]-48);
@@ -216,17 +216,17 @@ void readMakanan(char* filename, Peta p, ListStatik *l) {
         CreateTime(&expire, DD, HH, MM);
         setExpiryDate(&currMakanan, expire);
         
-        ADVWORD();
+        ADVWORDFILE();
         DD = 0;
         for (k=0; k<currentWord.Length; k++) {
             DD = DD*10 + ((int) currentWord.TabWord[k]-48);
         }
-        ADVWORD();
+        ADVWORDFILE();
         HH = 0;
         for (k=0; k<currentWord.Length; k++) {
             HH = HH*10 + ((int) currentWord.TabWord[k]-48);
         }
-        ADVWORD();
+        ADVWORDFILE();
         MM = 0;
         for (k=0; k<currentWord.Length; k++) {
             MM = MM*10 + ((int) currentWord.TabWord[k]-48);
@@ -235,7 +235,7 @@ void readMakanan(char* filename, Peta p, ListStatik *l) {
         CreateTime(&delivery, DD, HH, MM);
         setDeliveryTime(&currMakanan, delivery);
 
-        strfy();
+        strfyFILE();
         
         if (isBuy(currentString)) {
             CreatePoint(&ActionLoc(currMakanan), Absis(Locate(p, 'T')), Ordinat(Locate(p, 'T')));
@@ -268,7 +268,7 @@ void readMakanan(char* filename, Peta p, ListStatik *l) {
         // printf("\n\n");
 
         if (i != (n-1)) {
-            ADVWORD();
+            ADVWORDFILE();
         } else {
             endWord = true;
         }

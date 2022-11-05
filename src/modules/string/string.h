@@ -17,6 +17,11 @@ void strfy();
 // F.S endWord = true, currentChar = MARK, currentString terisi oleh seluruh Word sebelum mark. 
 // Beda dari mesin kata, string mungkin mengandung BLANK di dalamnya, kecuali di awal kalimat.
 
+void strfyFILE();
+// I.S currentString sembarang
+// F.S endWord = true, currentChar = MARK, currentString terisi oleh seluruh Word sebelum mark. 
+// Beda dari mesin kata, string mungkin mengandung BLANK di dalamnya, kecuali di awal kalimat.
+
 void startString();
 // I.S currentString sembarang
 // I.S currentString diinisiasi untuk dibaca

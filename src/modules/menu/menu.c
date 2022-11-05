@@ -30,7 +30,7 @@ void Initiate(Simulator *s, Peta *p, ListStatik *catalog) {
     char* makananFileName = "src/data/makanan.txt";
     String name;
 
-    readPeta(petaFileName, p);
+    // readPeta(petaFileName, p);
     printf("\n");
 
     printf("Enter your name: ");

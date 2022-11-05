@@ -13,9 +13,9 @@ int main() {
 
     // ALGORITMA
     printf("Masukkan File Path: ");
-    scanf("%[^\n]s", input);
+    scanf("%s", input);
 
-    STARTWORDFILE(input);
+    // STARTWORDFILE(input);
     printf("isi dari file adalah sebagai berikut: \n\n");
 
     while (!EOP) {

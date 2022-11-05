@@ -39,6 +39,19 @@ void TulisTIME (TIME T);
 /* F.S. : Nilai T ditulis dg format DD:HH:MM */
 /* Proses : menulis nilai setiap komponen T ke layar dalam format DD:HH:MM */ 
 
+/* ***************************************************************** */
+/* KELOMPOK OPERASI TERHADAP TYPE                                    */
+/* ***************************************************************** */
+long TIMEToMinute (TIME T);
+/* Diberikan sebuah TIME, mengkonversi menjadi jumlah menit dari waktu 0:0:0 */
+// KAMUS LOKAL
+// ALGORITMA
+
+TIME MinuteToTIME (long N);
+/* Mengirim  konversi menit ke TIME */
+/* Pre-kondisi: N >= 0 */
+// KAMUS LOKAL
+
 /* *** Kelompok Operator Relational *** */
 boolean TEQ (TIME T1, TIME T2);
 /* Mengirimkan true jika T1=T2, false jika tidak */

@@ -19,6 +19,19 @@ void strfy() {
     }
 }
 
+void strfyFILE() {
+    currentString.Length = 0;
+    while (currentChar != MARK && currentChar != NEWLINE) {
+        if (currentString.Length < STR_CAP) {
+            currentString.str[currentString.Length] = currentChar;
+            currentString.Length++;
+            ADVFILE();
+        } else {
+            break;
+        }
+    }
+}
+
 void startString() {
     // I.S currentString sembarang
     // I.S currentString diinisiasi untuk dibaca
