@@ -9,7 +9,7 @@
 all: main clean
 
 main: main.o
-	gcc main.o -o main
+	gcc main.o menu.o string.o charmachine.o wordmachine.o simulator.o peta.o time.o point.o liststatik.o makanan.o -o src/main.exe
 
 clean:
 	rm -rf *.o
