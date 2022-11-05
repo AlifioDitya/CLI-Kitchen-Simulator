@@ -13,16 +13,6 @@ boolean isExit(String s);
 
 boolean isStart(String s);
 
-boolean isBuy(String s);
-
-boolean isChop(String s);
-
-boolean isFry(String s);
-
-boolean isBoil(String s);
-
-boolean isMix(String s);
-
 boolean isMoveEast(String s);
 
 boolean isMoveWest(String s);

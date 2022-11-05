@@ -6,40 +6,43 @@
 
 # -*- MakeFile -*-
 
-all: main
+all: main clean
 
-main: liststatik.o makanan.o menu.o peta.o point.o simulator.o string.o time.o charmachine.o wordmachine.o main.o
-	gcc liststatik.o makanan.o menu.o peta.o point.o simulator.o string.o time.o charmachine.o wordmachine.o main.o -o main
+main: main.o
+	gcc main.o -o main
 
-liststatik.o: src/modules/liststatik/liststatik.c
-	gcc -c src/modules/liststatik/liststatik.c
+clean:
+	rm -rf *.o
 
-makanan.o: src/modules/makanan/makanan.c
-	gcc -c src/modules/makanan/makanan.c
+main.o: src/main.c menu.o
+	gcc -c src/main.c
 
-menu.o: src/modules/menu/menu.c
+menu.o: src/modules/menu/menu.c wordmachine.o string.o simulator.o peta.o liststatik.o
 	gcc -c src/modules/menu/menu.c
 
-peta.o: src/modules/peta/peta.c
-	gcc -c src/modules/peta/peta.c
-
-point.o: src/modules/point/point.c
-	gcc -c src/modules/point/point.c
-
-simulator.o: src/modules/simulator/simulator.c
-	gcc -c src/modules/simulator/simulator.c
-
-string.o: src/modules/string/string.c
+string.o: src/modules/string/string.c wordmachine.o
 	gcc -c src/modules/string/string.c
-
-time.o: src/modules/time/time.c
-	gcc -c src/modules/time/time.c
 
 charmachine.o: src/modules/word-machine/charmachine.c
 	gcc -c src/modules/word-machine/charmachine.c
 
-wordmachine.o: src/modules/word-machine/wordmachine.c
+wordmachine.o: src/modules/word-machine/wordmachine.c charmachine.o
 	gcc -c src/modules/word-machine/wordmachine.c
 
-main.o: src/main.c
-	gcc -c src/main.c
+simulator.o: src/modules/simulator/simulator.c point.o string.o
+	gcc -c src/modules/simulator/simulator.c
+
+peta.o: src/modules/peta/peta.c simulator.o time.o
+	gcc -c src/modules/peta/peta.c
+
+time.o: src/modules/time/time.c 
+	gcc -c src/modules/time/time.c
+
+point.o: src/modules/point/point.c
+	gcc -c src/modules/point/point.c
+
+liststatik.o: src/modules/liststatik/liststatik.c makanan.o
+	gcc -c src/modules/liststatik/liststatik.c
+
+makanan.o: src/modules/makanan/makanan.c time.o point.o string.o peta.o
+	gcc -c src/modules/makanan/makanan.c

@@ -164,3 +164,135 @@ void deleteLast(ListStatik *l, Makanan *val) {
     *val = Elmt(*l, listLength(*l)-1);
     Neff(*l)--;
 }
+
+/* Getter */
+Makanan getFoodByID(IDType ID, ListStatik l){
+    // I.S. ID Sembarang
+    // membaca makanan dari file catalog
+    return Elmt(l,indexOf(l,ID));
+}
+
+/* Interaksi I/O */
+void readMakanan(char* filename, Peta p, ListStatik *l) {
+    int n, i, j, k;
+    int ID, DD, HH, MM;
+    TIME expire, delivery;
+    Makanan currMakanan;
+
+    STARTWORDFILE(filename);
+    n = 0;
+    for (i=0; i<currentWord.Length; i++) {
+        n = n*10 + ((int) currentWord.TabWord[i]-'0');
+    }
+    
+    ADVWORD();
+
+    for (i=0; i<n; i++) {
+        ID = 0;
+        for (j=0; j<currentWord.Length; j++) {
+            ID = ID*10 + ((int) currentWord.TabWord[j]-'0');
+        }
+        setID(&currMakanan, ID);
+
+        strfy();
+        setFoodName(&currMakanan, currentString);
+
+        ADVWORD();
+        DD = 0;
+        for (k=0; k<currentWord.Length; k++) {
+            DD = DD*10 + ((int) currentWord.TabWord[k]-48);
+        }
+        ADVWORD();
+        HH = 0;
+        for (k=0; k<currentWord.Length; k++) {
+            HH = HH*10 + ((int) currentWord.TabWord[k]-48);
+        }
+        ADVWORD();
+        MM = 0;
+        for (k=0; k<currentWord.Length; k++) {
+            MM = MM*10 + ((int) currentWord.TabWord[k]-48);
+        }
+        
+        CreateTime(&expire, DD, HH, MM);
+        setExpiryDate(&currMakanan, expire);
+        
+        ADVWORD();
+        DD = 0;
+        for (k=0; k<currentWord.Length; k++) {
+            DD = DD*10 + ((int) currentWord.TabWord[k]-48);
+        }
+        ADVWORD();
+        HH = 0;
+        for (k=0; k<currentWord.Length; k++) {
+            HH = HH*10 + ((int) currentWord.TabWord[k]-48);
+        }
+        ADVWORD();
+        MM = 0;
+        for (k=0; k<currentWord.Length; k++) {
+            MM = MM*10 + ((int) currentWord.TabWord[k]-48);
+        }
+        
+        CreateTime(&delivery, DD, HH, MM);
+        setDeliveryTime(&currMakanan, delivery);
+
+        strfy();
+        
+        if (isBuy(currentString)) {
+            CreatePoint(&ActionLoc(currMakanan), Absis(Locate(p, 'T')), Ordinat(Locate(p, 'T')));
+        } else if (isChop(currentString)) {
+            CreatePoint(&ActionLoc(currMakanan), Absis(Locate(p, 'C')), Ordinat(Locate(p, 'C')));
+        } else if (isFry(currentString)) {
+            CreatePoint(&ActionLoc(currMakanan), Absis(Locate(p, 'F')), Ordinat(Locate(p, 'F')));
+        } else if (isBoil(currentString)) {
+            CreatePoint(&ActionLoc(currMakanan), Absis(Locate(p, 'B')), Ordinat(Locate(p, 'B')));
+        } else if (isMix(currentString)) {
+            CreatePoint(&ActionLoc(currMakanan), Absis(Locate(p, 'M')), Ordinat(Locate(p, 'M')));
+        } else {
+            CreatePoint(&ActionLoc(currMakanan), POINT_UNDEF, POINT_UNDEF);
+        }
+        
+        printf("ID : %d\n", ID(currMakanan));
+        printf("Food Name : ");
+        printString(FoodName(currMakanan));
+        printf("\n");
+        printf("Expiry date : ");
+        TulisTIME(Expire(currMakanan));
+        printf("Action location : ");
+        TulisPoint(ActionLoc(currMakanan));
+        printf("Delivery time :");
+        TulisTIME(DeliveryTime(currMakanan));
+        
+        insertLast(l, currMakanan);
+        // printf("Makanan inserted -> ");
+        // printString(FoodName(Elmt(*l, getLastIdx(*l))));
+        // printf("\n\n");
+
+        if (i != (n-1)) {
+            ADVWORD();
+        } else {
+            endWord = true;
+        }
+    }
+}
+
+void printListMakanan(ListStatik l){
+/* Proses : Menuliskan isi List dengan traversal, List ditulis di antara kurung 
+   siku; antara dua elemen dipisahkan dengan separator "koma", tanpa tambahan 
+   karakter di depan, di tengah, atau di belakang */
+/* I.S. l boleh kosong */
+/* F.S. Jika l tidak kosong: [e1,e2,...,en] */
+/* Jika List kosong : menulis [] */
+// KAMUS
+    IdxType i;
+// ALGORITMA
+    printf("[");
+    
+    for (i=0; i<=getLastIdx(l); i++) {
+        printString(FoodName(Elmt(l,i)));
+        if (i < getLastIdx(l)) {
+            printf(", ");
+        }
+    }
+
+    printf("]\n");
+}

@@ -23,7 +23,7 @@ void startString() {
     // I.S currentString sembarang
     // I.S currentString diinisiasi untuk dibaca
     START();
-    IgnoreBlanks();
+    IGNOREBLANKS();
     if (currentChar == MARK || currentChar == NEWLINE) {
         endWord = true;
     } else {
@@ -33,12 +33,12 @@ void startString() {
 }
 
 void advString() {
-    IgnoreBlanks();
+    IGNOREBLANKS();
     if (currentChar == MARK || currentChar == NEWLINE) {
         endWord = true;
     } else {
         strfy();
-        IgnoreBlanks();
+        IGNOREBLANKS();
     }
 }
 

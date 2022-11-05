@@ -5,9 +5,7 @@
 #include "../time/time.h"
 #include "../point/point.h"
 #include "../string/string.h"
-#include "../liststatik/liststatik.h"
 #include "../peta/peta.h"
-#include "../menu/menu.h"
 
 #define IDType int
 #define ID_UNDEF (-1)
@@ -49,20 +47,14 @@ void setDeliveryTime(Makanan *m, TIME delivery);
 // I.S Makanan sembarang
 // F.S Waktu delivery makanan terisi
 
-/* Interaksi I/O */
-void readMakanan(char* filename, Peta p, ListStatik *l);
-// I.S Makanan sembarang
-// F.S Makanan terbaca dari file
-void printListMakanan(ListStatik l);
-/* Proses : Menuliskan isi List dengan traversal, List ditulis di antara kurung 
-   siku; antara dua elemen dipisahkan dengan separator "koma", tanpa tambahan 
-   karakter di depan, di tengah, atau di belakang */
-/* I.S. l boleh kosong */
-/* F.S. Jika l tidak kosong: [e1,e2,...,en] */
-/* Jika List kosong : menulis [] */
+boolean isBuy(String s);
 
-/* Getter */
-Makanan getFoodByID(IDType ID, ListStatik l);
-// Mengakses makanan dari ID
+boolean isChop(String s);
+
+boolean isFry(String s);
+
+boolean isBoil(String s);
+
+boolean isMix(String s);
 
 #endif
