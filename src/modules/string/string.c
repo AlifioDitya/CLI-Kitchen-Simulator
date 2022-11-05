@@ -55,6 +55,16 @@ void advString() {
     }
 }
 
+void advStringFILE() {
+    IGNOREBLANKSFILE();
+    if (currentChar == MARK || currentChar == NEWLINE) {
+        endWord = true;
+    } else {
+        strfyFILE();
+        IGNOREBLANKSFILE();
+    }
+}
+
 void assignString(String a, String *b) {
     // Assign string a ke b
     int i;

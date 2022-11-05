@@ -100,7 +100,7 @@ S#########
         if (done) {
             endWord = true;
         } else {
-            ADVWORD();
+            ADVWORDFILE();
             loc++;
         }
     }

@@ -26,6 +26,10 @@ void startString();
 // I.S currentString sembarang
 // I.S currentString diinisiasi untuk dibaca
 
+void advString();
+
+void advStringFILE();
+
 void assignString(String a, String *b);
 // I.S String b sembarang
 // F.S String a diassign ke b

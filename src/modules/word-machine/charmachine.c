@@ -35,7 +35,7 @@ void ADV() {
     retval = fscanf(pita, "%c", &currentChar);
     EOP = (currentChar == MARK);
     if (EOP) {
-        EOP = true;
+        fclose(pita);
     }
 }
 
@@ -66,10 +66,9 @@ void ADVFILE() {
 
     /* Algoritma */
     retval = fscanf(pita, "%c", &currentChar);
-    // EOP = (currentChar == NEWLINE);
+    // EOP = (currentChar == MARK);
 
     if (retval == EOF) {
-        EOP = true;
         STOPFILE();
     }
 }

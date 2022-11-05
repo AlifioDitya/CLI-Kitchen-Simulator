@@ -194,7 +194,7 @@ void readMakanan(char* filename, Peta p, ListStatik *l) {
         }
         setID(&currMakanan, ID);
 
-        strfyFILE();
+        advStringFILE();
         setFoodName(&currMakanan, currentString);
 
         ADVWORDFILE();
@@ -235,7 +235,7 @@ void readMakanan(char* filename, Peta p, ListStatik *l) {
         CreateTime(&delivery, DD, HH, MM);
         setDeliveryTime(&currMakanan, delivery);
 
-        strfyFILE();
+        advStringFILE();
         
         if (isBuy(currentString)) {
             CreatePoint(&ActionLoc(currMakanan), Absis(Locate(p, 'T')), Ordinat(Locate(p, 'T')));
@@ -251,16 +251,17 @@ void readMakanan(char* filename, Peta p, ListStatik *l) {
             CreatePoint(&ActionLoc(currMakanan), POINT_UNDEF, POINT_UNDEF);
         }
         
-        printf("ID : %d\n", ID(currMakanan));
-        printf("Food Name : ");
-        printString(FoodName(currMakanan));
-        printf("\n");
-        printf("Expiry date : ");
-        TulisTIME(Expire(currMakanan));
-        printf("Action location : ");
-        TulisPoint(ActionLoc(currMakanan));
-        printf("Delivery time :");
-        TulisTIME(DeliveryTime(currMakanan));
+        // printf("ID : %d\n", ID(currMakanan));
+        // printf("Food Name : ");
+        // printString(FoodName(currMakanan));
+        // printf("\n");
+        // printf("Expiry date : ");
+        // TulisTIME(Expire(currMakanan));
+        // printf("Action location : ");
+        // TulisPoint(ActionLoc(currMakanan));
+        // printf("Delivery time :");
+        // TulisTIME(DeliveryTime(currMakanan));
+        // printf("\n");
         
         insertLast(l, currMakanan);
         // printf("Makanan inserted -> ");
