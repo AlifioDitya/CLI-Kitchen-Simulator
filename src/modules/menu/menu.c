@@ -13,6 +13,32 @@ boolean isStart(String s) {
     return (isStringEqual(s, temp));
 }
 
+boolean isBuy(String s) {
+    String temp;
+    createString("BUY", 3, &temp);
+    return (isStringEqual(s, temp));
+}
+boolean isChop(String s) {
+    String temp;
+    createString("CHOP", 4, &temp);
+    return (isStringEqual(s, temp));
+}
+boolean isFry(String s) {
+    String temp;
+    createString("FRY", 3, &temp);
+    return (isStringEqual(s, temp));
+}
+boolean isBoil(String s) {
+    String temp;
+    createString("BOIL", 4, &temp);
+    return (isStringEqual(s, temp));
+}
+boolean isMix(String s) {
+    String temp;
+    createString("MIX", 3, &temp);
+    return (isStringEqual(s, temp));
+}
+
 void Splash(String name) {
     printf("  ;)( ;\n");
     printf(" :----:     o8Oo./\n");

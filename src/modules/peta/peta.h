@@ -3,6 +3,7 @@
 
 #include "../boolean.h"
 #include "../simulator/simulator.h"
+#include "../time/time.h"
 // #include "../point/point.h"
 
 #define ROW_CAP 100
