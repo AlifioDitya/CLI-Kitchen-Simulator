@@ -85,6 +85,12 @@ ListIDBahan listBahan(Address targetMakanan) {
    return listID;
 }
 
+int lengthListBahan (ListIDBahan listID) {
+   // Memberi keluaran panjang listID
+
+   return sizeof(listID.bahan)/sizeof(int);
+}
+
 
 Address searchByID(TreeElType id, BinTree resep) {
 
@@ -116,8 +122,7 @@ void printListResep(BinTree resep, Peta p, ListStatik l) {   // Masih nunggu adt
 
    if (FCHD(resep) != NULL && resep != NULL) {
       target = getFoodByID(INFO(resep), l);
-      int nBahan = length(listBahan(resep).bahan);
-
+      int nBahan = lengthListBahan(listBahan(resep));
 
       printf("%d. %s\n", idx, target.name);
       showProcess(target, p);
