@@ -8,6 +8,7 @@
 
 #define MARK '.'
 #define NEWLINE '\n'
+
 /* State Mesin */
 extern char currentChar;
 extern boolean EOP;
@@ -27,9 +28,13 @@ void ADV();
           currentChar mungkin = MARK
           Jika  currentChar = MARK maka EOP akan menyala (true) */
 
-void STARTFILE(char* filename);
-// Membaca file dengan char machine
+void STARTFILE(char filename[]);
+/* Membaca file dengan char machine */
 
-void STOP();
+void ADVFILE();
+/* Memajukan pita sebanyak satu karakter pada pembacaan file */
+
+void STOPFILE();
+/* Memberhentikan Pembacaan File */
 
 #endif

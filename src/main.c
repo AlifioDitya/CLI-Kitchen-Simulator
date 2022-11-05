@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "./modules/boolean.h"
-#include "./modules/menu/menu.c"
+#include "./modules/menu/menu.h"
 
 int main() {
     boolean running = true;
@@ -11,6 +11,8 @@ int main() {
     TIME progTime;
     ListStatik Catalog;
 
+    // ALGORITMA
+    running = true;
     Initiate(&s, &p, &Catalog);
     CreateTime(&progTime, 0, 0, 0);
 

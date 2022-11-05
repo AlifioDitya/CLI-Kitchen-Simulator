@@ -1,12 +1,16 @@
 #include <stdio.h>
 #include "makanan.h"
-#include "../liststatik/liststatik.c"
-#include "../peta/peta.c"
+// #include "../liststatik/liststatik.c"
+// #include "../peta/peta.c"
 
 /* Konstruktor */
 void CreateMakanan(Makanan *m, IDType ID, String name, TIME expire, Point loc, TIME delivery) {
-// I.S Makanan sembarang
-// F.S Membuat object makanan kosong
+    // I.S Makanan sembarang
+    // F.S Membuat object makanan kosong
+
+    // KAMUS
+
+    // ALGORITMA
     setID(m, ID);
     setFoodName(m, name);
     setExpiryDate(m, expire);
@@ -16,14 +20,22 @@ void CreateMakanan(Makanan *m, IDType ID, String name, TIME expire, Point loc, T
 
 /* Setter */
 void setID(Makanan *m, IDType id) {
-// I.S Makanan sembarang
-// ID makanan terisi
+    // I.S Makanan sembarang
+    // ID makanan terisi
+
+    // KAMUS
+
+    // ALGORITMA
     ID(*m) = id;
 }
 
 void setFoodName(Makanan *m, String name) {
-// I.S Makanan sembarang, String name terdefinisi
-// Nama makanan terisi
+    // I.S Makanan sembarang, String name terdefinisi
+    // Nama makanan terisi
+
+    // KAMUS
+
+    // ALGORITMA
     assignString(name, &FoodName(*m));
 }
 
