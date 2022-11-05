@@ -25,4 +25,13 @@ void assignString(String a, String *b);
 // I.S String b sembarang
 // F.S String a diassign ke b
 
+boolean isStringEqual(String a, String b);
+// Mengembalikan true apabila string a == b
+
+void createString(char* kata, int length, String *w);
+// Membuat string dari array of character
+
+void printString(String a);
+// Memberi output print dari tipe data String
+
 #endif
