@@ -1,4 +1,5 @@
 #include "../time/time.h"
+#include "../word-machine/wordmachine.h"
 #include "../makanan/makanan.h"
 #include "tree.h"
 #include "../point/point.c"
@@ -9,38 +10,67 @@
 
 extern ListStatik katalog;
 Peta p;
-ListStatik katalogByProses(ListStatik katalog, str proses){
-    ListStatik Proses;
-    CreateListStatik(&Proses);
-    if(proses == "BOIL"){
+ListStatik katalogByProses(ListStatik katalog, Word proses){
+    ListStatik katalogProses;
+    CreateListStatik(&katalogProses);
+    if(proses.TabWord == "BOIL"){
         for(int i = 0; i<listLength(katalog); i++){
             if(isPointSame(ActionLoc(Elmt(katalog, i)), Locate(p, 'B'))){
-                insertLast(&Proses, Elmt(katalog,i));
+                insertLast(&katalogProses, Elmt(katalog,i));
             }
         }
     }
-    else if(proses = "CHOP"){
+    else if(proses.TabWord == "CHOP"){
         for(int i = 0; i<listLength(katalog); i++){
             if(isPointSame(ActionLoc(Elmt(katalog, i)), Locate(p, 'C'))){
-                insertLast(&Proses,Elmt(katalog,i));
+                insertLast(&katalogProses,Elmt(katalog,i));
             }
         }
     }
-    else if(proses = "FRY"){
+    else if(proses.TabWord == "FRY"){
         for(int i = 0; i<listLength(katalog); i++){
             if(isPointSame(ActionLoc(Elmt(katalog, i)), Locate(p, 'F'))){
-                insertLast(&Proses,Elmt(katalog,i));
+                insertLast(&katalogProses,Elmt(katalog,i));
             }
         }
     }
-    else if(proses = "MIX"){
+    else if(proses.TabWord == "MIX"){
         for(int i = 0; i<listLength(katalog); i++){
             if(isPointSame(ActionLoc(Elmt(katalog, i)), Locate(p, 'M'))){
-                insertLast(&Proses,Elmt(katalog,i));
+                insertLast(&katalogProses,Elmt(katalog,i));
             }
         }
     }
-    return Proses;
+    return katalogProses;
+}
+
+void displayKatalogProses (ListStatik katalogProses){
+    printf("List makanan yang bisa dibuat: ");
+    for(int i = 0; i<listLength(katalogProses); i++){
+        printf("%d. %s\n", (i+1), FoodName(Elmt(katalogProses, i)));
+    }
+}
+
+boolean isIn (Makanan X, List Inventory){
+    boolean ada = false;
+    for(int i = 0; i<length(Invetory); i++){
+        if(ELMT(Inventory,i) == X){
+            ada = true;
+        }
+    }
+    return true;
+}
+
+boolean isCookable (List bahan, List Inventory){
+    boolean bisa = true;
+    for(int i = 0; i< length(bahan); i++){
+        if(!isIn(ELMT(bahan,i), Inventory)){
+            bisa = false;
+            break;
+        }
+    }
+    return bisa;
+
 }
 
 void Boil (){
@@ -111,26 +141,6 @@ void chop(){
     }
 }
 
-boolean isIn (Makan X, List Inventory){
-    boolean ada = false;
-    for(int i = 0; i<length(Invetory); i++){
-        if(ELMT(Inventory,i) == X){
-            ada = true;
-        }
-    }
-    return true;
-}
-boolean isCookable (List bahan, List Inventory){
-    boolean bisa = true;
-    for(int i = 0; i< length(bahan); i++){
-        if(!isIn(ELMT(bahan,i), Inventory)){
-            bisa = false;
-            break;
-        }
-    }
-    return bisa;
-
-}
 void fry(){
     List Goreng;
     createList(&Goreng);
