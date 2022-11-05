@@ -52,6 +52,39 @@ void assignString(String a, String *b) {
     }
 }
 
+boolean isStringEqual(String a, String b) {
+    int i;
+    boolean equal = true;
+    if (a.Length == b.Length) {
+        for (i=0; i<a.Length; i++) {
+            if (a.str[i] != b.str[i]) {
+                equal = false;
+                break;
+            }
+        }
+    } else {
+        equal = false;
+    }
+    return equal;
+}
+
+void createString(char* kata, int length, String *w) {
+    /* Membuat suatu String dari masukan array of char dan panjang String */
+
+    // KAMUS
+    String temp;
+    int i;
+
+    // ALGORITMA
+    temp.Length = length;
+
+    for (i = 0; i < length; i++) {
+        temp.str[i] = kata[i];
+    }
+
+    assignString(temp, w);
+}
+
 void printString(String a) {
     int i;
     for (i=0; i<(a).Length; i++) {

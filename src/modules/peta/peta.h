@@ -79,13 +79,13 @@ void displayPeta(Peta p);
 */
 
 /* Operasi menggerakkan user pada peta */
-void moveEast(Simulator *s, Peta *p);
+void moveEast(Simulator *s, Peta *p, TIME *currTime);
 /* Menggerakkan posisi user ke kanan pada peta*/
-void moveWest(Simulator *s, Peta *p);
+void moveWest(Simulator *s, Peta *p, TIME *currTime);
 /* Menggerakkan posisi user ke kiri pada peta*/
-void moveNorth(Simulator *s, Peta *p);
+void moveNorth(Simulator *s, Peta *p, TIME *currTime);
 /* Menggerakkan posisi user ke atas pada peta*/
-void moveSouth(Simulator *s, Peta *p);
+void moveSouth(Simulator *s, Peta *p, TIME *currTime);
 /* Menggerakkan posisi user ke bawah pada peta*/
 
 /* Mengetahui posisi pada peta */

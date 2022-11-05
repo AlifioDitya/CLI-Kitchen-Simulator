@@ -163,7 +163,7 @@ void displayPeta(Peta p) {
 }
 
 /* Operasi menggerakkan user pada peta */
-void moveEast(Simulator *s, Peta *p) {
+void moveEast(Simulator *s, Peta *p, TIME *currTime) {
 /* Menggerakkan posisi user ke kanan pada peta*/
     ElType temp;
     if (isIdxEff(*p, Ordinat(Loc(*s)), (Absis(Loc(*s)) + 1)) && ELMT(*p, Ordinat(Loc(*s)), (Absis(Loc(*s)) + 1)) == '#') {
@@ -171,12 +171,13 @@ void moveEast(Simulator *s, Peta *p) {
         ELMT(*p, Ordinat(Loc(*s)), (Absis(Loc(*s)))) = ELMT(*p, Ordinat(Loc(*s)), (Absis(Loc(*s)) + 1));
         ELMT(*p, Ordinat(Loc(*s)), (Absis(Loc(*s)) + 1)) = temp;
         shiftPoint(&Loc(*s), 1, 0);
+        AdvTime(currTime);
     } else {
         printf("Tidak bisa bergerak ke timur!\n");
     }
 }
 
-void moveWest(Simulator *s, Peta *p) {
+void moveWest(Simulator *s, Peta *p, TIME *currTime) {
 /* Menggerakkan posisi user ke kiri pada peta*/
     ElType temp;
     if (isIdxEff(*p, Ordinat(Loc(*s)), (Absis(Loc(*s)) - 1)) && ELMT(*p, Ordinat(Loc(*s)), (Absis(Loc(*s)) - 1)) == '#') {
@@ -184,12 +185,13 @@ void moveWest(Simulator *s, Peta *p) {
         ELMT(*p, Ordinat(Loc(*s)), Absis(Loc(*s))) = ELMT(*p, Ordinat(Loc(*s)), (Absis(Loc(*s)) - 1));
         ELMT(*p, Ordinat(Loc(*s)), (Absis(Loc(*s)) - 1)) = temp;
         shiftPoint(&Loc(*s), (-1), 0);
+        AdvTime(currTime);
     } else {
         printf("Tidak bisa bergerak ke barat!\n");
     }
 }
 
-void moveNorth(Simulator *s, Peta *p) {
+void moveNorth(Simulator *s, Peta *p, TIME *currTime) {
 /* Menggerakkan posisi user ke atas pada peta*/
     ElType temp;
     if (isIdxEff(*p, (Ordinat(Loc(*s)) - 1), Absis(Loc(*s))) && ELMT(*p, (Ordinat(Loc(*s)) - 1), Absis(Loc(*s))) == '#') {
@@ -197,12 +199,13 @@ void moveNorth(Simulator *s, Peta *p) {
         ELMT(*p, Ordinat(Loc(*s)), Absis(Loc(*s))) = ELMT(*p, (Ordinat(Loc(*s)) - 1), Absis(Loc(*s)));
         ELMT(*p, (Ordinat(Loc(*s)) - 1), Absis(Loc(*s))) = temp;
         shiftPoint(&Loc(*s), 0, (-1));
+        AdvTime(currTime);
     } else {
         printf("Tidak bisa bergerak ke utara!\n");
     }
 }
 
-void moveSouth(Simulator *s, Peta *p) {
+void moveSouth(Simulator *s, Peta *p, TIME *currTime) {
 /* Menggerakkan posisi user ke bawah pada peta*/
     ElType temp;
     if (isIdxEff(*p, (Ordinat(Loc(*s)) + 1), Absis(Loc(*s))) && ELMT(*p, (Ordinat(Loc(*s)) + 1), Absis(Loc(*s))) == '#') {
@@ -210,6 +213,7 @@ void moveSouth(Simulator *s, Peta *p) {
         ELMT(*p, Ordinat(Loc(*s)), Absis(Loc(*s))) = ELMT(*p, (Ordinat(Loc(*s)) + 1), Absis(Loc(*s)));
         ELMT(*p, (Ordinat(Loc(*s)) + 1), Absis(Loc(*s))) = temp;
         shiftPoint(&Loc(*s), 0, 1);
+        AdvTime(currTime);
     } else {
         printf("Tidak bisa bergerak ke selatan!\n");
     }

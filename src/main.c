@@ -4,8 +4,8 @@
 
 int main() {
     boolean running = true;
-    boolean valid;
-    Word cmd;
+    boolean valid = false;
+    String cmd;
     Peta p;
     Simulator s;
     TIME progTime;
@@ -14,7 +14,6 @@ int main() {
     Initiate(&s, &p, &Catalog);
     CreateTime(&progTime, 0, 0, 0);
 
-    valid = false;
     inputCommand(&cmd);
     while (!valid) {
         if (isExit(cmd)) {
@@ -32,7 +31,6 @@ int main() {
     }
 
     while (running) {
-        valid = true;
         printf("BNMO di posisi: ");
         TulisPoint(Loc(s));
         printf("Waktu: ");
@@ -47,48 +45,27 @@ int main() {
             printf("Goodbye!");
         } else if (isBuy(cmd)) {
             printf("Buying here!\n");
+            AdvTime(&progTime);
         } else if (isFry(cmd)) {
-            boolean frying = true;
-            while (frying) {
-                printf("======================\n");
-                printf("=        FRY         =\n");
-                printf("======================\n");
-                printf("List bahan makanan yang bisa digoreng:\n");
-                // Print list here
-                printf("\n");
-                printf("Kirim 0 untuk Exit\n\n");
-                inputCommand(&cmd);
-
-                Word temp;
-                createWord("0", 1, &temp);
-                if (isWordEqual(cmd, temp)) {
-                    frying = false;
-                } else {
-                    printf("Command tidak valid.\n");
-                    valid = false;
-                }
-
-                if (valid) {
-                    AdvTime(&progTime);
-                }
-            }
-
             printf("Frying here!\n");
+            AdvTime(&progTime);
         } else if (isChop(cmd)) {
             printf("Chopping here!\n");
-            if (valid) {
-                 AdvTime(&progTime);
-            }
+            AdvTime(&progTime);
         } else if (isBoil(cmd)) {
             printf("Boiling here!\n");
-            if (valid) {
-                 AdvTime(&progTime);
-            }
+            AdvTime(&progTime);
         } else if (isMix(cmd)) {
             printf("Mixing here!\n");
-            if (valid) {
-                 AdvTime(&progTime);
-            }
+            AdvTime(&progTime);
+        } else if (isMoveEast(cmd)) {
+            moveEast(&s, &p, &progTime);
+        } else if (isMoveWest(cmd)) {
+            moveWest(&s, &p, &progTime);
+        } else if (isMoveNorth(cmd)) {
+            moveNorth(&s, &p, &progTime);
+        } else if (isMoveSouth(cmd)) {
+            moveSouth(&s, &p, &progTime);
         } else {
             printf("Command tidak valid.\n");
         }

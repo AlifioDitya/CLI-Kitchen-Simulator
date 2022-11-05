@@ -45,30 +45,30 @@ void setDeliveryTime(Makanan *m, TIME delivery) {
     CreateTime(&DeliveryTime(*m), Day(delivery), Hour(delivery), Minute(delivery));
 }
 
-boolean isBuy(Word w) {
-    Word temp;
-    createWord("BUY", 3, &temp);
-    return (isWordEqual(w, temp));
+boolean isBuy(String w) {
+    String temp;
+    createString("BUY", 3, &temp);
+    return (isStringEqual(w, temp));
 }
-boolean isChop(Word w) {
-    Word temp;
-    createWord("CHOP", 4, &temp);
-    return (isWordEqual(w, temp));
+boolean isChop(String s) {
+    String temp;
+    createString("CHOP", 4, &temp);
+    return (isStringEqual(s, temp));
 }
-boolean isFry(Word w) {
-    Word temp;
-    createWord("FRY", 3, &temp);
-    return (isWordEqual(w, temp));
+boolean isFry(String s) {
+    String temp;
+    createString("FRY", 3, &temp);
+    return (isStringEqual(s, temp));
 }
-boolean isBoil(Word w) {
-    Word temp;
-    createWord("BOIL", 4, &temp);
-    return (isWordEqual(w, temp));
+boolean isBoil(String s) {
+    String temp;
+    createString("BOIL", 4, &temp);
+    return (isStringEqual(s, temp));
 }
-boolean isMix(Word w) {
-    Word temp;
-    createWord("MIX", 3, &temp);
-    return (isWordEqual(w, temp));
+boolean isMix(String s) {
+    String temp;
+    createString("MIX", 3, &temp);
+    return (isStringEqual(s, temp));
 }
 
 
@@ -135,32 +135,32 @@ void readMakanan(char* filename, Peta p, ListStatik *l) {
         CreateTime(&delivery, DD, HH, MM);
         setDeliveryTime(&currMakanan, delivery);
 
-        ADVWORD();
+        strfy();
         
-        if (isBuy(currentWord)) {
+        if (isBuy(currentString)) {
             CreatePoint(&ActionLoc(currMakanan), Absis(Locate(p, 'T')), Ordinat(Locate(p, 'T')));
-        } else if (isChop(currentWord)) {
+        } else if (isChop(currentString)) {
             CreatePoint(&ActionLoc(currMakanan), Absis(Locate(p, 'C')), Ordinat(Locate(p, 'C')));
-        } else if (isFry(currentWord)) {
+        } else if (isFry(currentString)) {
             CreatePoint(&ActionLoc(currMakanan), Absis(Locate(p, 'F')), Ordinat(Locate(p, 'F')));
-        } else if (isBoil(currentWord)) {
+        } else if (isBoil(currentString)) {
             CreatePoint(&ActionLoc(currMakanan), Absis(Locate(p, 'B')), Ordinat(Locate(p, 'B')));
-        } else if (isMix(currentWord)) {
+        } else if (isMix(currentString)) {
             CreatePoint(&ActionLoc(currMakanan), Absis(Locate(p, 'M')), Ordinat(Locate(p, 'M')));
         } else {
             CreatePoint(&ActionLoc(currMakanan), POINT_UNDEF, POINT_UNDEF);
         }
         
-        // printf("ID : %d\n", ID(currMakanan));
-        // printf("Food Name : ");
-        // printString(FoodName(currMakanan));
-        // printf("\n");
-        // printf("Expiry date : ");
-        // TulisTIME(Expire(currMakanan));
-        // printf("Action location : ");
-        // TulisPoint(ActionLoc(currMakanan));
-        // printf("Delivery time :");
-        // TulisTIME(DeliveryTime(currMakanan));
+        printf("ID : %d\n", ID(currMakanan));
+        printf("Food Name : ");
+        printString(FoodName(currMakanan));
+        printf("\n");
+        printf("Expiry date : ");
+        TulisTIME(Expire(currMakanan));
+        printf("Action location : ");
+        TulisPoint(ActionLoc(currMakanan));
+        printf("Delivery time :");
+        TulisTIME(DeliveryTime(currMakanan));
         
         insertLast(l, currMakanan);
         // printf("Makanan inserted -> ");
