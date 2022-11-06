@@ -21,7 +21,7 @@ void strfy() {
 
 void strfyFILE() {
     currentString.Length = 0;
-    while (currentChar != MARK && currentChar != NEWLINE) {
+    while (!EOP && currentChar != NEWLINE) {
         if (currentString.Length < STR_CAP) {
             currentString.str[currentString.Length] = currentChar;
             currentString.Length++;

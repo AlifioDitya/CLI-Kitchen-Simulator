@@ -69,6 +69,7 @@ void ADVFILE() {
     // EOP = (currentChar == MARK);
 
     if (retval == EOF) {
+        EOP = true;
         STOPFILE();
     }
 }
