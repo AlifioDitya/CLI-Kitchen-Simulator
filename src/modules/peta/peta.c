@@ -226,9 +226,9 @@ boolean isObjectInRadius(Simulator s, Peta p, char object) {
     boolean found;
 
     found = false;
-    for (i=0; i<3; i++) {
-        for (j=0; j<3; j++) {
-            if (isIdxEff(p, i, j) && i != Ordinat(Loc(s)) && j != Absis(Loc(s))) {
+    for (i=Ordinat(Loc(s))-1; i<=Ordinat(Loc(s))+1; i++) {
+        for (j=Absis(Loc(s))-1; j<=Absis(Loc(s))+1; j++) {
+            if (isIdxEff(p, i, j) && (i != Ordinat(Loc(s)) || j != Absis(Loc(s)))) {
                 if (ELMT(p, i, j) == object) {
                     found = true;
                     break;
