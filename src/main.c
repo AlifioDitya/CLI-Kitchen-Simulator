@@ -69,6 +69,7 @@ int main() {
             if (canMoveEast(s, p)) {
                 moveEast(&s, &p);
                 AdvMinute(&progTime);
+                DecDeliveryTimeQueue(&pesanan);
             } else {
                 printf("Tidak bisa bergerak ke timur!\n");
             }
@@ -76,6 +77,7 @@ int main() {
             if (canMoveWest(s, p)) {
                 moveWest(&s, &p);
                 AdvMinute(&progTime);
+                DecDeliveryTimeQueue(&pesanan);
             } else {
                 printf("Tidak bisa bergerak ke barat!\n");
             }
@@ -83,6 +85,7 @@ int main() {
             if (canMoveNorth(s, p)) {
                 moveNorth(&s, &p);
                 AdvMinute(&progTime);
+                DecDeliveryTimeQueue(&pesanan);
             } else {
                 printf("Tidak bisa bergerak ke utara!\n");
             }
@@ -90,6 +93,7 @@ int main() {
             if (canMoveSouth(s, p)) {
                 moveSouth(&s, &p);
                 AdvMinute(&progTime);
+                DecDeliveryTimeQueue(&pesanan);
             } else {
                 printf("Tidak bisa bergerak ke selatan!\n");
             }
