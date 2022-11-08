@@ -36,6 +36,9 @@ int main() {
     }
 
     while (running) {
+        printf("Pesanan yang ada :\n");
+        PrintPrioQueueMakanan(pesanan);
+        printf("\n");
         printf("BNMO di posisi: ");
         TulisPoint(Loc(s));
         printf("Waktu: ");
@@ -63,13 +66,33 @@ int main() {
             printf("Mixing here!\n");
             AdvMinute(&progTime);
         } else if (isMoveEast(cmd)) {
-            moveEast(&s, &p, &progTime);
+            if (canMoveEast(s, p)) {
+                moveEast(&s, &p);
+                AdvMinute(&progTime);
+            } else {
+                printf("Tidak bisa bergerak ke timur!\n");
+            }
         } else if (isMoveWest(cmd)) {
-            moveWest(&s, &p, &progTime);
+            if (canMoveWest(s, p)) {
+                moveWest(&s, &p);
+                AdvMinute(&progTime);
+            } else {
+                printf("Tidak bisa bergerak ke barat!\n");
+            }
         } else if (isMoveNorth(cmd)) {
-            moveNorth(&s, &p, &progTime);
+            if (canMoveNorth(s, p)) {
+                moveNorth(&s, &p);
+                AdvMinute(&progTime);
+            } else {
+                printf("Tidak bisa bergerak ke utara!\n");
+            }
         } else if (isMoveSouth(cmd)) {
-            moveSouth(&s, &p, &progTime);
+            if (canMoveSouth(s, p)) {
+                moveSouth(&s, &p);
+                AdvMinute(&progTime);
+            } else {
+                printf("Tidak bisa bergerak ke selatan!\n");
+            }
         } else {
             printf("Command tidak valid.\n");
         }

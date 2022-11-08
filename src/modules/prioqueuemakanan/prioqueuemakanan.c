@@ -162,3 +162,17 @@ void PrintPrioQueueMakanan (PrioQueueMakanan Q) {
         }
     }
 }
+
+void DecDeliveryTimeQueue(PrioQueueMakanan *PQ) {
+    int i;
+    i = Head(*PQ);
+    if (!IsEmptyQueue(*PQ)) {
+        do {
+            DecMinute(&DeliveryTime(ElmtQueue(*PQ, i)));
+            i++;
+        } while ((i % (NBElmtQueue(*PQ))) != Tail(*PQ));
+        if (NBElmtQueue(*PQ) != 1) {
+            DecMinute(&DeliveryTime(ElmtQueue(*PQ, i)));
+        }
+    }
+}

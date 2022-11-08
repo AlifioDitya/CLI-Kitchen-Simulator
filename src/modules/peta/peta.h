@@ -3,8 +3,6 @@
 
 #include "../boolean.h"
 #include "../simulator/simulator.h"
-#include "../time/time.h"
-// #include "../point/point.h"
 
 #define ROW_CAP 100
 #define COL_CAP 100
@@ -80,14 +78,23 @@ void displayPeta(Peta p);
 */
 
 /* Operasi menggerakkan user pada peta */
-void moveEast(Simulator *s, Peta *p, TIME *currTime);
+void moveEast(Simulator *s, Peta *p);
 /* Menggerakkan posisi user ke kanan pada peta*/
-void moveWest(Simulator *s, Peta *p, TIME *currTime);
+void moveWest(Simulator *s, Peta *p);
 /* Menggerakkan posisi user ke kiri pada peta*/
-void moveNorth(Simulator *s, Peta *p, TIME *currTime);
+void moveNorth(Simulator *s, Peta *p);
 /* Menggerakkan posisi user ke atas pada peta*/
-void moveSouth(Simulator *s, Peta *p, TIME *currTime);
+void moveSouth(Simulator *s, Peta *p);
 /* Menggerakkan posisi user ke bawah pada peta*/
+
+boolean canMoveEast(Simulator s, Peta p);
+/* Mengembalikan true apabila user dapat bergerak ke kanan pada peta */
+boolean canMoveWest(Simulator s, Peta p);
+/* Mengembalikan true apabila user dapat bergerak ke kiri pada peta */
+boolean canMoveNorth(Simulator s, Peta p);
+/* Mengembalikan true apabila user dapat bergerak ke atas pada peta */
+boolean canMoveSouth(Simulator s, Peta p);
+/* Mengembalikan true apabila user dapat bergerak ke bawah pada peta */
 
 /* Mengetahui posisi pada peta */
 boolean isObjectInRadius(Simulator s, Peta p, char object);

@@ -74,11 +74,8 @@ void Dequeue (PrioQueueMakanan * Q, infotype * X);
 void PrintPrioQueueMakanan (PrioQueueMakanan Q);
 /* Mencetak isi queue Q ke layar */
 /* I.S. Q terdefinisi, mungkin kosong */
-/* F.S. Q tercetak ke layar dengan format:
-<time-1> <elemen-1>
-...
-<time-n> <elemen-n>
-#
-*/
+/* F.S. Q tercetak ke layar */
+
+void DecDeliveryTimeQueue(PrioQueueMakanan *PQ);
 
 #endif
