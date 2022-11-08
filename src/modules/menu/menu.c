@@ -52,8 +52,6 @@ void Initiate(Simulator *s, Peta *p, ListStatik *catalog) {
 
     CreateListStatik(catalog);
     readMakanan(makananFileName, *p, catalog);
-    printf("Catalog = ");
-    printListMakanan(*catalog);
     printf("\n");
 }
 
@@ -62,6 +60,27 @@ void inputCommand(String *cmd) {
     startString();
     assignString(currentString, cmd);
     printf("\n");
+}
+
+boolean isCommandInteger(String cmd) {
+    int i;
+    for (i=0; i<cmd.Length; i++) {
+        if (cmd.str[i] > '9' || cmd.str[i] < '0') {
+            return false;
+        }
+    }
+    return true;
+}
+
+int parseToInteger(String s) {
+    int i;
+    int total = 0;
+    if (isCommandInteger(s)) {
+        for (i=0; i<s.Length; i++) {
+            total = total*10 + (s.str[i]-48);
+        }
+    }
+    return total;
 }
 
 boolean isMoveEast(String s) {
@@ -126,4 +145,87 @@ boolean isMoveSouth(String s) {
         return false;
     }
     return true;
+}
+
+void printBuyMakanan(ListStatik canBuy) {
+    int i;
+    int ctr = 1;
+    for (i=0; i<canBuy.nEff; i++) {
+        printf("%d. ", ctr);
+        printString(FoodName(Elmt(canBuy, i)));
+        printf(" (");
+        if (Day(DeliveryTime(Elmt(canBuy, i))) != 0) {
+            printf("%d Hari", Day(DeliveryTime(Elmt(canBuy, i))));
+            if (Hour(DeliveryTime(Elmt(canBuy, i))) != 0 && Minute(DeliveryTime(Elmt(canBuy, i))) != 0) {
+                printf(", ");
+            }
+        }
+        if (Hour(DeliveryTime(Elmt(canBuy, i))) != 0) {
+            printf("%d Jam", Hour(DeliveryTime(Elmt(canBuy, i))));
+            if (Minute(DeliveryTime(Elmt(canBuy, i))) != 0) {
+                printf(", ");
+            }
+        }
+        if (Minute(DeliveryTime(Elmt(canBuy, i))) != 0) {
+            printf("%d Menit", Minute(DeliveryTime(Elmt(canBuy, i))));
+        }
+        printf(")\n");
+        ctr++;
+    }
+}
+
+void Buy(Simulator *s, TIME *currTIME, String *cmd, PrioQueueMakanan *prioQueue, Peta p, ListStatik canBuy) {
+    if (isObjectInRadius(*s, p, 'T')) {
+        boolean buying = true;
+        boolean valid;
+        int select;
+        while (buying) {
+            printf("======================\n");
+            printf("=        BUY         =\n");
+            printf("======================\n");
+            printf("List Bahan Makanan:\n");
+            printBuyMakanan(canBuy);
+            printf("\n");
+            printf("Kirim 0 untuk exit.\n");
+            printf("\n");
+            inputCommand(cmd);
+            if (isCommandInteger(*cmd)) {
+                valid = true;
+            } else {
+                valid = false;
+            }
+            while (!valid) {
+                printf("\n");
+                printf("Command tidak valid.\n");
+                printf("\n");
+                inputCommand(cmd);
+                if (isCommandInteger(*cmd)) {
+                    valid = true;
+                } else {
+                    valid = false;
+                }
+            }
+
+            select = parseToInteger(*cmd);
+            if (select == 0) {
+                buying = false;
+            } else if (isIdxListEff(canBuy, select-1)) {
+                Enqueue(prioQueue, Elmt(canBuy, select-1));
+                printString(FoodName(Elmt(canBuy, select-1)));
+                printf(" berhasil dibeli!\n");
+                printf("\n");
+            } else {
+                valid = false;
+                printf("\n");
+                printf("Index di luar range.\n");
+                printf("\n");
+            }
+
+            if (valid) {
+                AdvTime(currTIME);
+            }
+        }
+    } else {
+        printf("BNMO tidak berada di area telepon!\n");
+    }
 }
