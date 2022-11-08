@@ -177,7 +177,6 @@ void printBuyMakanan(ListStatik canBuy) {
 void Buy(Simulator *s, TIME *currTIME, String *cmd, PrioQueueMakanan *prioQueue, Peta p, ListStatik canBuy) {
     if (isObjectInRadius(*s, p, 'T')) {
         boolean buying = true;
-        boolean valid;
         int select;
         while (buying) {
             printf("======================\n");
@@ -188,29 +187,21 @@ void Buy(Simulator *s, TIME *currTIME, String *cmd, PrioQueueMakanan *prioQueue,
             printf("\n");
             printf("Kirim 0 untuk exit.\n");
             printf("\n");
+
             inputCommand(cmd);
-            if (isCommandInteger(*cmd)) {
-                valid = true;
-            } else {
-                valid = false;
-            }
-            while (!valid) {
+            while (!isCommandInteger(*cmd)) {
                 printf("\n");
                 printf("Command tidak valid.\n");
                 printf("\n");
                 inputCommand(cmd);
-                if (isCommandInteger(*cmd)) {
-                    valid = true;
-                } else {
-                    valid = false;
-                }
             }
 
             select = parseToInteger(*cmd);
             if (select == 0) {
                 buying = false;
-                valid = false;
             } else if (isIdxListEff(canBuy, select-1)) {
+                DecDeliveryTimeQueue(prioQueue);
+                AdvMinute(currTIME);
                 Enqueue(prioQueue, Elmt(canBuy, select-1));
                 printf("Berhasil memesan ");
                 printString(FoodName(Elmt(canBuy, select-1)));
@@ -234,14 +225,9 @@ void Buy(Simulator *s, TIME *currTIME, String *cmd, PrioQueueMakanan *prioQueue,
                 }
                 printf(".\n\n");
             } else {
-                valid = false;
                 printf("\n");
                 printf("Index di luar range.\n");
                 printf("\n");
-            }
-
-            if (valid) {
-                AdvMinute(currTIME);
             }
         }
     } else {
