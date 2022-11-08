@@ -9,12 +9,15 @@ int main() {
     Peta p;
     Simulator s;
     TIME progTime;
-    ListStatik Catalog;
+    ListStatik Catalog, canBuy, canFry, canChop, canBoil, canMix;
+    PrioQueueMakanan pesanan;
 
     // ALGORITMA
     running = true;
     Initiate(&s, &p, &Catalog);
     CreateTime(&progTime, 0, 0, 0);
+    CreateListBuyMakanan(&canBuy, Catalog, p);
+    MakeEmptyQueue(&pesanan, 100);
 
     inputCommand(&cmd);
     while (!valid) {
@@ -46,8 +49,7 @@ int main() {
             running = false;
             printf("Goodbye!");
         } else if (isBuy(cmd)) {
-            printf("Buying here!\n");
-            AdvTime(&progTime);
+            Buy(&s, &progTime, &cmd, &pesanan, p, canBuy);
         } else if (isFry(cmd)) {
             printf("Frying here!\n");
             AdvTime(&progTime);
@@ -71,6 +73,5 @@ int main() {
         } else {
             printf("Command tidak valid.\n");
         }
-        printf("\n");
     }
 }

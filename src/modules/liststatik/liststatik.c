@@ -9,6 +9,16 @@ void CreateListStatik(ListStatik *l) {
     Neff(*l) = 0;
 }
 
+void CreateListBuyMakanan(ListStatik *canBuy, ListStatik catalog, Peta p) {
+    int i;
+    CreateListStatik(canBuy);
+    for (i=0; i<catalog.nEff; i++) {
+        if (EQ(ActionLoc(Elmt(catalog, i)), Locate(p, 'T'))) {
+            insertLast(canBuy, Elmt(catalog, i));
+        }
+    }
+}
+
 /* ********** SELEKTOR (TAMBAHAN) ********** */
 /* *** Banyaknya elemen *** */
 int listLength(ListStatik l) {
@@ -297,3 +307,4 @@ void printListMakanan(ListStatik l){
 
     printf("]\n");
 }
+
