@@ -52,16 +52,16 @@ int main() {
             Buy(&s, &progTime, &cmd, &pesanan, p, canBuy);
         } else if (isFry(cmd)) {
             printf("Frying here!\n");
-            AdvTime(&progTime);
+            AdvMinute(&progTime);
         } else if (isChop(cmd)) {
             printf("Chopping here!\n");
-            AdvTime(&progTime);
+            AdvMinute(&progTime);
         } else if (isBoil(cmd)) {
             printf("Boiling here!\n");
-            AdvTime(&progTime);
+            AdvMinute(&progTime);
         } else if (isMix(cmd)) {
             printf("Mixing here!\n");
-            AdvTime(&progTime);
+            AdvMinute(&progTime);
         } else if (isMoveEast(cmd)) {
             moveEast(&s, &p, &progTime);
         } else if (isMoveWest(cmd)) {
@@ -73,5 +73,6 @@ int main() {
         } else {
             printf("Command tidak valid.\n");
         }
+        printf("\n");
     }
 }

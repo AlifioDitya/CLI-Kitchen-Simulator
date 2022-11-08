@@ -209,11 +209,30 @@ void Buy(Simulator *s, TIME *currTIME, String *cmd, PrioQueueMakanan *prioQueue,
             select = parseToInteger(*cmd);
             if (select == 0) {
                 buying = false;
+                valid = false;
             } else if (isIdxListEff(canBuy, select-1)) {
                 Enqueue(prioQueue, Elmt(canBuy, select-1));
+                printf("Berhasil memesan ");
                 printString(FoodName(Elmt(canBuy, select-1)));
-                printf(" berhasil dibeli!\n");
-                printf("\n");
+                printf(". ");
+                printString(FoodName(Elmt(canBuy, select-1)));
+                printf(" akan diantar dalam ");
+                if (Day(DeliveryTime(Elmt(canBuy, select-1))) != 0) {
+                    printf("%d Hari", Day(DeliveryTime(Elmt(canBuy, select-1))));
+                    if (Hour(DeliveryTime(Elmt(canBuy, select-1))) != 0 && Minute(DeliveryTime(Elmt(canBuy, select-1))) != 0) {
+                        printf(", ");
+                    }
+                }
+                if (Hour(DeliveryTime(Elmt(canBuy, select-1))) != 0) {
+                    printf("%d Jam", Hour(DeliveryTime(Elmt(canBuy, select-1))));
+                    if (Minute(DeliveryTime(Elmt(canBuy, select-1))) != 0) {
+                        printf(", ");
+                    }
+                }
+                if (Minute(DeliveryTime(Elmt(canBuy, select-1))) != 0) {
+                    printf("%d Menit", Minute(DeliveryTime(Elmt(canBuy, select-1))));
+                }
+                printf(".\n\n");
             } else {
                 valid = false;
                 printf("\n");
@@ -222,7 +241,7 @@ void Buy(Simulator *s, TIME *currTIME, String *cmd, PrioQueueMakanan *prioQueue,
             }
 
             if (valid) {
-                AdvTime(currTIME);
+                AdvMinute(currTIME);
             }
         }
     } else {

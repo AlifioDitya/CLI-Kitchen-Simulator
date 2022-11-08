@@ -171,7 +171,7 @@ void moveEast(Simulator *s, Peta *p, TIME *currTime) {
         ELMT(*p, Ordinat(Loc(*s)), (Absis(Loc(*s)))) = ELMT(*p, Ordinat(Loc(*s)), (Absis(Loc(*s)) + 1));
         ELMT(*p, Ordinat(Loc(*s)), (Absis(Loc(*s)) + 1)) = temp;
         shiftPoint(&Loc(*s), 1, 0);
-        AdvTime(currTime);
+        AdvMinute(currTime);
     } else {
         printf("Tidak bisa bergerak ke timur!\n");
     }
@@ -185,7 +185,7 @@ void moveWest(Simulator *s, Peta *p, TIME *currTime) {
         ELMT(*p, Ordinat(Loc(*s)), Absis(Loc(*s))) = ELMT(*p, Ordinat(Loc(*s)), (Absis(Loc(*s)) - 1));
         ELMT(*p, Ordinat(Loc(*s)), (Absis(Loc(*s)) - 1)) = temp;
         shiftPoint(&Loc(*s), (-1), 0);
-        AdvTime(currTime);
+        AdvMinute(currTime);
     } else {
         printf("Tidak bisa bergerak ke barat!\n");
     }
@@ -199,7 +199,7 @@ void moveNorth(Simulator *s, Peta *p, TIME *currTime) {
         ELMT(*p, Ordinat(Loc(*s)), Absis(Loc(*s))) = ELMT(*p, (Ordinat(Loc(*s)) - 1), Absis(Loc(*s)));
         ELMT(*p, (Ordinat(Loc(*s)) - 1), Absis(Loc(*s))) = temp;
         shiftPoint(&Loc(*s), 0, (-1));
-        AdvTime(currTime);
+        AdvMinute(currTime);
     } else {
         printf("Tidak bisa bergerak ke utara!\n");
     }
@@ -213,7 +213,7 @@ void moveSouth(Simulator *s, Peta *p, TIME *currTime) {
         ELMT(*p, Ordinat(Loc(*s)), Absis(Loc(*s))) = ELMT(*p, (Ordinat(Loc(*s)) + 1), Absis(Loc(*s)));
         ELMT(*p, (Ordinat(Loc(*s)) + 1), Absis(Loc(*s))) = temp;
         shiftPoint(&Loc(*s), 0, 1);
-        AdvTime(currTime);
+        AdvMinute(currTime);
     } else {
         printf("Tidak bisa bergerak ke selatan!\n");
     }

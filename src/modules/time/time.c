@@ -126,10 +126,28 @@ TIME PrevNMinute (TIME T, int N) {
     return MinuteToTIME(TIMEToMinute(T)-N);
 }
 
-void AdvTime(TIME *T) {
+void AdvMinute(TIME *T) {
     Day(*T) = Day(NextMinute(*T));
     Hour(*T) = Hour(NextMinute(*T));
     Minute(*T) = Minute(NextMinute(*T));
+}
+
+void AdvNMinute(TIME *T, int N) {
+    Day(*T) = Day(NextNMinute(*T, N));
+    Hour(*T) = Hour(NextNMinute(*T, N));
+    Minute(*T) = Minute(NextNMinute(*T, N));
+}
+
+void DecMinute(TIME *T) {
+    Day(*T) = Day(PrevMinute(*T));
+    Hour(*T) = Hour(PrevMinute(*T));
+    Minute(*T) = Minute(PrevMinute(*T));
+}
+
+void DecNMinute(TIME *T, int N) {
+    Day(*T) = Day(PrevNMinute(*T, N));
+    Hour(*T) = Hour(PrevNMinute(*T, N));
+    Minute(*T) = Minute(PrevNMinute(*T, N));
 }
 
 /* *** Kelompok Operator Aritmetika *** */
