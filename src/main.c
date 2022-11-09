@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "./modules/boolean.h"
 #include "./modules/menu/menu.c"
+#include "./modules/pengolahan makanan/pengolahan.c"
 
 int main() {
     boolean running = true;
@@ -49,13 +50,13 @@ int main() {
             printf("Buying here!\n");
         } else if (isFry(cmd)) {
             boolean frying = true;
+            ListStatik Goreng;
             while (frying) {
                 printf("======================\n");
                 printf("=        FRY         =\n");
                 printf("======================\n");
                 printf("List bahan makanan yang bisa digoreng:\n");
                 // Print list here
-                printf("\n");
                 printf("Kirim 0 untuk Exit\n\n");
                 inputCommand(&cmd);
 
@@ -81,9 +82,10 @@ int main() {
             }
         } else if (isBoil(cmd)) {
             printf("Boiling here!\n");
-            if (valid) {
-                 AdvTime(&progTime);
-            }
+            Boil();
+            // if (valid) {
+            //      AdvTime(&progTime);
+            // }
         } else if (isMix(cmd)) {
             printf("Mixing here!\n");
             if (valid) {

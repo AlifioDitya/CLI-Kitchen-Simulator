@@ -1,15 +1,21 @@
 #include "../time/time.h"
+#include "../inventory/inventory.h"
 #include "../word-machine/wordmachine.h"
-#include "../makanan/makanan.h"
+#include "../makanan/makanan.c"
 #include "tree.h"
 #include "../point/point.c"
 #include "../peta/peta.h"
+#include "../resep/tree.c"
 #include "../liststatik/liststatik.h"
 #include <string.h>
 #include <stdio.h>
 
 extern ListStatik katalog;
 Peta p;
+Word cmd;
+BinTree resep;
+Inventory I;
+TIME progTime;
 ListStatik katalogByProses(ListStatik katalog, Word proses){
     ListStatik katalogProses;
     CreateListStatik(&katalogProses);
@@ -51,165 +57,165 @@ void displayKatalogProses (ListStatik katalogProses){
     }
 }
 
-boolean isIn (Makanan X, List Inventory){
-    boolean ada = false;
-    for(int i = 0; i<length(Invetory); i++){
-        if(ELMT(Inventory,i) == X){
-            ada = true;
-        }
-    }
-    return true;
-}
+boolean isIn (Makanan X, Inventory I){
+    return(invIndexOf(I, X) != IDX_UNDEF);
+} 
 
-boolean isCookable (List bahan, List Inventory){
+boolean isCookable (listIDBahan bahan, Inventory I){
     boolean bisa = true;
-    for(int i = 0; i< length(bahan); i++){
-        if(!isIn(ELMT(bahan,i), Inventory)){
+    for(int i = 0; i< lengthListID(bahan); i++){
+        if(!isIn(getFoodByID(ELMTLB(bahan, i), katalog), I)){
             bisa = false;
             break;
         }
     }
     return bisa;
-
 }
 
-void Boil (){
-    List Rebus;
-    int target;
-    printf("##########BOILLLLLLLLLL##########\n");
-    printf("List Bahan Makanan yang Bisa Dibuat: \n");
-    
-    for(int i = 0; i<length(dummy); i++){
-        if(dummy[i].lokasi == 'B'){
-            insertLast(Rebus, dummy[i]);
+ListStatik TidakDimiliki (Inventory I, listIDBahan bahan){
+    ListStatik unhave;
+    int i ;
+    CreateListStatik(&unhave);
+    for(i = 0; i< lengthListID(bahan); i++){
+        if(!isIn(getFoodByID(ELMTLB(bahan, i), katalog), I)){
+            insertFirst(&unhave, getFoodByID(ELMTLB(bahan, i), katalog));
         }
     }
-    for(int i = 0; i<(length(Rebus)); i++){
-        printf("%d. %s\n", (i+1), (Rebus[i]).nama);
+    return unhave;
+}
+
+int lengthListBahan (listIDBahan  listID) {
+   // Memberi keluaran panjang listID
+
+   return sizeof(listID.bahan)/sizeof(int);
+}
+
+void copyListID (listIDBahan  *newList, listIDBahan  List){
+    for(int i =0; i<lengthListBahan; i++){
+        ELMTLB(*newList, i) = ELMTLB(List, i);
     }
-    printf("Kirim 0 untuk exit\n");
-    printf("enter command: ");
-    scanf("%d", &target);
+}
+
+
+void Boil(){
+    ListStatik Rebus;
+    Makanan val;
+    int target;
     Address p;
+    CreateListStatik(&Rebus);
+    Rebus = katalogByProses(katalog, cmd);
+    displayKatalogProses(Rebus);
+    printf("kirim 0 untuk exit\n");
+    printf("enter comand: ");
+    scanf("%d", &target);
     while(target != 0){
-        p = searchById(resep, (Rebus[target-1]).id);
-        p = firstchild(p);
-        if(IndexOf(inventory, Info(p))!= IDX_UNDEF){
-            deleteAt(inventory,IndexOf(inventory, Info(p) );
-            insert(inventory, Rebus[target-1]);
-            printf("%s berhasil dibuat dan sudah dimasukkan di inventory\n", (Rebus[target-1]).nama);
+        p = searchById(ID(Elmt(Rebus,(target-1))), resep);
+        p = FCHD(p);
+        if(invIndexOf(I, getFoodByID(Info(p), katalog)) != IDX_UNDEF){
+            invdeleteAt(&I, invIndexOf(I, getFoodByID(Info(p), katalog)), &val);
+            insert(&I, Elmt(Rebus, target-1));
+            printf("%s berhasil dibuat dan sudah dimasukkan di inventory\n", FoodName(Elmt(Rebus, target-1)));
+            AdvTime(&progTime);
         }
         else{
-            printf("Gagal membuat ayam goreng karena kamu tidak memiliki bahan berikut:\n");
-            printf("1. %s", Info(p).nama);
+            printf("gagal membuat %s karena tidak memiliki bahan berikut : \n", FoodName(Elmt(Rebus, target-1)));
+            printf("1. %s\n", FoodName(getFoodByID(Info(p), katalog)));
         }
         scanf("%d", &target);
     }
 }
+
 void chop(){
-    List Potong;
+    ListStatik Potong;
+    Makanan val;
     int target;
-    createList(&Potong);
-    printf("##########POTONGGGGGGGGGG##########\n");
-    printf("List Bahan Makanan yang Bisa Dibuat: \n");
-    
-    for(int i = 0; i<length(dummy); i++){
-        if(dummy[i].lokasi == 'C'){
-            insertLast(Potong, dummy[i]);
-        }
-    }
-    for(int i = 0; i<(length(Potong)); i++){
-        printf("%d. %s\n", (i+1), (Potong[i]).nama);
-    }
-    printf("Kirim 0 untuk exit\n");
-    printf("enter command: ");
-    scanf("%d", &target);
     Address p;
+    CreateListStatik(&Potong);
+    Potong = katalogByProses(katalog, cmd);
+    displayKatalogProses(Potong);
+    printf("kirim 0 untuk exit\n");
+    printf("enter comand: ");
+    scanf("%d", &target);
     while(target != 0){
-        p = searchById(resep, (Potong[target-1]).id);
-        p = firstchild(p);
-        if(IndexOf(inventory, Info(p))!= IDX_UNDEF){
-            deleteAt(inventory,IndexOf(inventory, Info(p));
-            insert(inventory, Potong[target-1]);
-            printf("%s berhasil dibuat dan sudah dimasukkan di inventory\n", (Potong[target-1]).nama);
+        p = searchById(ID(Elmt(Potong,(target-1))), resep);
+        p = FCHD(p);
+        if(invIndexOf(I, getFoodByID(Info(p), katalog)) != IDX_UNDEF){
+            invdeleteAt(&I, invIndexOf(I, getFoodByID(Info(p), katalog)), &val);
+            insert(&I, Elmt(Potong, target-1));
+            printf("%s berhasil dibuat dan sudah dimasukkan di inventory\n", FoodName(Elmt(Potong, target-1)));
+            AdvTime(&progTime);
         }
         else{
-            printf("Gagal membuat ayam goreng karena kamu tidak memiliki bahan berikut:\n");
-            printf("1. %s", Info(p).nama);
+            printf("gagal membuat %s karena tidak memiliki bahan berikut : \n", FoodName(Elmt(Potong, target-1)));
+            printf("1. %s\n", FoodName(getFoodByID(Info(p), katalog)));
         }
         scanf("%d", &target);
     }
 }
 
 void fry(){
-    List Goreng;
-    createList(&Goreng);
+    ListStatik Goreng, unHave;
+    listIDBahan bahan;
+    Makanan val;
     int target;
-    printf("##########GORENGGGGGGGGGG##########\n");
-    printf("List Bahan Makanan yang Bisa Dibuat: \n");
-    for(int i = 0; i<length(dummy); i++){
-        if(dummy[i].lokasi == 'F'){
-            insertLast(Goreng, dummy[i]);
-        }
-    }
-    for(int i = 0; i<length(Goreng); i++){
-        printf("%d. %s\n", (i+1), Goreng[i].nama);
-    }
-    printf("Kirim 0 untuk exit\n");
-    printf("enter command: ");
-    scanf("%d", &target);
     Address p;
-    List bahan;
+    CreateListStatik(&Goreng);
+    CreateList(&bahan);
+    Goreng = katalogByProses(katalog, cmd);
+    displayKatalogProses(Goreng);
+    printf("kirim 0 untuk exit\n");
+    printf("enter comand: ");
+    scanf("%d", &target);
     while(target != 0){
-        createList(&bahan);
-        p = searchById(resep, (Goreng[target-1]).id);
+        p = searchById(ID(Elmt(Goreng,(target-1))), resep);
         bahan = listBahan(p);
-        if(isCookable(bahan, Inventory)){
-            for(int i = 0; i<length(bahan); i++){
-                deleteAt(Inventory, IndexOf(Info(ELMT(bahan,i))));
+        if(isCookable(bahan, I)){
+            for(int i = 0; i<lengthListID(bahan); i++){
+                invdeleteAt(&I, invIndexOf(I, getFoodByID(ELMTLB(bahan,i), katalog)), &val);
             }
-            insert(Inventory, Goreng[target-1]);
+            insert(&I, Elmt(Goreng, (target-1)));
+            printf("%s berhasil dibuat dan sudah dimasukkan di inventory\n", FoodName(Elmt(Goreng, target-1)));
+            AdvTime(&progTime);
         }
         else{
-            printf("Anda tidak memiliki semua bahan yang dibutuhkan di Inventory :(\n");
+            CreateListStatik(&unHave);
+            unHave = TidakDimiliki(I, bahan);
+            printf("gagal membuat %s karena tidak memiliki bahan berikut : \n", FoodName(Elmt(Goreng, target-1)));
+            displayKatalogProses(unHave);
         }
-        printf("enter command: ");
         scanf("%d", &target);
     }
 }
 void mix(){
-    List campur;
-    createList(&campur);
+    ListStatik Campur, unHave;
+    listIDBahan bahan;
+    Makanan val;
     int target;
-    printf("##########CAMPURRRRRRRRRRR##########\n");
-    printf("List Bahan Makanan yang Bisa Dibuat: \n");
-    for(int i = 0; i<length(dummy); i++){
-        if(dummy[i].lokasi == 'M'){
-            insertLast(campur, dummy[i]);
-        }
-    }
-    for(int i = 0; i<length(campur); i++){
-        printf("%d. %s\n", (i+1), campur[i].nama);
-    }
-    printf("Kirim 0 untuk exit\n");
-    printf("enter command: ");
-    scanf("%d", &target);
     Address p;
-    List bahan;
+    CreateListStatik(&Campur);
+    CreateList(&bahan);
+    Campur = katalogByProses(katalog, cmd);
+    displayKatalogProses(Campur);
+    printf("kirim 0 untuk exit\n");
+    printf("enter comand: ");
+    scanf("%d", &target);
     while(target != 0){
-        createList(&bahan);
-        p = searchById(resep, (Goreng[target-1]).id);
+        p = searchById(ID(Elmt(Campur,(target-1))), resep);
         bahan = listBahan(p);
-        if(isCookable(bahan, Inventory)){
-            for(int i = 0; i<length(bahan); i++){
-                deleteAt(Inventory, IndexOf(Info(ELMT(bahan,i))));
+        if(isCookable(bahan, I)){
+            for(int i = 0; i<lengthListID(bahan); i++){
+                invdeleteAt(&I, invIndexOf(I, getFoodByID(ELMTLB(bahan,i), katalog)), &val);
             }
-            insert(Inventory, Goreng[target-1]);
+            insert(&I, Elmt(Campur, (target-1)));
+            printf("%s berhasil dibuat dan sudah dimasukkan di inventory\n", FoodName(Elmt(Campur, target-1)));
+            AdvTime(&progTime);
         }
         else{
-            printf("Anda tidak memiliki semua bahan yang dibutuhkan di Inventory :(\n");
+            CreateListStatik(&unHave);
+            unHave = TidakDimiliki(I, bahan);
+            printf("gagal membuat %s karena tidak memiliki bahan berikut : \n", FoodName(Elmt(Campur, target-1)));
+            displayKatalogProses(unHave);
         }
-        printf("enter command: ");
         scanf("%d", &target);
     }
 }
