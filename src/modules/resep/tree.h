@@ -35,6 +35,10 @@ typedef struct {
 
 typedef Address BinTree;
 
+void CreateListBahan(ListIDBahan * List);
+/* I.S. Sembarang
+   F.S. Menghasilkan sebuah ListIDBahan kosong List
+
 BinTree NewTree (TreeElType root, BinTree left_tree, BinTree right_tree); 
 /* Menghasilkan sebuah pohon biner dari root, left_tree, dan right_tree, jika alokasi berhasil 
    Menghasilkan pohon kosong (NULL) jika alokasi gagal */
@@ -53,77 +57,26 @@ Address newTreeNode(TreeElType val);
    menghasilkan p, maka p↑.info=val, p↑.left=NULL, p↑.right=NULL 
    Jika alokasi gagal, mengirimkan NULL */
 
-void deallocTreeNode (Address p);
-/* I.S. p terdefinisi 
-   F.S. p dikembalikan ke sistem 
-   Melakukan dealokasi/pengembalian address p */
+ListIDBahan listBahan(Address targetMakanan);
+// Memberikan keluaran ListIDBahan dari input address targetMakanan
 
-boolean isTreeEmpty (BinTree p);
-/* Mengirimkan true jika p adalah pohon biner yang kosong */
+int lengthListBahan (ListIDBahan listID); 
+// Memberi keluaran panjang listID
 
-boolean isOneElmt (BinTree p);
-/* Mengirimkan true jika p tidak kosong dan hanya terdiri atas 1 elemen */
+void copyListBahan(ListIDBahan *listID1, ListIDBahan *listID2);
+   // I.S listID1 terdefinisi dan listID2 belum terdefinisi
+   // F.S. Menyalin isi listIDBahan listID1 ke listID2
 
-boolean isUnerLeft (BinTree p);
-/* Mengirimkan true jika pohon biner tidak kosong, p adalah pohon unerleft: 
-   hanya mempunyai subpohon kiri */
+Address searchByID(TreeElType id, BinTree resep);
+// Memberi keluaran address dari makanan berdasarkan input id dan resep
 
-boolean isUnerRight (BinTree p);
-/* Mengirimkan true jika pohon biner tidak kosong, p adalah pohon unerright: 
-   hanya mempunyai subpohon kanan */
+void printListResep(BinTree resep, Peta p, ListStatik l);
+// Mencetak List Resep 
 
-boolean isBinary (BinTree p);
-/* Mengirimkan true jika pohon biner tidak kosong, p adalah pohon biner: 
-  mempunyai subpohon kiri dan subpohon kanan */
+void printKatalog(BinTree resep, Peta p, ListStatik l);
+// Mencetak Katalog
 
-/* ****** Display Tree ***** */
-void printPreorder(BinTree p);
-/* I.S. p terdefinisi */
-/* F.S. Semua simpul p sudah dicetak secara preorder: akar, pohon kiri, dan pohon kanan. 
-   Setiap pohon ditandai dengan tanda kurung buka dan kurung tutup (). 
-   Pohon kosong ditandai dengan ().
-   Tidak ada tambahan karakter apa pun di depan, tengah, atau akhir. */
-/* Contoh: 
-   (A()()) adalah pohon dengan 1 elemen dengan akar A
-   (A(B()())(C()())) adalah pohon dengan akar A dan subpohon kiri (B()()) dan subpohon kanan (C()()) */
+void showProcess (Makanan target, Peta p);
+// Mencetak process dari suatu makanan 
 
-void printInorder(BinTree p);
-/* I.S. p terdefinisi */
-/* F.S. Semua simpul p sudah dicetak secara inorder: pohon kiri, akar, dan pohon kanan. 
-   Setiap pohon ditandai dengan tanda kurung buka dan kurung tutup (). 
-   Pohon kosong ditandai dengan ().
-   Tidak ada tambahan karakter apa pun di depan, tengah, atau akhir. */
-/* Contoh: 
-   (()A()) adalah pohon dengan 1 elemen dengan akar A
-   ((()B())A(()C())) adalah pohon dengan akar A dan subpohon kiri (()B()) dan subpohon kanan (()C()) */
-
-void printPostorder(BinTree p);
-/* I.S. p terdefinisi */
-/* F.S. Semua simpul p sudah dicetak secara postorder: pohon kiri, pohon kanan, dan akar. 
-   Setiap pohon ditandai dengan tanda kurung buka dan kurung tutup (). 
-   Pohon kosong ditandai dengan ().
-   Tidak ada tambahan karakter apa pun di depan, tengah, atau akhir. */
-/* Contoh: 
-   (()()A) adalah pohon dengan 1 elemen dengan akar A
-   ((()()B)(()()C)A) adalah pohon dengan akar A dan subpohon kiri (()()B) dan subpohon kanan (()()C) */
-
-void printTree(BinTree p, int h);
-/* I.S. p terdefinisi, h adalah jarak indentasi (spasi) */
-/* F.S. Semua simpul p sudah ditulis dengan indentasi (spasi) */
-/* Penulisan akar selalu pada baris baru (diakhiri newline) */
-/* Contoh, jika h = 2: 
-1) Pohon preorder: (A()()) akan ditulis sbb:
-A
-2) Pohon preorder: (A(B()())(C()())) akan ditulis sbb:
-A
-  B
-  C
-3) Pohon preorder: (A(B(D()())())(C()(E()()))) akan ditulis sbb:
-A
-  B
-    D
-  C
-    E
-Note: Anda boleh membuat fungsi tambahan untuk membuat implementasi fungsi ini jika diperlukan
-*/
 #endif

@@ -18,6 +18,7 @@
 typedef Address BinTree;
 
 void CreateListBahan(ListIDBahan * List) {
+
    int i = 0;
 
    for (i; i<CAPACITY; i++) {
@@ -70,6 +71,7 @@ Address newTreeNode(TreeElType val) {
 }
 
 ListIDBahan listBahan(Address targetMakanan) {
+// Memberikan keluaran ListIDBahan dari input address targetMakanan
 
    Address fc = FCHD(targetMakanan);
    ListIDBahan listID;
@@ -105,6 +107,7 @@ void copyListBahan(ListIDBahan *listID1, ListIDBahan *listID2) {
 }
 
 Address searchByID(TreeElType id, BinTree resep) {
+// Memberi keluaran address dari makanan berdasarkan input id dan resep
 
    TreeElType root = INFO(resep);
    Address fc = FCHD(resep);
@@ -127,6 +130,8 @@ Address searchByID(TreeElType id, BinTree resep) {
 }
 
 void printListResep(BinTree resep, Peta p, ListStatik l) {   // Masih perlu revisi di bagian conditional
+// Mencetak List Resep 
+
    int i = 0;
    int idx = 1;
    Address fc;
@@ -159,6 +164,8 @@ void printListResep(BinTree resep, Peta p, ListStatik l) {   // Masih perlu revi
 }
 
 void printKatalog(BinTree resep, Peta p, ListStatik l) {   // Belum tahu nama proses buy
+// Mencetak Katalog
+
    int i = 0;
    int idx = 1;
    Address fc;
@@ -191,6 +198,7 @@ void printKatalog(BinTree resep, Peta p, ListStatik l) {   // Belum tahu nama pr
 }
 
 void showProcess (Makanan target, Peta p) {
+// Menunjukkan process dari suatu makanan 
 
    if (isPointSame(target.loc, Locate(p, "B"))) {
       printf("BOIL"); 
