@@ -91,6 +91,18 @@ int lengthListBahan (ListIDBahan listID) {
    return sizeof(listID.bahan)/sizeof(int);
 }
 
+void copyListBahan(ListIDBahan *listID1, ListIDBahan *listID2) {
+   // I.S listID1 terdefinisi dan listID2 belum terdefinisi
+   // F.S. Menyalin isi listIDBahan listID1 ke listID2
+
+   int i = 0;
+
+   CreateListBahan(listID2);
+   for (i; i<CAPACITY; i++) {
+      (*listID2).bahan[i] = (*listID1).bahan[i]; 
+   }
+   
+}
 
 Address searchByID(TreeElType id, BinTree resep) {
 
@@ -114,7 +126,39 @@ Address searchByID(TreeElType id, BinTree resep) {
 
 }
 
-void printListResep(BinTree resep, Peta p, ListStatik l) {   // Masih nunggu adt makanan
+void printListResep(BinTree resep, Peta p, ListStatik l) {   // Masih perlu revisi di bagian conditional
+   int i = 0;
+   int idx = 1;
+   Address fc;
+   Makanan target, bahan;
+
+   if (FCHD(FCHD(resep)) != NULL && resep != NULL) {
+      target = getFoodByID(INFO(resep), l);
+      int nBahan = lengthListBahan(listBahan(resep));
+
+      printf("%d. %s\n", idx, target.name);
+      showProcess(target, p);
+      printf(" - ");
+
+      for (i; i<nBahan; i++) {
+         bahan = getFoodByID(listBahan(resep).bahan[i], l);
+         printf("%s", bahan.name);
+         if (i<nBahan-1) {
+            printf(" - ");
+         } else {
+            printf("\n");
+         };
+      }
+
+      idx++;
+   }
+
+   fc = FCHD(resep);
+   printListResep(fc, p, l);
+   printListResep(NSBG(resep), p, l);
+}
+
+void printKatalog(BinTree resep, Peta p, ListStatik l) {   // Belum tahu nama proses buy
    int i = 0;
    int idx = 1;
    Address fc;
