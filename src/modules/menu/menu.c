@@ -147,6 +147,10 @@ boolean isMoveSouth(String s) {
     return true;
 }
 
+boolean isWait(String s) {
+    return (s.Length > 4 && s.str[0] == 'W' && s.str[1] == 'A' && s.str[2] == 'I' && s.str[3] == 'T');
+}
+
 void printBuyMakanan(ListStatik canBuy) {
     int i;
     int ctr = 1;
@@ -200,8 +204,7 @@ void Buy(Simulator *s, TIME *currTIME, String *cmd, PrioQueueMakanan *prioQueue,
             if (select == 0) {
                 buying = false;
             } else if (isIdxListEff(canBuy, select-1)) {
-                DecDeliveryTimeQueue(prioQueue);
-                AdvMinute(currTIME);
+                progressTime(s, prioQueue, currTIME);
                 Enqueue(prioQueue, Elmt(canBuy, select-1));
                 printf("Berhasil memesan ");
                 printString(FoodName(Elmt(canBuy, select-1)));
@@ -233,4 +236,10 @@ void Buy(Simulator *s, TIME *currTIME, String *cmd, PrioQueueMakanan *prioQueue,
     } else {
         printf("BNMO tidak berada di area telepon!\n");
     }
+}
+
+void progressTime(Simulator *s, PrioQueueMakanan *pesanan, TIME *currTime) {
+    AdvMinute(currTime);
+    DecDeliveryTimeQueue(pesanan);
+    DequeueZeroToInventory(pesanan, s);
 }

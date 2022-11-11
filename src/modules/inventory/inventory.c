@@ -4,9 +4,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-Address newNode(Infotype val) {
+Address newNode(InfotypeInventory val) {
     /* I.S. sembarang                                */
-    /* F.S. Terbentuk suatu node dengan infotype val */
+    /* F.S. Terbentuk suatu node dengan infotypeInventory val */
 
     // KAMUS
     Address p;
@@ -45,7 +45,7 @@ boolean isEmptyInventory(Inventory I) {
 }
 
 /****************** GETTER SETTER ******************/
-Infotype getElmtInventory(Inventory I, int idx) {
+InfotypeInventory getElmtInventory(Inventory I, int idx) {
     /* I.S. I terdefinisi, idx indeks yang valid dalam I, yaitu 0..length(I) - 1*/
     /* F.S. Mengembalikan nilai elemen I pada indeks idx */
 
@@ -65,7 +65,7 @@ Infotype getElmtInventory(Inventory I, int idx) {
     return (INFO(p));
 }
 
-void setElmtInventory(Inventory *I, int idx, Infotype val) {
+void setElmtInventory(Inventory *I, int idx, InfotypeInventory val) {
     /* I.S. I terdefinisi, idx indeks yang valid dalam I, yaitu 0..length(I) - 1 */
     /* F.S. Mengubah elemen I pada indeks ke-idx menjadi val */
 
@@ -85,11 +85,11 @@ void setElmtInventory(Inventory *I, int idx, Infotype val) {
     INFO(p) = val;
 }
 
-int indexOfInventory(Inventory I, Infotype val) {
+int indexOfInventory(Inventory I, InfotypeInventory val) {
     /* I.S. I, val terdefinisi */
     /* F.S. Mencari apakah ada elemen list I yang bernilai val */
     /* Jika ada, mengembalikan indeks elemen pertama I yang bernilai val */
-    /* Mengembalikan IDX_UNDEF jika tidak ditemukan */
+    /* Mengembalikan IDXINV_UNDEF jika tidak ditemukan */
 
     // KAMUS
     Address p;
@@ -113,13 +113,13 @@ int indexOfInventory(Inventory I, Infotype val) {
     if (found) {
         return idx;
     } else {
-        return IDX_UNDEF;
+        return IDXINV_UNDEF;
     }
 }
 
 /****************** PRIMITIF BERDASARKAN NILAI ******************/
 /*** PENAMBAHAN ELEMEN ***/
-void insertInventory(Inventory *I, Infotype val) {
+void insertInventory(Inventory *I, InfotypeInventory val) {
     /* I.S. I mungkin kosong */
     /* F.S. Melakukan alokasi sebuah elemen dan */
     /* menambahkan elemen dengan nilai val terurut berdasarkan expiry time jika alokasi berhasil. */
@@ -155,7 +155,7 @@ void insertInventory(Inventory *I, Infotype val) {
 }
 
 /*** PENGHAPUSAN ELEMEN ***/
-void deleteFirstInventory(Inventory *I, Infotype *val) {
+void deleteFirstInventory(Inventory *I, InfotypeInventory *val) {
     /* I.S. List I tidak kosong  */
     /* F.S. Elemen pertama list dihapus: nilai info disimpan pada val */
     /*      dan alamat elemen pertama di-dealokasi */
@@ -170,7 +170,7 @@ void deleteFirstInventory(Inventory *I, Infotype *val) {
     free(p);
 }
 
-void deleteAtInventory(Inventory *I, int idx, Infotype *val) {
+void deleteAtInventory(Inventory *I, int idx, InfotypeInventory *val) {
     /* I.S. list tidak kosong, idx indeks yang valid dalam I, yaitu 0..length(l) - 1 */
     /* F.S. val diset dengan elemen I pada indeks ke-idx. */
     /*      Elemen I pada indeks ke-idx dihapus dari I */
@@ -225,6 +225,8 @@ void displayInventory(Inventory I) {
         p = FIRST(I);
         while (p != NULL) {
             printf("%d. %s - %s\n", i, FoodName(INFO(p)));
+            p = NEXT(p);
+            i++;
         }
     }
 }

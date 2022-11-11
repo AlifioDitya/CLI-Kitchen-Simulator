@@ -8,6 +8,7 @@
 
 #include "../boolean.h"
 #include "../makanan/makanan.h"
+#include "../simulator/simulator.h"
 
 #define Nil -1
 /* Konstanta untuk mendefinisikan address tak terdefinisi */
@@ -77,5 +78,7 @@ void PrintPrioQueueMakanan (PrioQueueMakanan Q);
 /* F.S. Q tercetak ke layar */
 
 void DecDeliveryTimeQueue(PrioQueueMakanan *PQ);
+
+void DequeueZeroToInventory(PrioQueueMakanan *PQ, Simulator *s);
 
 #endif
