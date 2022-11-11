@@ -1,14 +1,4 @@
-#include "../time/time.h"
-#include "../inventory/inventory.h"
-#include "../word-machine/wordmachine.h"
-#include "../makanan/makanan.c"
-#include "tree.h"
-#include "../point/point.c"
-#include "../peta/peta.h"
-#include "../resep/tree.c"
-#include "../liststatik/liststatik.h"
-#include <string.h>
-#include <stdio.h>
+#include "pengolahan.h"
 
 extern ListStatik katalog;
 Peta p;
@@ -61,7 +51,7 @@ boolean isIn (Makanan X, Inventory I){
     return(invIndexOf(I, X) != IDX_UNDEF);
 } 
 
-boolean isCookable (listIDBahan bahan, Inventory I){
+boolean isCookable (ListIDBahan bahan, Inventory I){
     boolean bisa = true;
     for(int i = 0; i< lengthListID(bahan); i++){
         if(!isIn(getFoodByID(ELMTLB(bahan, i), katalog), I)){
@@ -72,7 +62,7 @@ boolean isCookable (listIDBahan bahan, Inventory I){
     return bisa;
 }
 
-ListStatik TidakDimiliki (Inventory I, listIDBahan bahan){
+ListStatik TidakDimiliki (Inventory I, ListIDBahan bahan){
     ListStatik unhave;
     int i ;
     CreateListStatik(&unhave);
@@ -84,11 +74,6 @@ ListStatik TidakDimiliki (Inventory I, listIDBahan bahan){
     return unhave;
 }
 
-int lengthListBahan (listIDBahan  listID) {
-   // Memberi keluaran panjang listID
-
-   return sizeof(listID.bahan)/sizeof(int);
-}
 
 void copyListID (listIDBahan  *newList, listIDBahan  List){
     for(int i =0; i<lengthListBahan; i++){
@@ -155,7 +140,7 @@ void chop(){
 
 void fry(){
     ListStatik Goreng, unHave;
-    listIDBahan bahan;
+    ListIDBahan bahan;
     Makanan val;
     int target;
     Address p;
@@ -188,7 +173,7 @@ void fry(){
 }
 void mix(){
     ListStatik Campur, unHave;
-    listIDBahan bahan;
+    ListIDBahan bahan;
     Makanan val;
     int target;
     Address p;
