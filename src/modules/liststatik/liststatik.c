@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include "liststatik.h"
-// #include "../makanan/makanan.c"
 
 /* ********** KONSTRUKTOR ********** */
 void CreateListStatik(ListStatik *l) {
@@ -8,6 +7,16 @@ void CreateListStatik(ListStatik *l) {
 /* F.S. Terbentuk List l kosong dengan kapasitas CAPACITY */
 /* Proses: Inisialisasi semua elemen List l dengan MARK */
     Neff(*l) = 0;
+}
+
+void CreateListBuyMakanan(ListStatik *canBuy, ListStatik catalog, Peta p) {
+    int i;
+    CreateListStatik(canBuy);
+    for (i=0; i<catalog.nEff; i++) {
+        if (EQ(ActionLoc(Elmt(catalog, i)), Locate(p, 'T'))) {
+            insertLast(canBuy, Elmt(catalog, i));
+        }
+    }
 }
 
 /* ********** SELEKTOR (TAMBAHAN) ********** */
@@ -28,7 +37,7 @@ IdxType getFirstIdx(ListStatik l) {
 IdxType getLastIdx(ListStatik l) {
 /* Prekondisi : List l tidak kosong */
 /* Mengirimkan indeks elemen l terakhir */
-    return listLength(l) - 1 ;
+    return listLength(l) - 1;
 }; 
 
 /* ********** Test Indeks yang valid ********** */
@@ -89,6 +98,7 @@ void insertFirst(ListStatik *l, Makanan val) {
         Elmt(*l,i+1) = Elmt(*l,i);
     }
     Elmt(*l, 0) = val;
+    Neff(*l)++;
 }
 
 void insertAt(ListStatik *l, Makanan val, IdxType idx) {
@@ -103,13 +113,20 @@ void insertAt(ListStatik *l, Makanan val, IdxType idx) {
         Elmt(*l,i+1) = Elmt(*l,i);
     }
     Elmt(*l, idx) = val;   
+    Neff(*l)++;
 }
 
 void insertLast(ListStatik *l, Makanan val) {
 /* Proses: Menambahkan val sebagai elemen terakhir List */
 /* I.S. List l boleh kosong, tetapi tidak penuh */
 /* F.S. val adalah elemen terakhir l yang baru */
+    // ID(Elmt(*l, getLastIdx(*l)+1)) = ID(val);
+    // assignString(FoodName(val), &FoodName(Elmt(*l, getLastIdx(*l)+1)));
+    // CreateTime(&Expire(Elmt(*l, getLastIdx(*l)+1)), Day(Expire(val)), Hour(Expire(val)), Minute(Expire(val)));
+    // CreatePoint(&ActionLoc(Elmt(*l, getLastIdx(*l)+1)), Absis(ActionLoc(val)), Ordinat(ActionLoc(val)));
+    // CreateTime(&DeliveryTime(Elmt(*l, getLastIdx(*l)+1)), Day(DeliveryTime(val)), Hour(DeliveryTime(val)), Minute(DeliveryTime(val)));
     Elmt(*l, getLastIdx(*l)+1) = val;
+    Neff(*l)++;
 }
 
 void deleteFirst(ListStatik *l, Makanan *val) {
@@ -158,25 +175,136 @@ void deleteLast(ListStatik *l, Makanan *val) {
     Neff(*l)--;
 }
 
+/* Getter */
+Makanan getFoodByID(IDType ID, ListStatik l){
+    // I.S. ID Sembarang
+    // membaca makanan dari file catalog
+    return Elmt(l,indexOf(l,ID));
+}
+
 /* Interaksi I/O */
-// void printList(ListStatik l){
-// /* Proses : Menuliskan isi List dengan traversal, List ditulis di antara kurung 
-//    siku; antara dua elemen dipisahkan dengan separator "koma", tanpa tambahan 
-//    karakter di depan, di tengah, atau di belakang, termasuk spasi dan enter */
-// /* I.S. l boleh kosong */
-// /* F.S. Jika l tidak kosong: [e1,e2,...,en] */
-// /* Jika List kosong : menulis [] */
-// // KAMUS
-//     IdxType i;
-// // ALGORITMA
-//     printf("[");
+void readMakanan(char* filename, Peta p, ListStatik *l) {
+    int n, i, j, k;
+    int ID, DD, HH, MM;
+    TIME expire, delivery;
+    Makanan currMakanan;
 
-//     for (i=0; i<=getLastIdx(l); i++) {
-//         printString(Foo(ELMT(l,i)));
-//         if (i < getLastIdx(l)) {
-//         printf(",");
-//         }
-//     }
+    STARTWORDFILE(filename);
+    n = 0;
+    for (i=0; i<currentWord.Length; i++) {
+        n = n*10 + ((int) currentWord.TabWord[i]-'0');
+    }
+    
+    ADVWORDFILE();
 
-//     printf("]");
-// }
+    for (i=0; i<n; i++) {
+        ID = 0;
+        for (j=0; j<currentWord.Length; j++) {
+            ID = ID*10 + ((int) currentWord.TabWord[j]-'0');
+        }
+        setID(&currMakanan, ID);
+
+        advStringFILE();
+        setFoodName(&currMakanan, currentString);
+
+        ADVWORDFILE();
+        DD = 0;
+        for (k=0; k<currentWord.Length; k++) {
+            DD = DD*10 + ((int) currentWord.TabWord[k]-48);
+        }
+        ADVWORDFILE();
+        HH = 0;
+        for (k=0; k<currentWord.Length; k++) {
+            HH = HH*10 + ((int) currentWord.TabWord[k]-48);
+        }
+        ADVWORDFILE();
+        MM = 0;
+        for (k=0; k<currentWord.Length; k++) {
+            MM = MM*10 + ((int) currentWord.TabWord[k]-48);
+        }
+        
+        CreateTime(&expire, DD, HH, MM);
+        setExpiryDate(&currMakanan, expire);
+        
+        ADVWORDFILE();
+        DD = 0;
+        for (k=0; k<currentWord.Length; k++) {
+            DD = DD*10 + ((int) currentWord.TabWord[k]-48);
+        }
+        ADVWORDFILE();
+        HH = 0;
+        for (k=0; k<currentWord.Length; k++) {
+            HH = HH*10 + ((int) currentWord.TabWord[k]-48);
+        }
+        ADVWORDFILE();
+        MM = 0;
+        for (k=0; k<currentWord.Length; k++) {
+            MM = MM*10 + ((int) currentWord.TabWord[k]-48);
+        }
+        
+        CreateTime(&delivery, DD, HH, MM);
+        setDeliveryTime(&currMakanan, delivery);
+
+        advStringFILE();
+        
+        if (isBuy(currentString)) {
+            CreatePoint(&ActionLoc(currMakanan), Absis(Locate(p, 'T')), Ordinat(Locate(p, 'T')));
+        } else if (isChop(currentString)) {
+            CreatePoint(&ActionLoc(currMakanan), Absis(Locate(p, 'C')), Ordinat(Locate(p, 'C')));
+        } else if (isFry(currentString)) {
+            CreatePoint(&ActionLoc(currMakanan), Absis(Locate(p, 'F')), Ordinat(Locate(p, 'F')));
+        } else if (isBoil(currentString)) {
+            CreatePoint(&ActionLoc(currMakanan), Absis(Locate(p, 'B')), Ordinat(Locate(p, 'B')));
+        } else if (isMix(currentString)) {
+            CreatePoint(&ActionLoc(currMakanan), Absis(Locate(p, 'M')), Ordinat(Locate(p, 'M')));
+        } else {
+            CreatePoint(&ActionLoc(currMakanan), POINT_UNDEF, POINT_UNDEF);
+        }
+        
+        // printf("ID : %d\n", ID(currMakanan));
+        // printf("Food Name : ");
+        // printString(FoodName(currMakanan));
+        // printf("\n");
+        // printf("Expiry date : ");
+        // TulisTIME(Expire(currMakanan));
+        // printf("Action location : ");
+        // TulisPoint(ActionLoc(currMakanan));
+        // printf("Delivery time :");
+        // TulisTIME(DeliveryTime(currMakanan));
+        // printf("\n");
+        
+        insertLast(l, currMakanan);
+        // printf("Makanan inserted -> ");
+        // printString(FoodName(Elmt(*l, getLastIdx(*l))));
+        // printf("\n\n");
+
+        if (i != (n-1)) {
+            ADVWORDFILE();
+        } else {
+            endWord = true;
+        }
+    }
+}
+
+void printListMakanan(ListStatik l){
+/* Proses : Menuliskan isi List dengan traversal, List ditulis di antara kurung 
+   siku; antara dua elemen dipisahkan dengan separator "koma", tanpa tambahan 
+   karakter di depan, di tengah, atau di belakang */
+/* I.S. l boleh kosong */
+/* F.S. Jika l tidak kosong: [e1,e2,...,en] */
+/* Jika List kosong : menulis [] */
+// KAMUS
+    IdxType i;
+// ALGORITMA
+    printf("[");
+    
+    for (i=0; i<=getLastIdx(l); i++) {
+        printString(FoodName(Elmt(l,i)));
+        if (i < getLastIdx(l)) {
+            printf(", ");
+        }
+    }
+
+    printf("]\n");
+}
+

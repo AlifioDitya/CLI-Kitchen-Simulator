@@ -1,7 +1,7 @@
 #include <stdio.h>
-#include "../boolean.h"
 #include "string.h"
-#include "../word-machine/wordmachine.c"
+#include "../boolean.h"
+#include "../word-machine/wordmachine.h"
 
 boolean endWord;
 String currentString;
@@ -19,11 +19,24 @@ void strfy() {
     }
 }
 
+void strfyFILE() {
+    currentString.Length = 0;
+    while (!EOP && currentChar != NEWLINE) {
+        if (currentString.Length < STR_CAP) {
+            currentString.str[currentString.Length] = currentChar;
+            currentString.Length++;
+            ADVFILE();
+        } else {
+            break;
+        }
+    }
+}
+
 void startString() {
-// I.S currentString sembarang
-// I.S currentString diinisiasi untuk dibaca
+    // I.S currentString sembarang
+    // I.S currentString diinisiasi untuk dibaca
     START();
-    IgnoreBlanks();
+    IGNOREBLANKS();
     if (currentChar == MARK || currentChar == NEWLINE) {
         endWord = true;
     } else {
@@ -33,17 +46,27 @@ void startString() {
 }
 
 void advString() {
-    IgnoreBlanks();
+    IGNOREBLANKS();
     if (currentChar == MARK || currentChar == NEWLINE) {
         endWord = true;
     } else {
         strfy();
-        IgnoreBlanks();
+        IGNOREBLANKS();
+    }
+}
+
+void advStringFILE() {
+    IGNOREBLANKSFILE();
+    if (currentChar == MARK || currentChar == NEWLINE) {
+        endWord = true;
+    } else {
+        strfyFILE();
+        IGNOREBLANKSFILE();
     }
 }
 
 void assignString(String a, String *b) {
-// Assign string a ke b
+    // Assign string a ke b
     int i;
 
     (*b).Length = (a).Length;
@@ -52,9 +75,42 @@ void assignString(String a, String *b) {
     }
 }
 
+boolean isStringEqual(String a, String b) {
+    int i;
+    boolean equal = true;
+    if (a.Length == b.Length) {
+        for (i=0; i<a.Length; i++) {
+            if (a.str[i] != b.str[i]) {
+                equal = false;
+                break;
+            }
+        }
+    } else {
+        equal = false;
+    }
+    return equal;
+}
+
+void createString(char* kata, int length, String *w) {
+    /* Membuat suatu String dari masukan array of char dan panjang String */
+
+    // KAMUS
+    String temp;
+    int i;
+
+    // ALGORITMA
+    temp.Length = length;
+
+    for (i = 0; i < length; i++) {
+        temp.str[i] = kata[i];
+    }
+
+    assignString(temp, w);
+}
+
 void printString(String a) {
     int i;
-    for (i=0; i<(a).Length; i++) {
+    for (i=0; i < (a).Length; i++) {
         printf("%c", (a).str[i]);
     }
 }
