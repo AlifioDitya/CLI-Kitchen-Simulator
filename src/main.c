@@ -1,6 +1,11 @@
 #include <stdio.h>
 #include "./modules/boolean.h"
+<<<<<<< HEAD
+#include "./modules/menu/menu.c"
+#include "./modules/pengolahan makanan/pengolahan.c"
+=======
 #include "./modules/menu/menu.h"
+>>>>>>> 05f38de1a7f63097594c3d743b1be96469ff09dc
 
 int main() {
     boolean running = true;
@@ -54,6 +59,34 @@ int main() {
         } else if (isBuy(cmd)) {
             Buy(&s, &progTime, &cmd, &pesanan, p, canBuy);
         } else if (isFry(cmd)) {
+<<<<<<< HEAD
+            boolean frying = true;
+            ListStatik Goreng;
+            while (frying) {
+                printf("======================\n");
+                printf("=        FRY         =\n");
+                printf("======================\n");
+                printf("List bahan makanan yang bisa digoreng:\n");
+                // Print list here
+                printf("Kirim 0 untuk Exit\n\n");
+                inputCommand(&cmd);
+
+                Word temp;
+                createWord("0", 1, &temp);
+                if (isWordEqual(cmd, temp)) {
+                    frying = false;
+                } else {
+                    printf("Command tidak valid.\n");
+                    valid = false;
+                }
+
+                if (valid) {
+                    AdvTime(&progTime);
+                }
+            }
+
+=======
+>>>>>>> 05f38de1a7f63097594c3d743b1be96469ff09dc
             printf("Frying here!\n");
             AdvMinute(&progTime);
         } else if (isChop(cmd)) {
@@ -61,7 +94,14 @@ int main() {
             AdvMinute(&progTime);
         } else if (isBoil(cmd)) {
             printf("Boiling here!\n");
+<<<<<<< HEAD
+            Boil();
+            // if (valid) {
+            //      AdvTime(&progTime);
+            // }
+=======
             AdvMinute(&progTime);
+>>>>>>> 05f38de1a7f63097594c3d743b1be96469ff09dc
         } else if (isMix(cmd)) {
             printf("Mixing here!\n");
             AdvMinute(&progTime);

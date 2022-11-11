@@ -85,7 +85,11 @@ void setElmtInventory(Inventory *I, int idx, Infotype val) {
     INFO(p) = val;
 }
 
+<<<<<<< HEAD
+int invIndexOf(Inventory I, Infotype val) {
+=======
 int indexOfInventory(Inventory I, Infotype val) {
+>>>>>>> 05f38de1a7f63097594c3d743b1be96469ff09dc
     /* I.S. I, val terdefinisi */
     /* F.S. Mencari apakah ada elemen list I yang bernilai val */
     /* Jika ada, mengembalikan indeks elemen pertama I yang bernilai val */

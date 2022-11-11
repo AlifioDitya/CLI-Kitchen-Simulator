@@ -48,7 +48,11 @@ void setElmtInventory(Inventory *I, int idx, Infotype val);
 /* I.S. I terdefinisi, idx indeks yang valid dalam I, yaitu 0..length(I) - 1 */
 /* F.S. Mengubah elemen I pada indeks ke-idx menjadi val */
 
+<<<<<<< HEAD
+int invIndexOf(Inventory I, Infotype val);
+=======
 int indexOfInventory(Inventory I, Infotype val);
+>>>>>>> 05f38de1a7f63097594c3d743b1be96469ff09dc
 /* I.S. I, val terdefinisi */
 /* F.S. Mencari apakah ada elemen list I yang bernilai val */
 /* Jika ada, mengembalikan indeks elemen pertama I yang bernilai val */
@@ -68,7 +72,11 @@ void deleteFirstInventory(Inventory *I, Infotype *val);
 /* F.S. Elemen pertama list dihapus: nilai info disimpan pada val */
 /*      dan alamat elemen pertama di-dealokasi */
 
+<<<<<<< HEAD
+void invdeleteAt(Inventory *I, int idx, Infotype *val);
+=======
 void deleteAtInventory(Inventory *I, int idx, Infotype *val);
+>>>>>>> 05f38de1a7f63097594c3d743b1be96469ff09dc
 /* I.S. list tidak kosong, idx indeks yang valid dalam I, yaitu 0..length(I) - 1 */
 /* F.S. val diset dengan elemen I pada indeks ke-idx. */
 /*      Elemen I pada indeks ke-idx dihapus dari I */

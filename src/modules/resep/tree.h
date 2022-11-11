@@ -23,6 +23,10 @@ typedef struct treeNode {
      Address firstChild;
      Address nextSibling;
 } TreeNode;
+typedef struct {
+    int bahan[CAPACITY];
+} listIDBahan;
+#define ELMTLB(l, i) (l).bahan[(i)]
 
 typedef struct {
     int bahan[CAPACITY];
