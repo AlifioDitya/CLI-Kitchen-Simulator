@@ -1,21 +1,29 @@
 #include <stdio.h>
 #include "./modules/boolean.h"
+<<<<<<< HEAD
 #include "./modules/menu/menu.c"
 #include "./modules/pengolahan makanan/pengolahan.c"
+=======
+#include "./modules/menu/menu.h"
+>>>>>>> 05f38de1a7f63097594c3d743b1be96469ff09dc
 
 int main() {
     boolean running = true;
-    boolean valid;
-    Word cmd;
+    boolean valid = false;
+    String cmd;
     Peta p;
     Simulator s;
     TIME progTime;
-    ListStatik Catalog;
+    ListStatik Catalog, canBuy, canFry, canChop, canBoil, canMix;
+    PrioQueueMakanan pesanan;
 
+    // ALGORITMA
+    running = true;
     Initiate(&s, &p, &Catalog);
     CreateTime(&progTime, 0, 0, 0);
+    CreateListBuyMakanan(&canBuy, Catalog, p);
+    MakeEmptyQueue(&pesanan, 100);
 
-    valid = false;
     inputCommand(&cmd);
     while (!valid) {
         if (isExit(cmd)) {
@@ -33,7 +41,9 @@ int main() {
     }
 
     while (running) {
-        valid = true;
+        printf("Pesanan yang ada :\n");
+        PrintPrioQueueMakanan(pesanan);
+        printf("\n");
         printf("BNMO di posisi: ");
         TulisPoint(Loc(s));
         printf("Waktu: ");
@@ -47,8 +57,9 @@ int main() {
             running = false;
             printf("Goodbye!");
         } else if (isBuy(cmd)) {
-            printf("Buying here!\n");
+            Buy(&s, &progTime, &cmd, &pesanan, p, canBuy);
         } else if (isFry(cmd)) {
+<<<<<<< HEAD
             boolean frying = true;
             ListStatik Goreng;
             while (frying) {
@@ -74,22 +85,57 @@ int main() {
                 }
             }
 
+=======
+>>>>>>> 05f38de1a7f63097594c3d743b1be96469ff09dc
             printf("Frying here!\n");
+            AdvMinute(&progTime);
         } else if (isChop(cmd)) {
             printf("Chopping here!\n");
-            if (valid) {
-                 AdvTime(&progTime);
-            }
+            AdvMinute(&progTime);
         } else if (isBoil(cmd)) {
             printf("Boiling here!\n");
+<<<<<<< HEAD
             Boil();
             // if (valid) {
             //      AdvTime(&progTime);
             // }
+=======
+            AdvMinute(&progTime);
+>>>>>>> 05f38de1a7f63097594c3d743b1be96469ff09dc
         } else if (isMix(cmd)) {
             printf("Mixing here!\n");
-            if (valid) {
-                 AdvTime(&progTime);
+            AdvMinute(&progTime);
+        } else if (isMoveEast(cmd)) {
+            if (canMoveEast(s, p)) {
+                moveEast(&s, &p);
+                AdvMinute(&progTime);
+                DecDeliveryTimeQueue(&pesanan);
+            } else {
+                printf("Tidak bisa bergerak ke timur!\n");
+            }
+        } else if (isMoveWest(cmd)) {
+            if (canMoveWest(s, p)) {
+                moveWest(&s, &p);
+                AdvMinute(&progTime);
+                DecDeliveryTimeQueue(&pesanan);
+            } else {
+                printf("Tidak bisa bergerak ke barat!\n");
+            }
+        } else if (isMoveNorth(cmd)) {
+            if (canMoveNorth(s, p)) {
+                moveNorth(&s, &p);
+                AdvMinute(&progTime);
+                DecDeliveryTimeQueue(&pesanan);
+            } else {
+                printf("Tidak bisa bergerak ke utara!\n");
+            }
+        } else if (isMoveSouth(cmd)) {
+            if (canMoveSouth(s, p)) {
+                moveSouth(&s, &p);
+                AdvMinute(&progTime);
+                DecDeliveryTimeQueue(&pesanan);
+            } else {
+                printf("Tidak bisa bergerak ke selatan!\n");
             }
         } else {
             printf("Command tidak valid.\n");

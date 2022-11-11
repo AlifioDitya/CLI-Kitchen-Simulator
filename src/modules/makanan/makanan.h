@@ -5,6 +5,7 @@
 #include "../time/time.h"
 #include "../point/point.h"
 #include "../string/string.h"
+#include "../peta/peta.h"
 
 #define IDType int
 #define ID_UNDEF (-1)
@@ -45,5 +46,15 @@ void setActionLocation(Makanan *m, Point loc);
 void setDeliveryTime(Makanan *m, TIME delivery);
 // I.S Makanan sembarang
 // F.S Waktu delivery makanan terisi
+
+boolean isBuy(String s);
+
+boolean isChop(String s);
+
+boolean isFry(String s);
+
+boolean isBoil(String s);
+
+boolean isMix(String s);
 
 #endif

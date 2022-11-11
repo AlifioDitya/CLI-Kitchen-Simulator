@@ -42,4 +42,7 @@ void shiftPoint (Point *P, int deltaX, int deltaY);
 /* I.S. P terdefinisi */
 /* F.S. P digeser, absisnya sebesar deltaX dan ordinatnya sebesar deltaY */
 
+boolean EQ (Point P1, Point P2);
+/* Mengirimkan true jika P1 = P2 : absis dan ordinatnya sama */
+
 #endif

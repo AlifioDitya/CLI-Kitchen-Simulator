@@ -37,6 +37,7 @@ typedef struct {
 void CreateListStatik(ListStatik *l);
 /* I.S. l sembarang */
 /* F.S. Terbentuk List l kosong dengan kapasitas CAPACITY */
+void CreateListBuyMakanan(ListStatik *canBuy, ListStatik catalog, Peta p);
 
 /* ********** SELEKTOR (TAMBAHAN) ********** */
 /* *** Banyaknya elemen *** */
@@ -115,5 +116,21 @@ void deleteLast(ListStatik *l, Makanan *val);
 /* F.S. val adalah nilai elemen terakhir l sebelum penghapusan, */
 /*      Banyaknya elemen List berkurang satu */
 /*      List l mungkin menjadi kosong */
+
+/* Interaksi I/O */
+void readMakanan(char* filename, Peta p, ListStatik *l);
+// I.S Makanan sembarang
+// F.S Makanan terbaca dari file
+void printListMakanan(ListStatik l);
+/* Proses : Menuliskan isi List dengan traversal, List ditulis di antara kurung 
+   siku; antara dua elemen dipisahkan dengan separator "koma", tanpa tambahan 
+   karakter di depan, di tengah, atau di belakang */
+/* I.S. l boleh kosong */
+/* F.S. Jika l tidak kosong: [e1,e2,...,en] */
+/* Jika List kosong : menulis [] */
+
+/* Getter */
+Makanan getFoodByID(IDType ID, ListStatik l);
+// Mengakses makanan dari ID
 
 #endif

@@ -67,6 +67,19 @@ void shiftPoint (Point *P, int deltaX, int deltaY) {
     Ordinat(*P) += deltaY;
 }
 
+<<<<<<< HEAD
 boolean isPointSame (Point A, Point B) {
     return (A.X == B.X && A.Y == B.Y);
+=======
+boolean EQ (Point P1, Point P2) {
+/* Mengirimkan true jika P1 = P2 : absis dan ordinatnya sama */
+// KAMUS LOKAL
+// ALGORITMA
+    if ((Absis(P1) == Absis(P2)) && (Ordinat(P1) == Ordinat(P2))) {
+        return true;
+    }
+    else {
+        return false;
+    }
+>>>>>>> 05f38de1a7f63097594c3d743b1be96469ff09dc
 }

@@ -39,6 +39,19 @@ void TulisTIME (TIME T);
 /* F.S. : Nilai T ditulis dg format DD:HH:MM */
 /* Proses : menulis nilai setiap komponen T ke layar dalam format DD:HH:MM */ 
 
+/* ***************************************************************** */
+/* KELOMPOK OPERASI TERHADAP TYPE                                    */
+/* ***************************************************************** */
+long TIMEToMinute (TIME T);
+/* Diberikan sebuah TIME, mengkonversi menjadi jumlah menit dari waktu 0:0:0 */
+// KAMUS LOKAL
+// ALGORITMA
+
+TIME MinuteToTIME (long N);
+/* Mengirim  konversi menit ke TIME */
+/* Pre-kondisi: N >= 0 */
+// KAMUS LOKAL
+
 /* *** Kelompok Operator Relational *** */
 boolean TEQ (TIME T1, TIME T2);
 /* Mengirimkan true jika T1=T2, false jika tidak */
@@ -59,9 +72,18 @@ TIME PrevMinute (TIME T);
 TIME PrevNMinute (TIME T, int N);
 /* Mengirim N Minute sebelum T dalam bentuk TIME */
 
-void AdvTime(TIME *T);
+void AdvMinute(TIME *T);
 /* I.S T terdefinisi */
 /* F.S Increment waktu T sebanyak 1 menit */
+void AdvNMinute(TIME *T, int N);
+/* I.S T terdefinisi */
+/* F.S Increment waktu T sebanyak N menit */
+void DecMinute(TIME *T);
+/* I.S T terdefinisi */
+/* F.S Decrement waktu T sebanyak 1 menit */
+void DecNMinute(TIME *T, int N);
+/* I.S T terdefinisi */
+/* F.S Decrement waktu T sebanyak N menit */
 
 /* *** Kelompok Operator Aritmetika *** */
 long Durasi (TIME TAw, TIME TAkh);
