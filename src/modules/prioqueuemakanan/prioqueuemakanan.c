@@ -175,3 +175,11 @@ void DecDeliveryTimeQueue(PrioQueueMakanan *PQ) {
         }
     }
 }
+
+void DequeueZeroToInventory(PrioQueueMakanan *PQ, Simulator *s) {
+    infotype val;
+    while (Day(DeliveryTime(InfoHead(*PQ))) == 0 && Hour(DeliveryTime(InfoHead(*PQ))) == 0 && Minute(DeliveryTime(InfoHead(*PQ))) == 0) {
+        Dequeue(PQ, &val);
+        insertInventory(&Inv(*s), val);
+    }
+}

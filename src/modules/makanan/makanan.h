@@ -5,7 +5,6 @@
 #include "../time/time.h"
 #include "../point/point.h"
 #include "../string/string.h"
-#include "../peta/peta.h"
 
 #define IDType int
 #define ID_UNDEF (-1)

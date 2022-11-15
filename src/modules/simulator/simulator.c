@@ -7,6 +7,7 @@ void CreateSimulation (Simulator *s, String name, int x, int y) {
     // F.S Membuat simulasi kosong
     setName(name, s);
     setLocation(x, y, s);
+    // setInventory(s);
 }
 
 /* Setter */
@@ -20,4 +21,10 @@ void setLocation(int x, int y, Simulator *s) {
     // I.S Lokasi simulator sembarang
     // F.S Lokasi simulator terisi (x,y)
     CreatePoint(&Loc(*s), x, y);
+}
+
+void setInventory(Simulator *s) {
+    // I.S Inventory simulator sembarang
+    // F.S Inventory simulator terbuat
+    CreateInventory(&Inv(*s));
 }

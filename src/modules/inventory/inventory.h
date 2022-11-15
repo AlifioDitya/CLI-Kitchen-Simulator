@@ -6,18 +6,18 @@
 #include "../boolean.h"
 #include "../makanan/makanan.h"
 
-typedef Makanan Infotype;
+typedef Makanan InfotypeInventory;
 
 typedef struct node* Address;
 typedef struct node {
-    Infotype info;
+    InfotypeInventory info;
     Address next;
 } Node;
 typedef Address Inventory;
 
 #define INFO(p) (p) -> info
 #define NEXT(p) (p) -> next
-#define IDX_UNDEF (-1)
+#define IDXINV_UNDEF (-1)
 #define FIRST(l) (l)
 
 /* Definisi List : */
@@ -25,9 +25,9 @@ typedef Address Inventory;
 /* Setiap elemen dengan Address p dapat diacu INFO(p), NEXT(p) */
 /* Elemen terakhir list: jika addressnya Last, maka NEXT(Last)=NULL */
 
-Address newNode(Infotype val);
+Address newNode(InfotypeInventory val);
 /* I.S. sembarang                                */
-/* F.S. Terbentuk suatu node dengan infotype val */
+/* F.S. Terbentuk suatu node dengan infotypeInventory val */
 
 /* PROTOTYPE */
 /****************** PEMBUATAN LIST KOSONG ******************/
@@ -40,43 +40,35 @@ boolean isEmptyInventory(Inventory I);
 /* Mengirim true jika list kosong */
 
 /****************** GETTER SETTER ******************/
-Infotype getElmtInventory(Inventory I, int idx);
+InfotypeInventory getElmtInventory(Inventory I, int idx);
 /* I.S. I terdefinisi, idx indeks yang valid dalam I, yaitu 0..length(I) - 1 */
 /* F.S. Mengembalikan nilai elemen I pada indeks idx */
 
-void setElmtInventory(Inventory *I, int idx, Infotype val);
+void setElmtInventory(Inventory *I, int idx, InfotypeInventory val);
 /* I.S. I terdefinisi, idx indeks yang valid dalam I, yaitu 0..length(I) - 1 */
 /* F.S. Mengubah elemen I pada indeks ke-idx menjadi val */
 
-<<<<<<< HEAD
-int invIndexOf(Inventory I, Infotype val);
-=======
-int indexOfInventory(Inventory I, Infotype val);
->>>>>>> 05f38de1a7f63097594c3d743b1be96469ff09dc
+int indexOfInventory(Inventory I, InfotypeInventory val);
 /* I.S. I, val terdefinisi */
 /* F.S. Mencari apakah ada elemen list I yang bernilai val */
 /* Jika ada, mengembalikan indeks elemen pertama I yang bernilai val */
-/* Mengembalikan IDX_UNDEF jika tidak ditemukan */
+/* Mengembalikan IDXINV_UNDEF jika tidak ditemukan */
 
 /****************** PRIMITIF BERDASARKAN NILAI ******************/
 /*** PENAMBAHAN ELEMEN ***/
-void insertInventory(Inventory *I, Infotype val);
+void insertInventory(Inventory *I, InfotypeInventory val);
 /* I.S. l mungkin kosong */
 /* F.S. Melakukan alokasi sebuah elemen dan */
 /* menambahkan elemen dengan nilai val terurut berdasarkan expiry time jika alokasi berhasil. */
 /* Jika alokasi gagal: I.S. = F.S. */
 
 /*** PENGHAPUSAN ELEMEN ***/
-void deleteFirstInventory(Inventory *I, Infotype *val);
+void deleteFirstInventory(Inventory *I, InfotypeInventory *val);
 /* I.S. List I tidak kosong  */
 /* F.S. Elemen pertama list dihapus: nilai info disimpan pada val */
 /*      dan alamat elemen pertama di-dealokasi */
 
-<<<<<<< HEAD
-void invdeleteAt(Inventory *I, int idx, Infotype *val);
-=======
-void deleteAtInventory(Inventory *I, int idx, Infotype *val);
->>>>>>> 05f38de1a7f63097594c3d743b1be96469ff09dc
+void deleteAtInventory(Inventory *I, int idx, InfotypeInventory *val);
 /* I.S. list tidak kosong, idx indeks yang valid dalam I, yaitu 0..length(I) - 1 */
 /* F.S. val diset dengan elemen I pada indeks ke-idx. */
 /*      Elemen I pada indeks ke-idx dihapus dari I */
