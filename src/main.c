@@ -97,7 +97,27 @@ int main() {
                 printf("Tidak bisa bergerak ke selatan!\n");
             }
         } else if (isWait(cmd)) {
-            wait(&s, &pesanan, &currTime, cmd);
+            int i = 0;
+            
+            while (currentString.str[i] != ' ') {
+                i++;
+            }
+            
+            int jam = 0;
+            i++;
+            while (currentString.str[i] != ' ') {
+                jam = 10 * jam + (currentString.str[i] - '0');
+                i++;
+            }
+
+            int menit = 0;
+            i++;
+            while (i < currentString.Length) {
+                menit = 10 * menit + (currentString.str[i] - '0');
+                i++;
+            }
+
+            wait(&s, &pesanan, &currTime, jam, menit);
         } else {
             printf("Command tidak valid.\n");
         }
