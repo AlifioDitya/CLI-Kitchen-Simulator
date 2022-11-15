@@ -5,7 +5,7 @@
 int main() {
     boolean running = true;
     boolean valid = false;
-    String cmd;
+    String cmd, mode;
     Peta p;
     Simulator s;
     TIME currTime;
@@ -16,7 +16,16 @@ int main() {
     running = true;
     Initiate(&s, &p, &Catalog);
     CreateTime(&currTime, 0, 0, 0);
-    CreateListBuyMakanan(&canBuy, Catalog, p);
+    createString("BUY", 3, &mode);
+    createSpecificCatalog(&canBuy, Catalog, p, mode);
+    createString("FRY", 3, &mode);
+    createSpecificCatalog(&canFry, Catalog, p, mode);
+    createString("CHOP", 4, &mode);
+    createSpecificCatalog(&canChop, Catalog, p, mode);
+    createString("BOIL", 4, &mode);
+    createSpecificCatalog(&canBoil, Catalog, p, mode);
+    createString("MIX", 3, &mode);
+    createSpecificCatalog(&canMix, Catalog, p, mode);
     MakeEmptyQueue(&pesanan, 100);
 
     inputCommand(&cmd);
@@ -58,16 +67,16 @@ int main() {
             Buy(&s, &currTime, &cmd, &pesanan, p, canBuy);
         } else if (isFry(cmd)) {
             printf("Frying here!\n");
-            AdvMinute(&currTime);
+            progressTime(&s, &pesanan, &currTime);
         } else if (isChop(cmd)) {
             printf("Chopping here!\n");
-            AdvMinute(&currTime);
+            progressTime(&s, &pesanan, &currTime);
         } else if (isBoil(cmd)) {
             printf("Boiling here!\n");
-            AdvMinute(&currTime);
+            progressTime(&s, &pesanan, &currTime);
         } else if (isMix(cmd)) {
             printf("Mixing here!\n");
-            AdvMinute(&currTime);
+            progressTime(&s, &pesanan, &currTime);
         } else if (isMoveEast(cmd)) {
             if (canMoveEast(s, p)) {
                 moveEast(&s, &p);
