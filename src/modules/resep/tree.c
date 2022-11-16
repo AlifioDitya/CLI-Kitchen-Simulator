@@ -6,11 +6,6 @@
 #include "../boolean.h"
 #include <stdio.h>
 #include "tree.h"
-#include "../word-machine/wordmachine.c"
-#include "../word-machine/charmachine.c"
-#include "../makanan/makanan.c"
-#include "../peta/peta.c"
-#include "../liststatik/liststatik.c"
 
 /* Definisi PohonBiner */
 /* pohon Biner kosong p = NULL */

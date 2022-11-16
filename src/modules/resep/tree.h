@@ -6,7 +6,8 @@
 #ifndef POHONBINER_H
 #define POHONBINER_H
 
-#include "boolean.h"
+#include "../boolean.h"
+#include "../liststatik/liststatik.h"
 
 /* Selektor */
 #define INFO(p) (p)->info
