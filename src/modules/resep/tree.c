@@ -6,11 +6,11 @@
 #include "../boolean.h"
 #include <stdio.h>
 #include "tree.h"
-#include "../word-machine/wordmachine.c"
-#include "../word-machine/charmachine.c"
-#include "../makanan/makanan.c"
-#include "../peta/peta.c"
-#include "../liststatik/liststatik.c"
+#include "../word-machine/wordmachine.h"
+#include "../word-machine/charmachine.h"
+#include "../makanan/makanan.h"
+#include "../peta/peta.h"
+#include "../liststatik/liststatik.h"
 
 /* Definisi PohonBiner */
 /* pohon Biner kosong p = NULL */
@@ -200,14 +200,13 @@ void printKatalog(BinTree resep, Peta p, ListStatik l) {   // Belum tahu nama pr
 void showProcess (Makanan target, Peta p) {
 // Menunjukkan process dari suatu makanan 
 
-   if (isPointSame(target.loc, Locate(p, "B"))) {
+   if (EQ(target.loc, Locate(p, "B"))) {
       printf("BOIL"); 
-   } else if (isPointSame(target.loc, Locate(p, "C"))) {
+   } else if (EQ(target.loc, Locate(p, "C"))) {
       printf("CHOP"); 
-   } else if (isPointSame(target.loc, Locate(p, "F"))) {
+   } else if (EQ(target.loc, Locate(p, "F"))) {
       printf("FRY"); 
    } else {
       printf("MIX"); 
    }
-
 }
