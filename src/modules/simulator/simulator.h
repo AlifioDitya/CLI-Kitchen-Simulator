@@ -3,17 +3,22 @@
 
 #include <stdio.h>
 #include "../boolean.h"
-#include "../point/point.h"
-#include "../string/string.h"
+#include "../inventory/inventory.h"
+
+#define INFO(p) (p) -> info
+#define NEXT(p) (p) -> next
+#define IDXINV_UNDEF (-1)
+#define FIRST(l) (l)
 
 typedef struct {
     String name;
     Point loc;  // Koordinat (0,0) ada pada kiri atas matriks peta, koordinat == indeks matriks.
-    // Inventory inv;
+    Inventory inv;
 } Simulator;
 
 #define Name(S) (S).name
 #define Loc(S) (S).loc
+#define Inv(S) (S).inv
 
 /* Konstruktor */
 void CreateSimulation (Simulator *s, String name, int x, int y);
@@ -27,5 +32,8 @@ void setName(String name, Simulator *s);
 void setLocation(int x, int y, Simulator *s);
 // I.S Lokasi simulator sembarang
 // F.S Lokasi simulator terisi (x,y)
+void setInventory(Simulator *s);
+// I.S Inventory simulator sembarang
+// F.S Inventory simulator terbuat
 
 #endif

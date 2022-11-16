@@ -33,20 +33,24 @@ boolean IsTIMEValid (int D, int H, int M);
 void CreateTime (TIME * T, int D, int H, int M);
 /* Membentuk sebuah TIME dari komponen-komponennya yang valid */
 /* Prekondisi : D, H, M valid untuk membentuk TIME */
-
-/* ***************************************************************** */
-/* KELOMPOK BACA/TULIS                                               */
-/* ***************************************************************** */
-void createTIMEWord(TIME *T);
-// I.S Pita karakter sudah mulai dibaca
-// F.S Terbentuk T dengan komponennya yang dibaca dalam Word
-// Contoh: 1 0 0;
-// Akan terbaca Day = 1, Hour = 0, Minute = 0;
    
 void TulisTIME (TIME T);
 /* I.S. : T sembarang */
 /* F.S. : Nilai T ditulis dg format DD:HH:MM */
 /* Proses : menulis nilai setiap komponen T ke layar dalam format DD:HH:MM */ 
+
+/* ***************************************************************** */
+/* KELOMPOK OPERASI TERHADAP TYPE                                    */
+/* ***************************************************************** */
+long TIMEToMinute (TIME T);
+/* Diberikan sebuah TIME, mengkonversi menjadi jumlah menit dari waktu 0:0:0 */
+// KAMUS LOKAL
+// ALGORITMA
+
+TIME MinuteToTIME (long N);
+/* Mengirim  konversi menit ke TIME */
+/* Pre-kondisi: N >= 0 */
+// KAMUS LOKAL
 
 /* *** Kelompok Operator Relational *** */
 boolean TEQ (TIME T1, TIME T2);
@@ -67,6 +71,19 @@ TIME PrevMinute (TIME T);
 /* Mengirim 1 Minute sebelum T dalam bentuk TIME */
 TIME PrevNMinute (TIME T, int N);
 /* Mengirim N Minute sebelum T dalam bentuk TIME */
+
+void AdvMinute(TIME *T);
+/* I.S T terdefinisi */
+/* F.S Increment waktu T sebanyak 1 menit */
+void AdvNMinute(TIME *T, int N);
+/* I.S T terdefinisi */
+/* F.S Increment waktu T sebanyak N menit */
+void DecMinute(TIME *T);
+/* I.S T terdefinisi */
+/* F.S Decrement waktu T sebanyak 1 menit */
+void DecNMinute(TIME *T, int N);
+/* I.S T terdefinisi */
+/* F.S Decrement waktu T sebanyak N menit */
 
 /* *** Kelompok Operator Aritmetika *** */
 long Durasi (TIME TAw, TIME TAkh);
