@@ -34,8 +34,6 @@ void Initiate(Simulator *s, Peta *p, ListStatik *catalog, BinTree *resep) {
     String name;
     
     readPeta(petaFileName, p);
-    printf("ppp\n");
-
     readResep(resepFileName, resep);
     
     printf("%d\n", INFOTREE(*resep));

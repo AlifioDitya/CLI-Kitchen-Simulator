@@ -71,30 +71,33 @@ void readResep(char* filename, BinTree *r) {
    TIME expire, delivery;
    Makanan currMakanan;
 
-   STARTWORDFILE(filename);
-
+   STARTWORDFILE(filename);  
    n = 0;
    for (i=0; i<currentWord.Length; i++) {  // Baca jumlah resep
       n = n*10 + ((int) currentWord.TabWord[i]-'0');
    }
-
-   printf("%d\n", n);
+   printf("n = %d\n", n);
    
    ADVWORDFILE();
+   *r = NULL;
 
    for (i=0; i<n; i++) {   // Pengulangan sebanyak jumlah resep
       
+      printf("\nloop %d\n", i);
       id = 0;
-      for (j=0; j<currentWord.Length; j++) {    // Baca id makanan, nanti akan dijadikan info resep
+      for (j=0; j<currentWord.Length; j++) {
          id = id*10 + ((int) currentWord.TabWord[j]-'0');
       }
+      printf("ID = %d\n", id);
 
-      p = searchByID(id,*r);
-      if (p == NULL) {  // Cek apakah sudah pernah dibuat node atau belum
+      p = searchByID(id,*r); 
+      if (p == NULL) { 
          p = newTreeNode(id);
       }
 
-      printf("%d", INFOTREE(p));
+      *r = p;
+
+      printf("INFOTREE(p) = %d\n", INFOTREE(p));
 
       ADVWORDFILE();
 
@@ -102,13 +105,15 @@ void readResep(char* filename, BinTree *r) {
       for (k=0; k<currentWord.Length; k++) {    // Baca jumlah bahan yang diperlukan untuk suatu resep
          nChild = nChild*10 + ((int) currentWord.TabWord[k]-48);
       }
-
+      printf("nChild = %d\n", nChild);
       ADVWORDFILE();
 
       idChild = 0;   
       for (k=0; k<currentWord.Length; k++) {    // Baca bahan pertama untuk resep 1
          idChild = idChild*10 + ((int) currentWord.TabWord[k]-48);
       } 
+      printf("idChild-0 = %d\n", idChild);
+
 
       q = searchByID(idChild,*r);
       if (q == NULL) {  // Cek apakah sudah pernah dibuat node atau belum
@@ -119,21 +124,23 @@ void readResep(char* filename, BinTree *r) {
          FCHD(p) = q;
          p = q;
       }
-            
+       
       ADVWORDFILE();
    
-      for (j=1; k<nChild; j++) {    // Ulangi pembacaan id bahan sebanyak nChild jika nChild > 1
-         
+      for (j=1; j<nChild; j++) {    // Ulangi pembacaan id bahan sebanyak nChild jika nChild > 1
+
          idChild = 0;
          for (k=0; k<currentWord.Length; k++) {
             idChild = idChild*10 + ((int) currentWord.TabWord[k]-48);
          }
-
+         
+         printf("idChild-%d = %d\n", j, idChild);
          q = searchByID(idChild,*r);
+         
          if (q == NULL) {  // Cek apakah sudah pernah dibuat node atau belum
             q = newTreeNode(idChild);
          }
-         
+
          if (q != NULL) {
             NSBG(p) = q;
             p = q;
@@ -141,16 +148,13 @@ void readResep(char* filename, BinTree *r) {
          
          ADVWORDFILE();
       }
-
-      *r = p;
-      
-      // if (i != (n-1)) {
-      //    ADVWORDFILE();
-      // } else {
-      //    endWord = true;
-      // }
    }
+
+   endWord = true;
+   printf("%c.\n", currentChar);
+
 }
+
 
 ListIDBahan listBahan(AddressTree targetMakanan) {
 // Memberikan keluaran ListIDBahan dari input addressTreeAddressTree targetMakanan
@@ -189,26 +193,40 @@ void copyListBahan(ListIDBahan *listID1, ListIDBahan *listID2) {
 }
 
 AddressTree searchByID(TreeElType id, BinTree resep) {
-// Memberi keluaran addressTreeAddressTree dari makanan berdasarkan input id dan resep
+// Memberi keluaran AddressTree dari makanan berdasarkan input id dan resep
 
-   TreeElType root = INFOTREE(resep);
-   AddressTree fc = FCHD(resep);
-   AddressTree p;  
+   TreeElType root;
+   if (resep == NULL) {
+      return (NULL);
+   } else {
+      root = INFOTREE(resep);
+      AddressTree fc = FCHD(resep);
+      AddressTree p = NULL;
 
-   if (root == id) {
-      p = resep;
-   } 
+      if (root == id) {
+         p = resep;
+      } 
+      // udah dikasi titik masih gamau
+      // coba aja di akhir dijadiin endword
+      // atau kalo mau ngecek, print currentChar di akhir nya
 
-   if (fc != NULL && p == NULL) {
-      return searchByID(id, fc);
+      // Apa perlu endword?
+      // Gamau ngeprint setelah loop
+
+      if (fc != NULL && p == NULL) {
+         return searchByID(id, fc);
+      }
+      
+      if (NSBG(resep) != NULL && p == NULL) { 
+         return searchByID(id, NSBG(resep));
+      }
+
+      if (NSBG(resep) == NULL && fc == NULL && p == NULL) { 
+         return NULL;
+      }
+      
+      return p;
    }
-   
-   if (NSBG(resep) != NULL && p == NULL) { 
-      return searchByID(id, NSBG(resep));
-   }
-
-   return p;
-
 }
 
 void printListResep(BinTree resep, Peta p, ListStatik l) {   // Masih perlu revisi di bagian conditional
