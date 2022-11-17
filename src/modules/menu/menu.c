@@ -29,7 +29,7 @@ void Splash(String name) {
 void Initiate(Simulator *s, Peta *p, ListStatik *catalog, BinTree *resep) {
     char* petaFileName = "src/data/map.txt";
     char* makananFileName = "src/data/makanan.txt";
-    char* resepFileName = "src/data/resep.txt";
+    char* resepFileName = "src/data/Recipe.txt";
     
     String name;
 

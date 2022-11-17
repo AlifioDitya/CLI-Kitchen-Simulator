@@ -8,6 +8,7 @@
 #include "../simulator/simulator.h"
 #include "../peta/peta.h"
 #include "../liststatik/liststatik.h"
+#include "../resep/tree.h"
 #include "../prioqueuemakanan/prioqueuemakanan.h"
 
 boolean isExit(String s);
@@ -28,7 +29,7 @@ boolean isCatalog(String s);
 
 void Splash(String name);
 
-void Initiate(Simulator *s, Peta *p, ListStatik *catalog);
+void Initiate(Simulator *s, Peta *p, ListStatik *catalog, BinTree *resep);
 
 void inputCommand(String *cmd);
 

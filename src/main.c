@@ -17,7 +17,7 @@ int main() {
 
     // ALGORITMA
     running = true;
-    Initiate(&s, &p, &Catalog);
+    Initiate(&s, &p, &Catalog, &resep);
     CreateTime(&currTime, 0, 0, 0);
     createString("BUY", 3, &mode);
     createSpecificCatalog(&canBuy, Catalog, p, mode);
