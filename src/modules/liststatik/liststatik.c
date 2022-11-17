@@ -9,12 +9,28 @@ void CreateListStatik(ListStatik *l) {
     Neff(*l) = 0;
 }
 
-void CreateListBuyMakanan(ListStatik *canBuy, ListStatik catalog, Peta p) {
+void createSpecificCatalog(ListStatik *specList, ListStatik catalog, Peta p, String mode) {
     int i;
-    CreateListStatik(canBuy);
+    char label;
+
+    if (isBuy(mode)) {
+        label = 'T';
+    } else if (isBoil(mode)) {
+        label = 'B';
+    } else if (isFry(mode)) {
+        label = 'F';
+    } else if (isChop(mode)) {
+        label = 'C';
+    } else if (isMix(mode)) {
+        label = 'M';
+    } else {
+        label = 'T';
+    }
+
+    CreateListStatik(specList);
     for (i=0; i<catalog.nEff; i++) {
-        if (EQ(ActionLoc(Elmt(catalog, i)), Locate(p, 'T'))) {
-            insertLast(canBuy, Elmt(catalog, i));
+        if (EQ(ActionLoc(Elmt(catalog, i)), Locate(p, label))) {
+            insertLast(specList, Elmt(catalog, i));
         }
     }
 }
