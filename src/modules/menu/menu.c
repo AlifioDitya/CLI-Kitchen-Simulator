@@ -188,6 +188,12 @@ boolean isWait(String s) {
     return (countSpace == 2 && !isLastCharSpace);
 }
 
+boolean isCatalog(String s) {
+    String temp;
+    createString("CATALOG", 7, &temp);
+    return (isStringEqual(s, temp));
+}
+
 void printBuyMakanan(ListStatik canBuy) {
     int i;
     int ctr = 1;

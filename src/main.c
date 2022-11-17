@@ -127,6 +127,8 @@ int main() {
             }
 
             wait(&s, &pesanan, &currTime, jam, menit);
+        } else if (isCatalog(cmd)) {
+            printListMakanan(Catalog);
         } else {
             printf("Command tidak valid.\n");
         }
