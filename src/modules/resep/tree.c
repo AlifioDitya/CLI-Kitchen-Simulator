@@ -77,6 +77,8 @@ void readResep(char* filename, BinTree *r) {
    for (i=0; i<currentWord.Length; i++) {  // Baca jumlah resep
       n = n*10 + ((int) currentWord.TabWord[i]-'0');
    }
+
+   printf("%d\n", n);
    
    ADVWORDFILE();
 
@@ -91,6 +93,10 @@ void readResep(char* filename, BinTree *r) {
       if (p == NULL) {  // Cek apakah sudah pernah dibuat node atau belum
          p = newTreeNode(id);
       }
+
+      printf("%d", INFOTREE(p));
+
+      *r = p;
       
       ADVWORDFILE();
 
@@ -115,7 +121,7 @@ void readResep(char* filename, BinTree *r) {
          FCHD(p) = q;
          p = q;
       }
-      
+            
       ADVWORDFILE();
    
       for (j=1; k<nChild; j++) {    // Ulangi pembacaan id bahan sebanyak nChild jika nChild > 1

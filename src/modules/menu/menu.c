@@ -27,14 +27,18 @@ void Splash(String name) {
 }
 
 void Initiate(Simulator *s, Peta *p, ListStatik *catalog, BinTree *resep) {
-    char* petaFileName = "../../data/map.txt";
-    char* makananFileName = "../../data/makanan.txt";
-    char* resepFileName = "../../data/Recipe.txt";
+    char* petaFileName = "src/data/map.txt";
+    char* makananFileName = "src/data/makanan.txt";
+    char* resepFileName = "src/data/Recipe.txt";
     
     String name;
-
+    
     readPeta(petaFileName, p);
+    printf("ppp\n");
+
     readResep(resepFileName, resep);
+    
+    printf("%d\n", INFOTREE(*resep));
     printf("\n");
 
     printf("Enter your name: ");
