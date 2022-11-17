@@ -13,7 +13,7 @@ void IGNOREBLANKS() {
     // KAMUS
 
     // ALGORITMA
-    while (currentChar == BLANK || currentChar == MARK) {
+    while (currentChar == BLANK) {
         ADV();
     }
 }
