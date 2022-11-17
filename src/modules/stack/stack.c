@@ -6,14 +6,14 @@
 /* *** Konstruktor/Kreator *** */
 void CreateEmpty(Stack *S) {
     /* I.S. sembarang  */
-    /* F.S. Membuat sebuah stack S yang kosong berkapasitas MaxEl */
-    /* jadi indeksnya antara 0.. MaxEl */
-    /* Ciri stack kosong : TOP bernilai Nil */
+    /* F.S. Membuat sebuah stack S yang kosong berkapasitas MaxElStack */
+    /* jadi indeksnya antara 0.. MaxElStack */
+    /* Ciri stack kosong : TOP bernilai StackUndef */
 
     // KAMUS
 
     // ALGORITMA
-    Top(*S) = Nil;
+    Top(*S) = StackUndef;
 }
 
 /* ************ Predikat Untuk test keadaan KOLEKSI ************ */
@@ -23,7 +23,7 @@ boolean IsEmpty(Stack S) {
     // KAMUS
 
     // ALGORITMA
-    return (Top(S) == Nil);
+    return (Top(S) == StackUndef);
 }
 
 boolean IsFull(Stack S) {
@@ -32,7 +32,7 @@ boolean IsFull(Stack S) {
     // KAMUS
 
     // ALGORITMA
-    return (Top(S) == MaxEl - 1);
+    return (Top(S) == MaxElStack - 1);
 }
 
 /* ************ Menambahkan sebuah elemen ke Stack ************ */

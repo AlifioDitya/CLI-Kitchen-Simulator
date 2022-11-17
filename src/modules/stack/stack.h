@@ -5,11 +5,11 @@
 #ifndef stackt_H
 #define stackt_H
 
-#include "boolean.h"
+#include "../boolean.h"
 
-#define Nil -1
-#define MaxEl 100
-/* Nil adalah stack dengan elemen kosong . */
+#define StackUndef -1
+#define MaxElStack 100
+/* StackUndef adalah stack dengan elemen kosong . */
 
 typedef int infotype;
 typedef int address;   /* indeks tabel */
@@ -17,11 +17,11 @@ typedef int address;   /* indeks tabel */
 /* Contoh deklarasi variabel bertype stack dengan ciri TOP : */
 /* Versi I : dengan menyimpan tabel dan alamat top secara eksplisit*/
 typedef struct { 
-  infotype T[MaxEl]; /* tabel penyimpan elemen */
+  infotype T[MaxElStack]; /* tabel penyimpan elemen */
   address TOP;  /* alamat TOP: elemen puncak */
 } Stack;
-/* Definisi stack S kosong : S.TOP = Nil */
-/* Elemen yang dipakai menyimpan nilai Stack T[0]..T[MaxEl-1] */
+/* Definisi stack S kosong : S.TOP = StackUndef */
+/* Elemen yang dipakai menyimpan nilai Stack T[0]..T[MaxElStack-1] */
 /* Jika S adalah Stack maka akses elemen : */
    /* S.T[(S.TOP)] untuk mengakses elemen TOP */
    /* S.TOP adalah alamat elemen TOP */
@@ -34,9 +34,9 @@ typedef struct {
 /* *** Konstruktor/Kreator *** */
 void CreateEmpty(Stack *S);
 /* I.S. sembarang; */
-/* F.S. Membuat sebuah stack S yang kosong berkapasitas MaxEl */
-/* jadi indeksnya antara 0.. MaxEl */
-/* Ciri stack kosong : TOP bernilai Nil */
+/* F.S. Membuat sebuah stack S yang kosong berkapasitas MaxElStack */
+/* jadi indeksnya antara 0.. MaxElStack */
+/* Ciri stack kosong : TOP bernilai StackUndef */
 
 /* ************ Predikat Untuk test keadaan KOLEKSI ************ */
 boolean IsEmpty(Stack S);

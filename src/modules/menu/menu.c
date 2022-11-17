@@ -291,5 +291,7 @@ void wait(Simulator *s, PrioQueueMakanan *pesanan, TIME *currTime, int x, int y)
 void progressTime(Simulator *s, PrioQueueMakanan *pesanan, TIME *currTime) {
     AdvMinute(currTime);
     DecDeliveryTimeQueue(pesanan);
+    DecExpiredTimeInv(&Inv(*s));
     DequeueZeroToInventory(pesanan, s);
+    deleteExpired(&Inv(*s));
 }
