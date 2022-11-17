@@ -5,6 +5,7 @@
 
 #include "../boolean.h"
 #include <stdio.h>
+#include <stdlib.h>
 #include "tree.h"
 
 /* Definisi PohonBiner */
@@ -64,6 +65,89 @@ Address newTreeNode(TreeElType val) {
 
    return p;
 }
+
+void readResep(char* filename, BinTree *r) {
+   int n, i, j, k;
+   int id, nChild, idChild, MM;
+   Address p, q;
+   TIME expire, delivery;
+   Makanan currMakanan;
+
+   STARTWORDFILE(filename);
+
+   n = 0;
+   for (i=0; i<currentWord.Length; i++) {  // Baca jumlah resep
+      n = n*10 + ((int) currentWord.TabWord[i]-'0');
+   }
+   
+   ADVWORDFILE();
+
+   for (i=0; i<n; i++) {   // Pengulangan sebanyak jumlah resep
+      
+      id = 0;
+      for (j=0; j<currentWord.Length; j++) {    // Baca id makanan, nanti akan dijadikan info resep
+         id = id*10 + ((int) currentWord.TabWord[j]-'0');
+      }
+
+      p = searchByID(id,*r);
+      if (p == NULL) {  // Cek apakah sudah pernah dibuat node atau belum
+         p = newTreeNode(id);
+      }
+      
+      ADVWORDFILE();
+
+      nChild = 0;
+      for (k=0; k<currentWord.Length; k++) {    // Baca jumlah bahan yang diperlukan untuk suatu resep
+         nChild = nChild*10 + ((int) currentWord.TabWord[k]-48);
+      }
+
+      ADVWORDFILE();
+
+      idChild = 0;   
+      for (k=0; k<currentWord.Length; k++) {    // Baca bahan pertama untuk resep 1
+         idChild = idChild*10 + ((int) currentWord.TabWord[k]-48);
+      } 
+
+      q = searchByID(idChild,*r);
+      if (q == NULL) {  // Cek apakah sudah pernah dibuat node atau belum
+         q = newTreeNode(idChild);
+      }
+      
+      if (q != NULL) {
+         FCHD(p) = q;
+         p = q;
+      }
+      
+      ADVWORDFILE();
+   
+      for (j=1; k<nChild; j++) {    // Ulangi pembacaan id bahan sebanyak nChild jika nChild > 1
+         
+         idChild = 0;
+         for (k=0; k<currentWord.Length; k++) {
+            idChild = idChild*10 + ((int) currentWord.TabWord[k]-48);
+         }
+
+         q = searchByID(idChild,*r);
+         if (q == NULL) {  // Cek apakah sudah pernah dibuat node atau belum
+            q = newTreeNode(idChild);
+         }
+         
+         if (q != NULL) {
+            NSBG(p) = q;
+            p = q;
+         }
+         
+         ADVWORDFILE();
+      }
+
+      // if (i != (n-1)) {
+      //    ADVWORDFILE();
+      // } else {
+      //    endWord = true;
+      // }
+   }
+}
+
 
 ListIDBahan listBahan(Address targetMakanan) {
 // Memberikan keluaran ListIDBahan dari input address targetMakanan
@@ -194,12 +278,16 @@ void printKatalog(BinTree resep, Peta p, ListStatik l) {   // Belum tahu nama pr
 
 void showProcess (Makanan target, Peta p) {
 // Menunjukkan process dari suatu makanan 
+   // char boil = "B";
+   // char chop = "C";
+   // char fry = "F";
+   // char mix = "B";
 
-   if (isPointSame(target.loc, Locate(p, "B"))) {
+   if (isPointSame(target.loc, Locate(p, 'B'))) {
       printf("BOIL"); 
-   } else if (isPointSame(target.loc, Locate(p, "C"))) {
+   } else if (isPointSame(target.loc, Locate(p, 'C'))) {
       printf("CHOP"); 
-   } else if (isPointSame(target.loc, Locate(p, "F"))) {
+   } else if (isPointSame(target.loc, Locate(p, 'F'))) {
       printf("FRY"); 
    } else {
       printf("MIX"); 
