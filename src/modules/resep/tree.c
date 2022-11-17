@@ -1,16 +1,15 @@
 /* File : tree.c */
 /* ADT pohon N-Ary */
-/* Representasi Address dengan pointer */
+/* Representasi AddressTree dengan pointer */
 /* TreeElType adalah integer */
 
 #include "../boolean.h"
 #include <stdio.h>
+#include <stdlib.h>
 #include "tree.h"
 
 /* Definisi PohonBiner */
 /* pohon Biner kosong p = NULL */
-
-typedef Address BinTree;
 
 void CreateListBahan(ListIDBahan * List) {
 
@@ -28,7 +27,7 @@ BinTree NewTree (TreeElType info, BinTree fc, BinTree nsb) {
    BinTree p;
    p = (BinTree) malloc(sizeof(TreeNode));
    if (p != NULL) {
-      INFO(p) = info;
+      INFOTREE(p) = info;
       FCHD(p) = fc;
       NSBG(p) = nsb;
    }
@@ -47,17 +46,17 @@ void CreateTree (TreeElType info, BinTree fc, BinTree nsb, BinTree *p) {
 
 }
 
-Address newTreeNode(TreeElType val) {
-/* Alokasi sebuah address p, bernilai tidak NULL jika berhasil */
-/* Mengirimkan address hasil alokasi sebuah elemen bernilai val
-   Jika alokasi berhasil, maka address tidak NULL, dan misalnya 
+AddressTree newTreeNode(TreeElType val) {
+/* Alokasi sebuah addressTreeAddressTree p, bernilai tidak NULL jika berhasil */
+/* Mengirimkan addressTreeAddressTree hasil alokasi sebuah elemen bernilai val
+   Jika alokasi berhasil, maka addressTreeAddressTree tidak NULL, dan misalnya 
    menghasilkan p, maka p↑.info=val, p↑.left=NULL, p↑.right=NULL 
    Jika alokasi gagal, mengirimkan NULL */
 
-   Address p;
-   p = (Address) malloc(sizeof(TreeNode));
+   AddressTree p;
+   p = (AddressTree) malloc(sizeof(TreeNode));
    if (p != NULL) {
-      INFO(p) = val;
+      INFOTREE(p) = val;
       FCHD(p) = NULL;
       NSBG(p) = NULL;
    }
@@ -65,17 +64,17 @@ Address newTreeNode(TreeElType val) {
    return p;
 }
 
-ListIDBahan listBahan(Address targetMakanan) {
-// Memberikan keluaran ListIDBahan dari input address targetMakanan
+ListIDBahan listBahan(AddressTree targetMakanan) {
+// Memberikan keluaran ListIDBahan dari input addressTreeAddressTree targetMakanan
 
-   Address fc = FCHD(targetMakanan);
+   AddressTree fc = FCHD(targetMakanan);
    ListIDBahan listID;
    int i = 0;
 
-   CreateList(&listID);
+   CreateListBahan(&listID);
 
    while (fc != NULL) {
-      ELMTLB(listID,i) = INFO(fc);
+      ELMTLB(listID,i) = INFOTREE(fc);
       fc = NSBG(fc);
    } 
 
@@ -101,12 +100,12 @@ void copyListBahan(ListIDBahan *listID1, ListIDBahan *listID2) {
    
 }
 
-Address searchByID(TreeElType id, BinTree resep) {
-// Memberi keluaran address dari makanan berdasarkan input id dan resep
+AddressTree searchByID(TreeElType id, BinTree resep) {
+// Memberi keluaran addressTreeAddressTree dari makanan berdasarkan input id dan resep
 
-   TreeElType root = INFO(resep);
-   Address fc = FCHD(resep);
-   Address p;  
+   TreeElType root = INFOTREE(resep);
+   AddressTree fc = FCHD(resep);
+   AddressTree p;  
 
    if (root == id) {
       p = resep;
@@ -129,11 +128,11 @@ void printListResep(BinTree resep, Peta p, ListStatik l) {   // Masih perlu revi
 
    int i = 0;
    int idx = 1;
-   Address fc;
+   AddressTree fc;
    Makanan target, bahan;
 
    if (FCHD(FCHD(resep)) != NULL && resep != NULL) {
-      target = getFoodByID(INFO(resep), l);
+      target = getFoodByID(INFOTREE(resep), l);
       int nBahan = lengthListBahan(listBahan(resep));
 
       printf("%d. %s\n", idx, target.name);
@@ -163,11 +162,11 @@ void printKatalog(BinTree resep, Peta p, ListStatik l) {   // Belum tahu nama pr
 
    int i = 0;
    int idx = 1;
-   Address fc;
+   AddressTree fc;
    Makanan target, bahan;
 
    if (FCHD(resep) != NULL && resep != NULL) {
-      target = getFoodByID(INFO(resep), l);
+      target = getFoodByID(INFOTREE(resep), l);
       int nBahan = lengthListBahan(listBahan(resep));
 
       printf("%d. %s\n", idx, target.name);
@@ -195,11 +194,11 @@ void printKatalog(BinTree resep, Peta p, ListStatik l) {   // Belum tahu nama pr
 void showProcess (Makanan target, Peta p) {
 // Menunjukkan process dari suatu makanan 
 
-   if (isPointSame(target.loc, Locate(p, "B"))) {
+   if (EQ(target.loc, Locate(p, 'B'))) {
       printf("BOIL"); 
-   } else if (isPointSame(target.loc, Locate(p, "C"))) {
+   } else if (EQ(target.loc, Locate(p, 'C'))) {
       printf("CHOP"); 
-   } else if (isPointSame(target.loc, Locate(p, "F"))) {
+   } else if (EQ(target.loc, Locate(p, 'F'))) {
       printf("FRY"); 
    } else {
       printf("MIX"); 

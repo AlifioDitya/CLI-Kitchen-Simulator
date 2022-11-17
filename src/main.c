@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "./modules/boolean.h"
 #include "./modules/menu/menu.h"
-#include "./modules/pengolahan makanan/pengolahan.h"
+// #include "./modules/pengolahan/pengolahan.h"
 
 int main() {
     boolean running = true;
@@ -56,7 +56,7 @@ int main() {
             running = false;
             printf("Goodbye!");
         } else if (isBuy(cmd)) {
-            Buy(&s, &currTime, &cmd, &pesanan, p, canBuy);
+            // Buy(&s, &currTime, &cmd, &pesanan, p, canBuy);
         } else if (isFry(cmd)) {
             printf("Frying here!\n");
             AdvMinute(&currTime);
@@ -97,8 +97,6 @@ int main() {
             } else {
                 printf("Tidak bisa bergerak ke selatan!\n");
             }
-        } else if (isWait(cmd)) {
-            wait(&s, &pesanan, &currTime, cmd);
         } else {
             printf("Command tidak valid.\n");
         }

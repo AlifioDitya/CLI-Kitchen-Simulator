@@ -5,6 +5,6 @@
 #include "./menu/menu.h"
 
 
-int main() {
-    chop();
-}
+// int main() {
+//     chop();
+// }

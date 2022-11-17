@@ -60,7 +60,7 @@ boolean isIn (Makanan X, Inventory I){
 
 boolean isCookable (ListIDBahan bahan, Inventory I, ListStatik katalog){
     boolean bisa = true;
-    for(int i = 0; i< lengthListID(bahan); i++){
+    for(int i = 0; i< lengthListBahan(bahan); i++){
         if(!isIn(getFoodByID(ELMTLB(bahan, i), katalog), I)){
             bisa = false;
             break;
@@ -73,7 +73,7 @@ ListStatik TidakDimiliki (Inventory I, ListIDBahan bahan, ListStatik katalog){
     ListStatik unhave;
     int i ;
     CreateListStatik(&unhave);
-    for(i = 0; i< lengthListID(bahan); i++){
+    for(i = 0; i< lengthListBahan(bahan); i++){
         if(!isIn(getFoodByID(ELMTLB(bahan, i), katalog), I)){
             insertFirst(&unhave, getFoodByID(ELMTLB(bahan, i), katalog));
         }
@@ -93,7 +93,7 @@ void Boil(ListStatik katalog, String cmd, Peta map, Simulator *s, BinTree resep,
     ListStatik Rebus;
     Makanan val;
     int target;
-    Address p;
+    AddressTree p;
     printf("==========================================\n");
     printf("===                  BOIL              ===\n");
     printf("==========================================\n");
@@ -106,8 +106,8 @@ void Boil(ListStatik katalog, String cmd, Peta map, Simulator *s, BinTree resep,
     while(target != 0){
         p = searchByID(ID(Elmt(Rebus,(target-1))), resep);
         p = FCHD(p); //hanya diperlukan satu bahan untuk merebus, jadi bahan hanyalah firstchild di tree resep
-        if(indexOfInventory(Inv(*s), getFoodByID(Info(p), katalog)) != IDX_UNDEF){
-            deleteAtInventory(&Inv(*s), indexOfInventory(Inv(*s), getFoodByID(Info(p), katalog)), &val);
+        if(indexOfInventory(Inv(*s), getFoodByID(INFOTREE(p), katalog)) != IDX_UNDEF){
+            deleteAtInventory(&Inv(*s), indexOfInventory(Inv(*s), getFoodByID(INFOTREE(p), katalog)), &val);
             insertInventory(&Inv(*s), Elmt(Rebus, target-1));
             printString(FoodName(Elmt(Rebus, target-1)));
             printf(" berhasil dibuat dan sudah dimasukkan di inventory\n");
@@ -115,7 +115,7 @@ void Boil(ListStatik katalog, String cmd, Peta map, Simulator *s, BinTree resep,
         }
         else{
             printf("gagal membuat %s karena tidak memiliki bahan berikut : \n", FoodName(Elmt(Rebus, target-1)));
-            printf("1. %s\n", FoodName(getFoodByID(Info(p), katalog)));
+            printf("1. %s\n", FoodName(getFoodByID(INFOTREE(p), katalog)));
         }
         scanf("%d", &target);
     }
@@ -125,7 +125,7 @@ void chop(ListStatik katalog, String cmd, Peta map, Simulator *s, BinTree resep,
     ListStatik Potong;
     Makanan val;
     int target;
-    Address p;
+    AddressTree p;
     printf("==========================================\n");
     printf("===                  CHOP              ===\n");
     printf("==========================================\n");
@@ -138,8 +138,8 @@ void chop(ListStatik katalog, String cmd, Peta map, Simulator *s, BinTree resep,
     while(target != 0){
         p = searchByID(ID(Elmt(Potong,(target-1))), resep);
         p = FCHD(p); //hanya diperlukan satu bahan untuk dipotong, jadi bahan hanyalah firstchild di tree resep
-        if(indexOfInventory(Inv(*s), getFoodByID(Info(p), katalog)) != IDX_UNDEF){
-            deleteAtInventory(&Inv(*s), indexOfInventory(Inv(*s), getFoodByID(Info(p), katalog)), &val);
+        if(indexOfInventory(Inv(*s), getFoodByID(INFOTREE(p), katalog)) != IDX_UNDEF){
+            deleteAtInventory(&Inv(*s), indexOfInventory(Inv(*s), getFoodByID(INFOTREE(p), katalog)), &val);
             insertInventory(&Inv(*s), Elmt(Potong, target-1));
             printString(FoodName(Elmt(Potong, target-1)));
             printf(" berhasil dibuat dan sudah dimasukkan di inventory\n");
@@ -147,7 +147,7 @@ void chop(ListStatik katalog, String cmd, Peta map, Simulator *s, BinTree resep,
         }
         else{
             printf("gagal membuat %s karena tidak memiliki bahan berikut : \n", FoodName(Elmt(Potong, target-1)));
-            printf("1. %s\n", FoodName(getFoodByID(Info(p), katalog)));
+            printf("1. %s\n", FoodName(getFoodByID(INFOTREE(p), katalog)));
         }
         scanf("%d", &target);
     }
@@ -158,7 +158,7 @@ void fry(ListStatik katalog, String cmd, Peta map, Simulator *s, BinTree resep, 
     ListIDBahan bahan;
     Makanan val;
     int target;
-    Address p;
+    AddressTree p;
     printf("==========================================\n");
     printf("===                  FRY               ===\n");
     printf("==========================================\n");
@@ -200,12 +200,12 @@ void mix(ListStatik katalog, String cmd, Peta map, Simulator *s, BinTree resep, 
     ListIDBahan bahan;
     Makanan val;
     int target;
-    Address p;
+    AddressTree p;
     printf("==========================================\n");
     printf("===                  MIX               ===\n");
     printf("==========================================\n");
     CreateListStatik(&Campur);
-    CreateList(&bahan);
+    CreateListBahan(&bahan);
     Campur = katalogByProses(katalog, cmd, map);
     displayKatalogProses(Campur);
     printf("kirim 0 untuk exit\n");
