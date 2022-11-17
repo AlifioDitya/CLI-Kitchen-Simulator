@@ -28,6 +28,8 @@ boolean isCatalog(String s);
 
 boolean isDisplayInventory(String s);
 
+boolean isDisplayDelivery(String s);
+
 void Splash(String name);
 
 void Initiate(Simulator *s, Peta *p, ListStatik *catalog);

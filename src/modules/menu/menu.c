@@ -200,6 +200,12 @@ boolean isDisplayInventory(String s) {
     return (isStringEqual(s, temp));
 }
 
+boolean isDisplayDelivery(String s) {
+    String temp;
+    createString("DELIVERY", 8, &temp);
+    return (isStringEqual(s, temp));
+}
+
 void printBuyMakanan(ListStatik canBuy) {
     int i;
     int ctr = 1;

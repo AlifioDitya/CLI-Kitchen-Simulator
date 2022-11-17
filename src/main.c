@@ -45,9 +45,6 @@ int main() {
     }
 
     while (running) {
-        printf("Pesanan yang ada :\n");
-        PrintPrioQueueMakanan(pesanan);
-        printf("\n");
         printf("BNMO di posisi: ");
         TulisPoint(Loc(s));
         printf("Waktu: ");
@@ -128,6 +125,8 @@ int main() {
             displayCatalog(Catalog, p);
         } else if (isDisplayInventory(cmd)) {
             displayInventory(Inv(s));
+        } else if (isDisplayDelivery(cmd)) {
+            PrintPrioQueueMakanan(pesanan);
         } else {
             printf("Command tidak valid.\n");
         }
