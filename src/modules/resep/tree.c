@@ -275,10 +275,6 @@ void printKatalog(BinTree resep, Peta p, ListStatik l) {   // Belum tahu nama pr
 
 void showProcess (Makanan target, Peta p) {
 // Menunjukkan process dari suatu makanan 
-   // char boil = "B";
-   // char chop = "C";
-   // char fry = "F";
-   // char mix = "B";
 
    if (EQ(target.loc, Locate(p, 'B'))) {
       printf("BOIL"); 
