@@ -138,9 +138,10 @@ void insertInventory(Inventory *I, InfotypeInventory val) {
             NEXT(p) = NULL;
             FIRST(*I) = p;
         } else {
-            while (TLT(Expire(INFO(loc)), Expire(val)) && loc != NULL) {
+            while (loc != NULL && TLT(Expire(INFO(loc)), Expire(val))) {
                 prev = loc;
                 loc = NEXT(loc);
+                printf("Tes\n");
             }
 
             NEXT(p) = loc;
@@ -228,7 +229,6 @@ void displayInventory(Inventory I) {
             printString(FoodName(INFO(p)));
             printf(" - ");
             TulisTIME(Expire(INFO(p)));
-            printf("\n");
             p = NEXT(p);
             i++;
         }
