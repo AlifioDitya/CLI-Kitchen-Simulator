@@ -6,7 +6,7 @@ int main() {
     Peta map;
     ListStatik l;
     BinTree resep;
-    Address p;
+    AddressTree p;
     ListIDBahan lBahan;
     int i = 0;
 

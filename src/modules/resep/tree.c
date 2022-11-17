@@ -67,7 +67,7 @@ AddressTree newTreeNode(TreeElType val) {
 void readResep(char* filename, BinTree *r) {
    int n, i, j, k;
    int id, nChild, idChild, MM;
-   Address p, q;
+   AddressTree p, q;
    TIME expire, delivery;
    Makanan currMakanan;
 
