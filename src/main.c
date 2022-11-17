@@ -1,12 +1,14 @@
 #include <stdio.h>
 #include "./modules/boolean.h"
 #include "./modules/menu/menu.h"
+#include "./modules/resep/tree.h"
 // #include "./modules/pengolahan/pengolahan.h"
 
 int main() {
     boolean running = true;
     boolean valid = false;
     String cmd, mode;
+    BinTree resep;
     Peta p;
     Simulator s;
     TIME currTime;

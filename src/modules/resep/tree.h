@@ -65,6 +65,10 @@ AddressTree newTreeNode(TreeElType val);
 ListIDBahan listBahan(AddressTree targetMakanan);
 // Memberikan keluaran ListIDBahan dari input addressTree targetMakanan
 
+void readResep(char* filename, BinTree *r);
+// I.S sembarang
+// F.S r sudah berisi resep berdasarkan input dari file
+
 int lengthListBahan (ListIDBahan listID); 
 // Memberi keluaran panjang listID
 

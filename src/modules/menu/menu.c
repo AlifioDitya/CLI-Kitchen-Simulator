@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "menu.h"
+#include "../resep/tree.h"
 
 boolean isExit(String s) {
     String temp;
@@ -25,12 +26,15 @@ void Splash(String name) {
     printf("!\n");
 }
 
-void Initiate(Simulator *s, Peta *p, ListStatik *catalog) {
+void Initiate(Simulator *s, Peta *p, ListStatik *catalog, BinTree *resep) {
     char* petaFileName = "src/data/map.txt";
     char* makananFileName = "src/data/makanan.txt";
+    char* resepFileName = "src/data/resep.txt";
+    
     String name;
 
     readPeta(petaFileName, p);
+    readResep(resepFileName, resep);
     printf("\n");
 
     printf("Enter your name: ");
