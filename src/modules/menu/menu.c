@@ -194,6 +194,12 @@ boolean isCatalog(String s) {
     return (isStringEqual(s, temp));
 }
 
+boolean isDisplayInventory(String s) {
+    String temp;
+    createString("INVENTORY", 9, &temp);
+    return (isStringEqual(s, temp));
+}
+
 void printBuyMakanan(ListStatik canBuy) {
     int i;
     int ctr = 1;

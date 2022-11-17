@@ -141,7 +141,6 @@ void insertInventory(Inventory *I, InfotypeInventory val) {
             while (loc != NULL && TLT(Expire(INFO(loc)), Expire(val))) {
                 prev = loc;
                 loc = NEXT(loc);
-                printf("Tes\n");
             }
 
             NEXT(p) = loc;
@@ -220,8 +219,8 @@ void displayInventory(Inventory I) {
     } else {
         i = 1;
         
-        printf("List Makanan di Inventory\n\n");
-        printf("(nama) - (waktu - sisa kedaluarsa)\n");
+        printf("List Makanan di Inventory\n");
+        printf("(Nama makanan - Waktu sisa kedaluarsa)\n");
 
         p = FIRST(I);
         while (p != NULL) {

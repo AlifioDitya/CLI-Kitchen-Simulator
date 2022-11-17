@@ -26,6 +26,8 @@ boolean isWait(String s);
 
 boolean isCatalog(String s);
 
+boolean isDisplayInventory(String s);
+
 void Splash(String name);
 
 void Initiate(Simulator *s, Peta *p, ListStatik *catalog);
