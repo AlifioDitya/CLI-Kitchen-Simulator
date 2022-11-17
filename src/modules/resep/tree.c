@@ -96,8 +96,6 @@ void readResep(char* filename, BinTree *r) {
 
       printf("%d", INFOTREE(p));
 
-      *r = p;
-      
       ADVWORDFILE();
 
       nChild = 0;
@@ -144,6 +142,8 @@ void readResep(char* filename, BinTree *r) {
          ADVWORDFILE();
       }
 
+      *r = p;
+      
       // if (i != (n-1)) {
       //    ADVWORDFILE();
       // } else {
