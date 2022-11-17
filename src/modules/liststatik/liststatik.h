@@ -38,7 +38,7 @@ typedef struct {
 void CreateListStatik(ListStatik *l);
 /* I.S. l sembarang */
 /* F.S. Terbentuk List l kosong dengan kapasitas CAPACITY */
-void CreateListBuyMakanan(ListStatik *canBuy, ListStatik catalog, Peta p);
+void createSpecificCatalog(ListStatik *specList, ListStatik catalog, Peta p, String mode);
 
 /* ********** SELEKTOR (TAMBAHAN) ********** */
 /* *** Banyaknya elemen *** */

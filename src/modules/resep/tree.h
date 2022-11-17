@@ -1,6 +1,6 @@
 /* File : bintree.h */
 /* ADT pohon biner */
-/* Representasi Address dengan pointer */
+/* Representasi AddressTree dengan pointer */
 /* TreeElType adalah integer */
 
 #ifndef POHONBINER_H
@@ -9,20 +9,15 @@
 #include "../boolean.h"
 #include "../liststatik/liststatik.h"
 
-/* Selektor */
-#define INFO(p) (p)->info
-#define NSBG(p) (p)->nextSibling
-#define FCHD(p) (p)->firstChild
-
 #define CAPACITY 100
 #define VAL_UNDEF -1
 
 typedef int TreeElType;
-typedef struct treeNode* Address;
+typedef struct treeNode* AddressTree;
 typedef struct treeNode { 
-     TreeElType info;
-     Address firstChild;
-     Address nextSibling;
+     TreeElType infoTree;
+     AddressTree firstChild;
+     AddressTree nextSibling;
 } TreeNode;
 typedef struct {
     int bahan[CAPACITY];
@@ -35,10 +30,15 @@ typedef struct {
 
 #define ELMTLB(l, i) (l).bahan[(i)]
 
+/* Selektor */
+#define INFOTREE(p) (p)->infoTree
+#define NSBG(p) (p)->nextSibling
+#define FCHD(p) (p)->firstChild
+
 /* Definisi PohonBiner */
 /* pohon Biner kosong p = NULL */
 
-typedef Address BinTree;
+typedef AddressTree BinTree;
 
 void CreateListBahan(ListIDBahan * List);
 /* I.S. Sembarang
@@ -55,15 +55,15 @@ void CreateTree (TreeElType root, BinTree left_tree, BinTree right_tree, BinTree
    berhasil 
    Menghasilkan pohon p yang kosong (NULL) jika alokasi gagal */
 
-Address newTreeNode(TreeElType val);
-/* Alokasi sebuah address p, bernilai tidak NULL jika berhasil */
-/* Mengirimkan address hasil alokasi sebuah elemen bernilai val
-   Jika alokasi berhasil, maka address tidak NULL, dan misalnya 
-   menghasilkan p, maka p↑.info=val, p↑.left=NULL, p↑.right=NULL 
+AddressTree newTreeNode(TreeElType val);
+/* Alokasi sebuah addressTree p, bernilai tidak NULL jika berhasil */
+/* Mengirimkan addressTree hasil alokasi sebuah elemen bernilai val
+   Jika alokasi berhasil, maka addressTree tidak NULL, dan misalnya 
+   menghasilkan p, maka p↑.infoTree=val, p↑.left=NULL, p↑.right=NULL 
    Jika alokasi gagal, mengirimkan NULL */
 
-ListIDBahan listBahan(Address targetMakanan);
-// Memberikan keluaran ListIDBahan dari input address targetMakanan
+ListIDBahan listBahan(AddressTree targetMakanan);
+// Memberikan keluaran ListIDBahan dari input addressTree targetMakanan
 
 int lengthListBahan (ListIDBahan listID); 
 // Memberi keluaran panjang listID
@@ -72,8 +72,8 @@ void copyListBahan(ListIDBahan *listID1, ListIDBahan *listID2);
    // I.S listID1 terdefinisi dan listID2 belum terdefinisi
    // F.S. Menyalin isi listIDBahan listID1 ke listID2
 
-Address searchByID(TreeElType id, BinTree resep);
-// Memberi keluaran address dari makanan berdasarkan input id dan resep
+AddressTree searchByID(TreeElType id, BinTree resep);
+// Memberi keluaran addressTree dari makanan berdasarkan input id dan resep
 
 void printListResep(BinTree resep, Peta p, ListStatik l);
 // Mencetak List Resep 

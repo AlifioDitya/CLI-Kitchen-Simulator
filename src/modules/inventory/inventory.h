@@ -87,4 +87,8 @@ void displayInventory(Inventory I);
 int LengthInventory(Inventory I);
 /* Mengirimkan banyaknya elemen list; mengirimkan 0 jika list kosong */
 
+void DecExpiredTimeInv(Inventory *I);
+
+void deleteExpired(Inventory *I);
+
 #endif

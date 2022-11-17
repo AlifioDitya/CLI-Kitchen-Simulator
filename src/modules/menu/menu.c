@@ -148,7 +148,50 @@ boolean isMoveSouth(String s) {
 }
 
 boolean isWait(String s) {
-    return (s.Length > 4 && s.str[0] == 'W' && s.str[1] == 'A' && s.str[2] == 'I' && s.str[3] == 'T');
+    // KAMUS
+    String temp;
+    int countSpace, i, isLastCharSpace;
+
+    // ALGORITMA
+    createString("WAIT", 4, &temp);
+    countSpace = 0;
+
+    if (s.Length < 8) {
+        return false;
+    }
+
+    for (i = 0; i < temp.Length; i++) {
+        if (s.str[i] != temp.str[i]) {
+            return false;
+        }
+    }
+    
+    i = 4;
+    isLastCharSpace = false;
+
+    while (i < s.Length) {
+        if (s.str[i] == ' ') {
+            if (isLastCharSpace) {
+                return false;
+            } else {
+                countSpace++;
+                isLastCharSpace = true;
+            }
+        } else if (s.str[i] < '0' || s.str[i] > '9') {
+            return false;
+        } else {
+            isLastCharSpace = false;
+        }
+        i++;
+    }
+
+    return (countSpace == 2 && !isLastCharSpace);
+}
+
+boolean isCatalog(String s) {
+    String temp;
+    createString("CATALOG", 7, &temp);
+    return (isStringEqual(s, temp));
 }
 
 void printBuyMakanan(ListStatik canBuy) {
@@ -238,8 +281,23 @@ void Buy(Simulator *s, TIME *currTIME, String *cmd, PrioQueueMakanan *prioQueue,
     }
 }
 
+void wait(Simulator *s, PrioQueueMakanan *pesanan, TIME *currTime, int x, int y) {
+    // KAMUS
+    TIME t;
+    int i;
+
+    // ALGORITMA
+    CreateTime(&t, 0, x, y);
+
+    for (i = 0; i < TIMEToMinute(t); i++) {
+        progressTime(s, pesanan, currTime);
+    }
+}
+
 void progressTime(Simulator *s, PrioQueueMakanan *pesanan, TIME *currTime) {
     AdvMinute(currTime);
     DecDeliveryTimeQueue(pesanan);
+    DecExpiredTimeInv(&Inv(*s));
     DequeueZeroToInventory(pesanan, s);
+    deleteExpired(&Inv(*s));
 }

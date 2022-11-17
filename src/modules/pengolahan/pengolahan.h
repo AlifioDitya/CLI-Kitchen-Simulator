@@ -1,14 +1,6 @@
-#include "../time/time.h"
-#include "../inventory/inventory.h"
-#include "../word-machine/wordmachine.h"
-#include "../makanan/makanan.h"
-#include "../point/point.h"
-#include "../peta/peta.h"
-#include "../resep/tree.h"
-#include "../liststatik/liststatik.h"
-#include "../prioqueuemakanan/prioqueuemakanan.h"
-#include"../string/string.h"
 #include <stdio.h>
+#include "../resep/tree.h"
+#include "../menu/menu.h"
 
 ListStatik katalogByProses(ListStatik katalog, String proses, Peta p);
 //mereturn katalog makanan yang dapat dihasilkan dengan proses tertentu

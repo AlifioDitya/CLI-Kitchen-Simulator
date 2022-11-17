@@ -224,7 +224,11 @@ void displayInventory(Inventory I) {
 
         p = FIRST(I);
         while (p != NULL) {
-            printf("%d. %s - %s\n", i, FoodName(INFO(p)));
+            printf("%d. ", i);
+            printString(FoodName(INFO(p)));
+            printf(" - ");
+            TulisTIME(Expire(INFO(p)));
+            printf("\n");
             p = NEXT(p);
             i++;
         }
@@ -248,4 +252,35 @@ int LengthInventory(Inventory I) {
     }
 
     return ctr;
+}
+
+
+void DecExpiredTimeInv(Inventory *I) {
+    Address p;
+    
+    if (!isEmptyInventory(*I)) {
+        p = FIRST(*I);
+        while (p != NULL) {
+            DecMinute(&Expire(INFO(p)));
+            p = NEXT(p);
+        }
+    }
+}
+
+void deleteExpired(Inventory *I) {
+    Address p;
+    int idx;
+    Makanan val;
+    p = FIRST(*I);
+
+    if (!isEmptyInventory(*I)) {
+        idx = 0;
+        while (p != NULL) {
+            if (Day(Expire(INFO(p))) <= 0 && Hour(Expire(INFO(p))) <= 0 && Minute(Expire(INFO(p))) <= 0) {
+                deleteAtInventory(I, idx, &val);
+            }
+            p = NEXT(p);
+            idx++;
+        }
+    }
 }
