@@ -129,9 +129,11 @@ void printListMakanan(ListStatik l);
 /* I.S. l boleh kosong */
 /* F.S. Jika l tidak kosong: [e1,e2,...,en] */
 /* Jika List kosong : menulis [] */
+void displayCatalog(ListStatik catalog, Peta p);
 
 /* Getter */
 Makanan getFoodByID(IDType ID, ListStatik l);
 // Mengakses makanan dari ID
+
 
 #endif

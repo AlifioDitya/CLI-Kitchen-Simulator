@@ -324,3 +324,67 @@ void printListMakanan(ListStatik l){
     printf("]\n");
 }
 
+void displayCatalog(ListStatik catalog, Peta p) {
+    int i;
+
+    printf("List Makanan:\n");
+    printf("(Nama - Durasi kedaluwarsa - Aksi yang diperlukan - Delivery time)\n");
+    for (i=0; i<listLength(catalog); i++) {
+        printf("%d. ", i+1);
+        printString(FoodName(Elmt(catalog, i)));
+
+        printf(" - ");
+        if (Day(Expire(Elmt(catalog, i))) != 0) {
+            printf("%d Hari", Day(Expire(Elmt(catalog, i))));
+            if (Hour(Expire(Elmt(catalog, i))) != 0 && Minute(Expire(Elmt(catalog, i))) != 0) {
+                printf(", ");
+            }
+        }
+        if (Hour(Expire(Elmt(catalog, i))) != 0) {
+            printf("%d Jam", Hour(Expire(Elmt(catalog, i))));
+            if (Minute(Expire(Elmt(catalog, i))) != 0) {
+                printf(", ");
+            }
+        }
+        if (Minute(Expire(Elmt(catalog, i))) != 0) {
+            printf("%d Menit", Minute(Expire(Elmt(catalog, i))));
+        }
+
+        printf(" - ");
+        if (EQ(ActionLoc(Elmt(catalog, i)), Locate(p, 'T'))) {
+            printf("BUY");
+        } else if (EQ(ActionLoc(Elmt(catalog, i)), Locate(p, 'C'))) {
+            printf("CHOP");
+        } else if (EQ(ActionLoc(Elmt(catalog, i)), Locate(p, 'F'))) {
+            printf("FRY");
+        } else if (EQ(ActionLoc(Elmt(catalog, i)), Locate(p, 'B'))) {
+            printf("BOIL");
+        } else if (EQ(ActionLoc(Elmt(catalog, i)), Locate(p, 'M'))) {
+            printf("MIX");
+        } else {
+            printf("undefined");
+        }
+
+        if ((Day(DeliveryTime(Elmt(catalog, i))) != 0) || (Hour(DeliveryTime(Elmt(catalog, i))) != 0) || (Minute(DeliveryTime(Elmt(catalog, i))) != 0)) {
+            printf(" - ");
+        } else {
+            printf(" - Non-delivery");
+        }
+        if (Day(DeliveryTime(Elmt(catalog, i))) != 0) {
+            printf("%d Hari", Day(DeliveryTime(Elmt(catalog, i))));
+            if (Hour(DeliveryTime(Elmt(catalog, i))) != 0 && Minute(DeliveryTime(Elmt(catalog, i))) != 0) {
+                printf(", ");
+            }
+        }
+        if (Hour(DeliveryTime(Elmt(catalog, i))) != 0) {
+            printf("%d Jam", Hour(DeliveryTime(Elmt(catalog, i))));
+            if (Minute(DeliveryTime(Elmt(catalog, i))) != 0) {
+                printf(", ");
+            }
+        }
+        if (Minute(DeliveryTime(Elmt(catalog, i))) != 0) {
+            printf("%d Menit", Minute(DeliveryTime(Elmt(catalog, i))));
+        }
+        printf("\n");
+    }
+}
