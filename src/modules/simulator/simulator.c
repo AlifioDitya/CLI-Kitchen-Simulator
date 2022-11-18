@@ -7,7 +7,7 @@ void CreateSimulation (Simulator *s, String name, int x, int y) {
     // F.S Membuat simulasi kosong
     setName(name, s);
     setLocation(x, y, s);
-    // setInventory(s);
+    setInventory(s);
 }
 
 /* Setter */

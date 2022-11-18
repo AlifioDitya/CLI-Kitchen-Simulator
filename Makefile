@@ -26,6 +26,8 @@ time: $(addsuffix .exe, $(basename $(patsubst "%", %,$(shell forfiles /s /m *dri
 
 word-machine: $(addsuffix .exe, $(basename $(patsubst "%", %,$(shell forfiles /s /m *driver_fwm.c /c "cmd /c echo @relpath"))))
 
+simulator: $(addsuffix .exe, $(basename $(patsubst "%", %,$(shell forfiles /s /m *driver_simulator.c /c "cmd /c echo @relpath"))))
+
 main: $(addsuffix .exe, $(basename $(patsubst "%", %,$(shell forfiles /s /m *main.c /c "cmd /c echo @relpath"))))
 
 $(addsuffix .exe, $(basename $(TARGETS))): $(SRCS)
