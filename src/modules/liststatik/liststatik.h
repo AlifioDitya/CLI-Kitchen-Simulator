@@ -8,6 +8,7 @@
 #include "../boolean.h"
 #include "../makanan/makanan.h"
 #include  "../peta/peta.h"
+#include "../menu/command.h"
 
 /*  Kamus Umum */
 #define CAPACITY 100

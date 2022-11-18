@@ -1,7 +1,7 @@
-/* Header untuk file Utility */
+/* Header untuk file MENU */
 
-#ifndef UTIL_H
-#define UTIL_H
+#ifndef MENU_H
+#define MENU_H
 
 #include "../word-machine/wordmachine.h"
 #include "../string/string.h"
@@ -10,33 +10,13 @@
 #include "../liststatik/liststatik.h"
 #include "../prioqueuemakanan/prioqueuemakanan.h"
 
-boolean isExit(String s);
-
-boolean isStart(String s);
-
-boolean isMoveEast(String s);
-
-boolean isMoveWest(String s);
-
-boolean isMoveNorth(String s);
-
-boolean isMoveSouth(String s);
-
-boolean isWait(String s);
-
-boolean isCatalog(String s);
-
-boolean isDisplayInventory(String s);
-
-boolean isDisplayDelivery(String s);
-
 void Splash(String name);
 
 void Initiate(Simulator *s, Peta *p, ListStatik *catalog);
 
 void inputCommand(String *cmd);
 
-boolean isCommandInteger(String cmd);
+int parseToInteger(String s);
 
 void printBuyMakanan(ListStatik canBuy);
 

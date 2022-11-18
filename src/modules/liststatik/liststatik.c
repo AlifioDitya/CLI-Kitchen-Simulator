@@ -290,9 +290,6 @@ void readMakanan(char* filename, Peta p, ListStatik *l) {
         // printf("\n");
         
         insertLast(l, currMakanan);
-        // printf("Makanan inserted -> ");
-        // printString(FoodName(Elmt(*l, getLastIdx(*l))));
-        // printf("\n\n");
 
         if (i != (n-1)) {
             ADVWORDFILE();
