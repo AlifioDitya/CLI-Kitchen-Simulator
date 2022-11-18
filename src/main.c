@@ -2,6 +2,7 @@
 #include "./modules/boolean.h"
 #include "./modules/menu/menu.h"
 #include "./modules/menu/command.h"
+#include "./modules/menu/timemechanism.h"
 
 int main() {
     boolean running = true;

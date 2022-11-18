@@ -22,8 +22,4 @@ void printBuyMakanan(ListStatik canBuy);
 
 void Buy(Simulator *s, TIME *currTIME, String *cmd, PrioQueueMakanan *prioQueue, Peta p, ListStatik canBuy);
 
-void wait(Simulator *s, PrioQueueMakanan *pesanan, TIME *currTime, int x, int y);
-
-void progressTime(Simulator *s, PrioQueueMakanan *pesanan, TIME *currTime);
-
 #endif
