@@ -22,6 +22,10 @@ liststatik: $(addsuffix .exe, $(basename $(patsubst "%", %,$(shell forfiles /s /
 
 peta: $(addsuffix .exe, $(basename $(patsubst "%", %,$(shell forfiles /s /m *driver_peta.c /c "cmd /c echo @relpath"))))
 
+time: $(addsuffix .exe, $(basename $(patsubst "%", %,$(shell forfiles /s /m *driver_time.c /c "cmd /c echo @relpath"))))
+
+word-machine: $(addsuffix .exe, $(basename $(patsubst "%", %,$(shell forfiles /s /m *driver_fwm.c /c "cmd /c echo @relpath"))))
+
 main: $(addsuffix .exe, $(basename $(patsubst "%", %,$(shell forfiles /s /m *main.c /c "cmd /c echo @relpath"))))
 
 $(addsuffix .exe, $(basename $(TARGETS))): $(SRCS)
