@@ -299,29 +299,9 @@ void readMakanan(char* filename, Peta p, ListStatik *l) {
     }
 }
 
-void printListMakanan(ListStatik l){
-/* Proses : Menuliskan isi List dengan traversal, List ditulis di antara kurung 
-   siku; antara dua elemen dipisahkan dengan separator "koma", tanpa tambahan 
-   karakter di depan, di tengah, atau di belakang */
-/* I.S. l boleh kosong */
-/* F.S. Jika l tidak kosong: [e1,e2,...,en] */
-/* Jika List kosong : menulis [] */
-// KAMUS
-    IdxType i;
-// ALGORITMA
-    printf("[");
-    
-    for (i=0; i<=getLastIdx(l); i++) {
-        printString(FoodName(Elmt(l,i)));
-        if (i < getLastIdx(l)) {
-            printf(", ");
-        }
-    }
-
-    printf("]\n");
-}
-
 void displayCatalog(ListStatik catalog, Peta p) {
+// I.S Catalog terdefinisi
+// F.S Catalog terdisplay
     int i;
 
     printf("List Makanan:\n");

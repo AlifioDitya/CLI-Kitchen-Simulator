@@ -18,6 +18,10 @@ endif
 
 all: $(addsuffix .exe, $(basename $(TARGETS)))
 
+liststatik: $(addsuffix .exe, $(basename $(patsubst "%", %,$(shell forfiles /s /m *driver_liststatik.c /c "cmd /c echo @relpath"))))
+
+peta: $(addsuffix .exe, $(basename $(patsubst "%", %,$(shell forfiles /s /m *driver_peta.c /c "cmd /c echo @relpath"))))
+
 main: $(addsuffix .exe, $(basename $(patsubst "%", %,$(shell forfiles /s /m *main.c /c "cmd /c echo @relpath"))))
 
 $(addsuffix .exe, $(basename $(TARGETS))): $(SRCS)
