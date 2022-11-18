@@ -6,18 +6,26 @@
 #define stackt_H
 
 #include "../boolean.h"
+#include "../time/time.h"
+#include "../simulator/simulator.h"
+#include "../prioqueuemakanan/prioqueuemakanan.h"
 
 #define StackUndef -1
 #define MaxElStack 100
 /* StackUndef adalah stack dengan elemen kosong . */
 
-typedef int infotype;
+typedef struct {
+    Simulator simul;
+    PrioQueueMakanan pesanan;
+    TIME currentTime;
+} infotypeStack;
+;
 typedef int address;   /* indeks tabel */
 
 /* Contoh deklarasi variabel bertype stack dengan ciri TOP : */
 /* Versi I : dengan menyimpan tabel dan alamat top secara eksplisit*/
 typedef struct { 
-  infotype T[MaxElStack]; /* tabel penyimpan elemen */
+  infotypeStack T[MaxElStack]; /* tabel penyimpan elemen */
   address TOP;  /* alamat TOP: elemen puncak */
 } Stack;
 /* Definisi stack S kosong : S.TOP = StackUndef */
@@ -45,13 +53,13 @@ boolean IsFull(Stack S);
 /* Mengirim true jika tabel penampung nilai elemen stack penuh */
 
 /* ************ Menambahkan sebuah elemen ke Stack ************ */
-void Push(Stack * S, infotype X);
+void Push(Stack *S, Simulator Sim, PrioQueueMakanan P, TIME CT);
 /* Menambahkan X sebagai elemen Stack S. */
 /* I.S. S mungkin kosong, tabel penampung elemen stack TIDAK penuh */
 /* F.S. X menjadi TOP yang baru,TOP bertambah 1 */
 
 /* ************ Menghapus sebuah elemen Stack ************ */
-void Pop(Stack * S, infotype* X);
+void Pop(Stack *S, Simulator *Sim, PrioQueueMakanan *P, TIME *CT);
 /* Menghapus X dari Stack S. */
 /* I.S. S  tidak mungkin kosong */
 /* F.S. X adalah nilai elemen TOP yang lama, TOP berkurang 1 */
