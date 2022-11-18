@@ -67,6 +67,7 @@ int main() {
         } else if (isFry(cmd)) {
             if(isObjectInRadius(s, p, 'F')){
                 fry(Catalog, cmd, p, &s, resep, currTime, pesanan);
+                inputCommand(&cmd);
             }
             else{
                 printf("Kamu tidak di lokasi F\n");
@@ -74,8 +75,9 @@ int main() {
             // printf("Frying here!\n");
             // progressTime(&s, &pesanan, &currTime);
         } else if (isChop(cmd)) {
-            if(isObjectInRadius(s, p, 'C')){
+            if(isObjectInRadius(s, p, 'C')) {
                 chop(Catalog, cmd, p, &s, resep, currTime, pesanan);
+                inputCommand(&cmd);
             }
             else{
                 printf("Kamu tidak di lokasi C\n");
@@ -85,6 +87,7 @@ int main() {
         } else if (isBoil(cmd)) {
             if(isObjectInRadius(s, p, 'B')){
                 Boil(Catalog, cmd, p, &s, resep, currTime, pesanan);
+                inputCommand(&cmd);
             }
             else{
                 printf("Kamu tidak di lokasi B\n");
@@ -94,6 +97,7 @@ int main() {
         } else if (isMix(cmd)) {
             if(isObjectInRadius(s, p, 'M')){
                 mix(Catalog, cmd, p, &s, resep, currTime, pesanan);
+                inputCommand(&cmd);
             }
             else{
                 printf("Kamu tidak di lokasi M\n");

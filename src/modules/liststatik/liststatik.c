@@ -97,7 +97,10 @@ int indexOf(ListStatik l, int IDMakanan) {
         { 
             found = false;
         }
-        i++ ; 
+        else{
+            i++ ; 
+        }
+        
     }
     return i; 
 }

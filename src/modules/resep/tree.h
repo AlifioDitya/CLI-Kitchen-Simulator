@@ -25,7 +25,7 @@ typedef struct {
 #define ELMTLB(l, i) (l).bahan[(i)]
 
 typedef struct {
-    int bahan[CAPACITY];
+   int bahan[CAPACITY]; 
 } ListIDBahan;
 
 #define ELMTLB(l, i) (l).bahan[(i)]
@@ -71,6 +71,9 @@ void readResep(char* filename, BinTree *r);
 
 int lengthListBahan (ListIDBahan listID); 
 // Memberi keluaran panjang listID
+
+void printListBahan (ListIDBahan listID);
+   // Mencetak list bahan
 
 void copyListBahan(ListIDBahan *listID1, ListIDBahan *listID2);
    // I.S listID1 terdefinisi dan listID2 belum terdefinisi

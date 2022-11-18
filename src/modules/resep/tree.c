@@ -18,6 +18,7 @@ void CreateListBahan(ListIDBahan * List) {
    for (i; i<CAPACITY; i++) {
       ELMTLB(*List,i) = VAL_UNDEF;
    }
+   
 }
 
 BinTree NewTree (TreeElType info, BinTree fc, BinTree nsb) {
@@ -67,7 +68,7 @@ AddressTree newTreeNode(TreeElType val) {
 void readResep(char* filename, BinTree *r) {
    int n, i, j, k;
    int id, nChild, idChild, MM;
-   AddressTree p, q;
+   AddressTree p, q, fc;
    TIME expire, delivery;
    Makanan currMakanan;
 
@@ -92,8 +93,6 @@ void readResep(char* filename, BinTree *r) {
          p = newTreeNode(id);
       }
 
-      *r = p;
-
       ADVWORDFILE();
 
       nChild = 0;
@@ -115,7 +114,7 @@ void readResep(char* filename, BinTree *r) {
       
       if (q != NULL) {
          FCHD(p) = q;
-         p = q;
+         fc = q;
       }
        
       ADVWORDFILE();
@@ -134,8 +133,8 @@ void readResep(char* filename, BinTree *r) {
          }
 
          if (q != NULL) {
-            NSBG(p) = q;
-            p = q;
+            NSBG(fc) = q;
+            fc = q;
          }
          
          ADVWORDFILE();
@@ -143,6 +142,8 @@ void readResep(char* filename, BinTree *r) {
             break;
          }
       }
+
+      *r = p;
 
       if (EOP) {
          break;
@@ -165,6 +166,7 @@ ListIDBahan listBahan(AddressTree targetMakanan) {
    while (fc != NULL) {
       ELMTLB(listID,i) = INFOTREE(fc);
       fc = NSBG(fc);
+      i++;
    } 
 
    return listID;
@@ -173,7 +175,24 @@ ListIDBahan listBahan(AddressTree targetMakanan) {
 int lengthListBahan (ListIDBahan listID) {
    // Memberi keluaran panjang listID
 
-   return sizeof(listID.bahan)/sizeof(int);
+   int i = 0;
+
+   while (ELMTLB(listID,i) != VAL_UNDEF) {
+      i++;
+   }
+
+   return i;
+}
+
+void printListBahan (ListIDBahan listID) {
+   // Mencetak list bahan
+
+   int i = 0;
+   while (listID.bahan[i] != VAL_UNDEF) {
+      printf("%d ", listID.bahan[i]);
+      i++;
+   } 
+   printf("\n");
 }
 
 void copyListBahan(ListIDBahan *listID1, ListIDBahan *listID2) {
@@ -215,7 +234,7 @@ AddressTree searchByID(TreeElType id, BinTree resep) {
       if (NSBG(resep) == NULL && fc == NULL && p == NULL) { 
          return NULL;
       }
-      
+
       return p;
    }
 }

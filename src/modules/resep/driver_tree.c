@@ -10,14 +10,11 @@ int main() {
     ListIDBahan lBahan;
     int i = 0;
 
-    // CreateListBahan(&lBahan);
+    p = NULL;
 
-    // CreateTree(VAL_UNDEF, NULL, NULL, &resep);
-    // // readResepFromFile(resep);
+    readResep("src/data/Recipe.txt", &resep);
 
-    readResep("tree.txt", &resep);
-
-    p = searchByID(1,resep);
+    p = searchByID(21,resep);
     lBahan = listBahan(p);
 
     printf("Daftar ID bahan: ");

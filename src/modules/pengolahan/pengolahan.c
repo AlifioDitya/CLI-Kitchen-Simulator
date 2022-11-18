@@ -46,7 +46,7 @@ ListStatik katalogByProses(ListStatik katalog, String proses, Peta p){
 }
 
 void displayKatalogProses (ListStatik katalogProses){
-    printf("List makanan yang bisa dibuat: ");
+    printf("List makanan yang bisa dibuat: \n");
     for(int i = 0; i<listLength(katalogProses); i++){
         printf("%d. ", (i+1));
         printString(FoodName(Elmt(katalogProses, i)));
@@ -114,9 +114,12 @@ void Boil(ListStatik katalog, String cmd, Peta map, Simulator *s, BinTree resep,
             progressTime(s, &pesanan, &currTime);
         }
         else{
-            printf("gagal membuat %s karena tidak memiliki bahan berikut : \n", FoodName(Elmt(Rebus, target-1)));
+            printf("gagal membuat ");
+            printString(FoodName(Elmt(Rebus, target-1)));
+            printf(" karena tidak memiliki bahan berikut : \n");
             printf("1. %s\n", FoodName(getFoodByID(INFOTREE(p), katalog)));
         }
+        printf("enter comand: ");
         scanf("%d", &target);
     }
 }
@@ -136,11 +139,8 @@ void chop(ListStatik katalog, String cmd, Peta map, Simulator *s, BinTree resep,
     printf("enter comand: ");
     scanf("%d", &target);
     while(target != 0){
-        printf("im here\n");
         p = searchByID(ID(Elmt(Potong,(target-1))), resep);
-        printf("%d\n", INFOTREE(p));
         p = FCHD(p); //hanya diperlukan satu bahan untuk dipotong, jadi bahan hanyalah firstchild di tree resep
-        printf("%d\n", INFOTREE(p));
         if(indexOfInventory(Inv(*s), getFoodByID(INFOTREE(p), katalog)) != IDX_UNDEF){
             deleteAtInventory(&Inv(*s), indexOfInventory(Inv(*s), getFoodByID(INFOTREE(p), katalog)), &val);
             insertInventory(&Inv(*s), Elmt(Potong, target-1));
@@ -149,9 +149,12 @@ void chop(ListStatik katalog, String cmd, Peta map, Simulator *s, BinTree resep,
             progressTime(s, &pesanan, &currTime);
         }
         else{
-            printf("gagal membuat %s karena tidak memiliki bahan berikut : \n", FoodName(Elmt(Potong, target-1)));
+            printf("gagal membuat ");
+            printString(FoodName(Elmt(Potong, target-1)));
+            printf(" karena tidak memiliki bahan berikut : \n");
             printf("1. %s\n", FoodName(getFoodByID(INFOTREE(p), katalog)));
         }
+        printf("enter comand: ");
         scanf("%d", &target);
     }
 }
@@ -175,7 +178,6 @@ void fry(ListStatik katalog, String cmd, Peta map, Simulator *s, BinTree resep, 
     while(target != 0){
         p = searchByID(ID(Elmt(Goreng,(target-1))), resep);
         bahan = listBahan(p);
-        printf("%d\n", lengthListBahan (bahan));
         if(isCookable(bahan, Inv(*s), katalog)){
             for(int i = 0; i<lengthListBahan(bahan); i++){
                 deleteAtInventory(&Inv(*s), indexOfInventory(Inv(*s), getFoodByID(ELMTLB(bahan,i), katalog)), &val);
@@ -188,7 +190,9 @@ void fry(ListStatik katalog, String cmd, Peta map, Simulator *s, BinTree resep, 
         else{
             CreateListStatik(&unHave);
             unHave = TidakDimiliki(Inv(*s), bahan, katalog);
-            printf("gagal membuat %s karena tidak memiliki bahan berikut : \n", FoodName(Elmt(Goreng, target-1)));
+            printf("gagal membuat ");
+            printString(FoodName(Elmt(Goreng, target-1)));
+            printf(" karena tidak memiliki bahan berikut : \n");
             for(int i = 0; i<listLength(unHave); i++){
                 printf("%d. ", (i+1));
                 printString(FoodName(Elmt(unHave,i)));
@@ -196,6 +200,7 @@ void fry(ListStatik katalog, String cmd, Peta map, Simulator *s, BinTree resep, 
             }
 
         }
+        printf("enter comand: ");
         scanf("%d", &target);
     }
 }
@@ -231,13 +236,16 @@ void mix(ListStatik katalog, String cmd, Peta map, Simulator *s, BinTree resep, 
             CreateListStatik(&unHave);
             unHave = TidakDimiliki(Inv(*s), bahan, katalog);
             // printf("%d\n", listLength(unHave));
-            printf("gagal membuat %s karena tidak memiliki bahan berikut : \n", FoodName(Elmt(Campur, target-1)));
+            printf("gagal membuat ");
+            printString(FoodName(Elmt(Campur, target-1)));
+            printf(" karena tidak memiliki bahan berikut : \n");
             for(int i = 0; i<listLength(unHave); i++){
                 printf("%d. ", (i+1));
                 printString(FoodName(Elmt(unHave,i)));
                 printf("\n");
             }
         }
+        printf("enter comand: ");
         scanf("%d", &target);
     }
 }
