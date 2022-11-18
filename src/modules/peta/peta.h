@@ -35,10 +35,6 @@ int getLastIdxCol(Peta p);
 boolean isIdxEff(Peta p, int i, int j);
 /* Mengirimkan true jika i, j adalah Index efektif bagi p */
 
-/* ********** Assignment Peta ********** */
-void copyPeta(Peta pIn, Peta *pOut);
-/* Melakukan assignment pOut <- pIn */
-
 /* ********** KELOMPOK BACA/TULIS ********** */
 void readPeta(char* filename, Peta *pOut);
 /* I.S. isIdxValid(nRow,nCol) */

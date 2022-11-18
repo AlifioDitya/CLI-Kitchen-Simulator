@@ -34,21 +34,6 @@ boolean isIdxEff(Peta p, int i, int j) {
     return(i >= 0 && j >= 0 && i < ROW_EFF(p) && j < COL_EFF(p));
 }
 
-/* ********** Assignment Peta ********** */
-void copyPeta(Peta pIn, Peta *pOut) {
-/* Melakukan assignment pOut <- pIn */
-    int i, j;
-    ROW_EFF(*pOut) = ROW_EFF(pIn);
-    COL_EFF(*pOut) = COL_EFF(pIn);
-    for (i=0; i<ROW_EFF(pIn); i++) {
-        for (j=0; j<COL_EFF(pIn); j++) {
-            ELMT(*pOut, i, j) = ELMT(pIn, i, j);
-        }
-    }
-}
-
-
-
 /* ********** KELOMPOK BACA/TULIS ********** */
 void readPeta(char* filename, Peta *pOut) {
 /* I.S. isIdxValid(nRow,nCol) */
