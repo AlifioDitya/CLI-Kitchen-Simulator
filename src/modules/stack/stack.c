@@ -36,7 +36,7 @@ boolean IsFull(Stack S) {
 }
 
 /* ************ Menambahkan sebuah elemen ke Stack ************ */
-void Push(Stack * S, Simulator Sim, PrioQueueMakanan P, TIME CT) {
+void Push(Stack * S, infotypeStack SS) {
     /* Menambahkan X sebagai elemen Stack S. */
     /* I.S. S mungkin kosong, tabel penampung elemen stack TIDAK penuh */
     /* F.S. X menjadi TOP yang baru,TOP bertambah 1 */
@@ -45,13 +45,13 @@ void Push(Stack * S, Simulator Sim, PrioQueueMakanan P, TIME CT) {
 
     // ALGORITMA
     Top(*S)++;
-    InfoTop(*S).currentTime = CT;
-    InfoTop(*S).pesanan = P;
-    InfoTop(*S).simul = Sim;
+    InfoTop(*S).currentTime = SS.currentTime;
+    InfoTop(*S).pesanan = SS.pesanan;
+    InfoTop(*S).simul = SS.simul;
 }
 
 /* ************ Menghapus sebuah elemen Stack ************ */
-void Pop(Stack * S, Simulator *Sim, PrioQueueMakanan *P, TIME *CT) {
+void Pop(Stack * S, infotypeStack *SS) {
     /* Menghapus X dari Stack S. */
     /* I.S. S  tidak mungkin kosong */
     /* F.S. X adalah nilai elemen TOP yang lama, TOP berkurang 1 */
@@ -59,8 +59,8 @@ void Pop(Stack * S, Simulator *Sim, PrioQueueMakanan *P, TIME *CT) {
     // KAMUS
 
     // ALGORITMA
-    *Sim = InfoTop(*S).simul;
-    *P = InfoTop(*S).pesanan;
-    *CT = InfoTop(*S).currentTime;
+    (*SS).simul = InfoTop(*S).simul;
+    (*SS).pesanan = InfoTop(*S).pesanan;
+    (*SS).currentTime = InfoTop(*S).currentTime;
     Top(*S)--;
 }
