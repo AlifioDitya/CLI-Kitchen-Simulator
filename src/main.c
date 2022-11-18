@@ -3,6 +3,8 @@
 #include "./modules/menu/menu.h"
 #include "./modules/resep/tree.h"
 #include "./modules/pengolahan/pengolahan.h"
+#include "./modules/menu/command.h"
+#include "./modules/menu/timemechanism.h"
 
 int main() {
     boolean running = true;
@@ -48,12 +50,6 @@ int main() {
     }
 
     while (running) {
-        printf("Pesanan yang ada :\n");
-        PrintPrioQueueMakanan(pesanan);
-        printf("\n");
-        printf("Inventory saat ini :\n");
-        displayInventory(Inv(s));
-        printf("\n");
         printf("BNMO di posisi: ");
         TulisPoint(Loc(s));
         printf("Waktu: ");
@@ -155,7 +151,11 @@ int main() {
 
             wait(&s, &pesanan, &currTime, jam, menit);
         } else if (isCatalog(cmd)) {
-            printListMakanan(Catalog);
+            displayCatalog(Catalog, p);
+        } else if (isDisplayInventory(cmd)) {
+            displayInventory(Inv(s));
+        } else if (isDisplayDelivery(cmd)) {
+            PrintPrioQueueMakanan(pesanan);
         } else {
             printf("Command tidak valid.\n");
         }
