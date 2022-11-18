@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "menu.h"
 #include "../resep/tree.h"
+#include "timemechanism.h"
 
 void Splash(String name) {
     printf("  ;)( ;\n");

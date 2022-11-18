@@ -6,8 +6,7 @@ int main() {
     Simulator s;
     String name;
 
-    startString();
-    setName(name, &s);
+    createString("Username", 8, &name);
 
     char* filename = "src/data/map.txt";
     readPeta(filename, &p);
@@ -20,41 +19,41 @@ int main() {
 
     printf("User location (x,y): (%d,%d)\n\n", Absis(Loc(s)), Ordinat(Loc(s)));
 
-    // printf("Move east:\n");
-    // moveEast(&s, &p);
-    // displayPeta(p);
-    // printf("\n");
-    // printf("User location (x,y): (%d,%d)\n\n", Absis(Loc(s)), Ordinat(Loc(s)));
+    printf("Move east:\n");
+    moveEast(&s, &p);
+    displayPeta(p);
+    printf("\n");
+    printf("User location (x,y): (%d,%d)\n\n", Absis(Loc(s)), Ordinat(Loc(s)));
 
-    // printf("Move south:\n");
-    // moveSouth(&s, &p);
-    // displayPeta(p);
-    // printf("\n");
-    // printf("User location (x,y): (%d,%d)\n\n", Absis(Loc(s)), Ordinat(Loc(s)));
+    printf("Move south:\n");
+    moveSouth(&s, &p);
+    displayPeta(p);
+    printf("\n");
+    printf("User location (x,y): (%d,%d)\n\n", Absis(Loc(s)), Ordinat(Loc(s)));
 
-    // printf("Move south:\n");
-    // moveSouth(&s, &p);
-    // displayPeta(p);
-    // printf("\n");
-    // printf("User location (x,y): (%d,%d)\n\n", Absis(Loc(s)), Ordinat(Loc(s)));
+    printf("Move south:\n");
+    moveSouth(&s, &p);
+    displayPeta(p);
+    printf("\n");
+    printf("User location (x,y): (%d,%d)\n\n", Absis(Loc(s)), Ordinat(Loc(s)));
 
-    // printf("Move west:\n");
-    // moveWest(&s, &p);
-    // displayPeta(p);
-    // printf("\n");
-    // printf("User location (x,y): (%d,%d)\n\n", Absis(Loc(s)), Ordinat(Loc(s)));
+    printf("Move west:\n");
+    moveWest(&s, &p);
+    displayPeta(p);
+    printf("\n");
+    printf("User location (x,y): (%d,%d)\n\n", Absis(Loc(s)), Ordinat(Loc(s)));
 
-    // printf("Move north:\n");
-    // moveNorth(&s, &p);
-    // displayPeta(p);
-    // printf("\n");
-    // printf("User location (x,y): (%d,%d)\n\n", Absis(Loc(s)), Ordinat(Loc(s)));
+    printf("Move north:\n");
+    moveNorth(&s, &p);
+    displayPeta(p);
+    printf("\n");
+    printf("User location (x,y): (%d,%d)\n\n", Absis(Loc(s)), Ordinat(Loc(s)));
 
-    // printf("Move west:\n");
-    // moveWest(&s, &p);
-    // displayPeta(p);
-    // printf("\n");
-    // printf("User location (x,y): (%d,%d)\n\n", Absis(Loc(s)), Ordinat(Loc(s)));
+    printf("Move west:\n");
+    moveWest(&s, &p);
+    displayPeta(p);
+    printf("\n");
+    printf("User location (x,y): (%d,%d)\n\n", Absis(Loc(s)), Ordinat(Loc(s)));
 
     return 0;
 }
