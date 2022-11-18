@@ -151,7 +151,12 @@ void COPYWORDFILE() {
             currentWord.TabWord[i] = currentChar;
         }
 
-        ADVFILE();
+        if (EOP) {
+            break;
+        } else {
+            ADVFILE();
+        }
+
         i++;
     }
 

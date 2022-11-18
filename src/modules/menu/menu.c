@@ -36,9 +36,6 @@ void Initiate(Simulator *s, Peta *p, ListStatik *catalog, BinTree *resep) {
     readPeta(petaFileName, p);
     readResep(resepFileName, resep);
     
-    printf("%d\n", INFOTREE(*resep));
-    printf("\n");
-
     printf("Enter your name: ");
     startString();
     assignString(currentString, &name);

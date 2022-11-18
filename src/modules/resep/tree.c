@@ -76,19 +76,16 @@ void readResep(char* filename, BinTree *r) {
    for (i=0; i<currentWord.Length; i++) {  // Baca jumlah resep
       n = n*10 + ((int) currentWord.TabWord[i]-'0');
    }
-   printf("n = %d\n", n);
    
    ADVWORDFILE();
    *r = NULL;
 
    for (i=0; i<n; i++) {   // Pengulangan sebanyak jumlah resep
       
-      printf("\nloop %d\n", i);
       id = 0;
       for (j=0; j<currentWord.Length; j++) {
          id = id*10 + ((int) currentWord.TabWord[j]-'0');
       }
-      printf("ID = %d\n", id);
 
       p = searchByID(id,*r); 
       if (p == NULL) { 
@@ -97,23 +94,19 @@ void readResep(char* filename, BinTree *r) {
 
       *r = p;
 
-      printf("INFOTREE(p) = %d\n", INFOTREE(p));
-
       ADVWORDFILE();
 
       nChild = 0;
       for (k=0; k<currentWord.Length; k++) {    // Baca jumlah bahan yang diperlukan untuk suatu resep
          nChild = nChild*10 + ((int) currentWord.TabWord[k]-48);
       }
-      printf("nChild = %d\n", nChild);
+
       ADVWORDFILE();
 
       idChild = 0;   
       for (k=0; k<currentWord.Length; k++) {    // Baca bahan pertama untuk resep 1
          idChild = idChild*10 + ((int) currentWord.TabWord[k]-48);
       } 
-      printf("idChild-0 = %d\n", idChild);
-
 
       q = searchByID(idChild,*r);
       if (q == NULL) {  // Cek apakah sudah pernah dibuat node atau belum
@@ -133,8 +126,7 @@ void readResep(char* filename, BinTree *r) {
          for (k=0; k<currentWord.Length; k++) {
             idChild = idChild*10 + ((int) currentWord.TabWord[k]-48);
          }
-         
-         printf("idChild-%d = %d\n", j, idChild);
+
          q = searchByID(idChild,*r);
          
          if (q == NULL) {  // Cek apakah sudah pernah dibuat node atau belum
@@ -147,12 +139,17 @@ void readResep(char* filename, BinTree *r) {
          }
          
          ADVWORDFILE();
+         if (EOP) {
+            break;
+         }
+      }
+
+      if (EOP) {
+         break;
       }
    }
-
+   
    endWord = true;
-   printf("%c.\n", currentChar);
-
 }
 
 
@@ -206,12 +203,6 @@ AddressTree searchByID(TreeElType id, BinTree resep) {
       if (root == id) {
          p = resep;
       } 
-      // udah dikasi titik masih gamau
-      // coba aja di akhir dijadiin endword
-      // atau kalo mau ngecek, print currentChar di akhir nya
-
-      // Apa perlu endword?
-      // Gamau ngeprint setelah loop
 
       if (fc != NULL && p == NULL) {
          return searchByID(id, fc);
@@ -238,40 +229,6 @@ void printListResep(BinTree resep, Peta p, ListStatik l) {   // Masih perlu revi
    Makanan target, bahan;
 
    if (FCHD(FCHD(resep)) != NULL && resep != NULL) {
-      target = getFoodByID(INFOTREE(resep), l);
-      int nBahan = lengthListBahan(listBahan(resep));
-
-      printf("%d. %s\n", idx, target.name);
-      showProcess(target, p);
-      printf(" - ");
-
-      for (i; i<nBahan; i++) {
-         bahan = getFoodByID(listBahan(resep).bahan[i], l);
-         printf("%s", bahan.name);
-         if (i<nBahan-1) {
-            printf(" - ");
-         } else {
-            printf("\n");
-         };
-      }
-
-      idx++;
-   }
-
-   fc = FCHD(resep);
-   printListResep(fc, p, l);
-   printListResep(NSBG(resep), p, l);
-}
-
-void printKatalog(BinTree resep, Peta p, ListStatik l) {   // Belum tahu nama proses buy
-// Mencetak Katalog
-
-   int i = 0;
-   int idx = 1;
-   AddressTree fc;
-   Makanan target, bahan;
-
-   if (FCHD(resep) != NULL && resep != NULL) {
       target = getFoodByID(INFOTREE(resep), l);
       int nBahan = lengthListBahan(listBahan(resep));
 
