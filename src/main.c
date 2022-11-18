@@ -2,6 +2,7 @@
 #include "./modules/boolean.h"
 #include "./modules/menu/menu.h"
 #include "./modules/menu/command.h"
+#include "./modules/menu/timemechanism.h"
 
 int main() {
     boolean running = true;
@@ -60,7 +61,7 @@ int main() {
             running = false;
             printf("Goodbye!");
         } else if (isBuy(cmd)) {
-            // Buy(&s, &currTime, &cmd, &pesanan, p, canBuy);
+            Buy(&s, &currTime, &cmd, &pesanan, p, canBuy);
         } else if (isFry(cmd)) {
             printf("Frying here!\n");
             progressTime(&s, &pesanan, &currTime);
