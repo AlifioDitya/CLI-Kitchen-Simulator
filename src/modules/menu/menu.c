@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "menu.h"
 #include "../resep/tree.h"
+#include "command.h"
 #include "timemechanism.h"
 
 void Splash(String name) {
@@ -45,24 +46,6 @@ void Initiate(Simulator *s, Peta *p, ListStatik *catalog, BinTree *resep) {
     CreateListStatik(catalog);
     readMakanan(makananFileName, *p, catalog);
     printf("\n");
-}
-
-void inputCommand(String *cmd) {
-    printf("Enter command : ");
-    startString();
-    assignString(currentString, cmd);
-    printf("\n");
-}
-
-int parseToInteger(String s) {
-    int i;
-    int total = 0;
-    if (isCommandInteger(s)) {
-        for (i=0; i<s.Length; i++) {
-            total = total*10 + (s.str[i]-48);
-        }
-    }
-    return total;
 }
 
 void printBuyMakanan(ListStatik canBuy) {
