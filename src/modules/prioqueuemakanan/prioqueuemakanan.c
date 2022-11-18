@@ -130,7 +130,7 @@ void PrintPrioQueueMakanan (PrioQueueMakanan Q) {
     /* F.S. Q tercetak ke layar */
 
     // KAMUS
-    int i;
+    int i, numList;
     boolean cont;
     infotype currMakanan;
 
@@ -138,20 +138,31 @@ void PrintPrioQueueMakanan (PrioQueueMakanan Q) {
     if (!IsEmptyQueue(Q)) {
         i = Head(Q);
         cont = true;
+        numList = 1;
 
+        printf("List Makanan yang Sedang Diantar:\n");
+        printf("(Nama makanan - Waktu sisa delivery)\n");
         while (cont)
         {   
             currMakanan = (Q).T[i];
-            printf("ID : %d\n", ID(currMakanan));
-            printf("Food Name : ");
+            printf("%d. ", numList);
             printString(FoodName(currMakanan));
-            printf("\n");
-            printf("Expiry date : ");
-            TulisTIME(Expire(currMakanan));
-            printf("Action location : ");
-            TulisPoint(ActionLoc(currMakanan));
-            printf("Delivery time :");
-            TulisTIME(DeliveryTime(currMakanan));
+            printf(" - ");
+            if (Day(DeliveryTime(currMakanan)) != 0) {
+                printf("%d Hari", Day(DeliveryTime(currMakanan)));
+                if (Hour(DeliveryTime(currMakanan)) != 0 && Minute(DeliveryTime(currMakanan)) != 0) {
+                    printf(", ");
+                }
+            }
+            if (Hour(DeliveryTime(currMakanan)) != 0) {
+                printf("%d Jam", Hour(DeliveryTime(currMakanan)));
+                if (Minute(DeliveryTime(currMakanan)) != 0) {
+                    printf(", ");
+                }
+            }
+            if (Minute(DeliveryTime(currMakanan)) != 0) {
+                printf("%d Menit", Minute(DeliveryTime(currMakanan)));
+            }
             printf("\n");
 
             if (i == Tail(Q)) {
@@ -159,7 +170,10 @@ void PrintPrioQueueMakanan (PrioQueueMakanan Q) {
             }
 
             i = (i + 1) % MaxEl(Q);
+            numList++;
         }
+    } else {
+        printf("Delivery list kosong.\n");
     }
 }
 
