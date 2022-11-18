@@ -136,8 +136,11 @@ void chop(ListStatik katalog, String cmd, Peta map, Simulator *s, BinTree resep,
     printf("enter comand: ");
     scanf("%d", &target);
     while(target != 0){
+        printf("im here\n");
         p = searchByID(ID(Elmt(Potong,(target-1))), resep);
+        printf("%d\n", INFOTREE(p));
         p = FCHD(p); //hanya diperlukan satu bahan untuk dipotong, jadi bahan hanyalah firstchild di tree resep
+        printf("%d\n", INFOTREE(p));
         if(indexOfInventory(Inv(*s), getFoodByID(INFOTREE(p), katalog)) != IDX_UNDEF){
             deleteAtInventory(&Inv(*s), indexOfInventory(Inv(*s), getFoodByID(INFOTREE(p), katalog)), &val);
             insertInventory(&Inv(*s), Elmt(Potong, target-1));
@@ -172,6 +175,7 @@ void fry(ListStatik katalog, String cmd, Peta map, Simulator *s, BinTree resep, 
     while(target != 0){
         p = searchByID(ID(Elmt(Goreng,(target-1))), resep);
         bahan = listBahan(p);
+        printf("%d\n", lengthListBahan (bahan));
         if(isCookable(bahan, Inv(*s), katalog)){
             for(int i = 0; i<lengthListBahan(bahan); i++){
                 deleteAtInventory(&Inv(*s), indexOfInventory(Inv(*s), getFoodByID(ELMTLB(bahan,i), katalog)), &val);
@@ -226,6 +230,7 @@ void mix(ListStatik katalog, String cmd, Peta map, Simulator *s, BinTree resep, 
         else{
             CreateListStatik(&unHave);
             unHave = TidakDimiliki(Inv(*s), bahan, katalog);
+            // printf("%d\n", listLength(unHave));
             printf("gagal membuat %s karena tidak memiliki bahan berikut : \n", FoodName(Elmt(Campur, target-1)));
             for(int i = 0; i<listLength(unHave); i++){
                 printf("%d. ", (i+1));

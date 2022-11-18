@@ -2,7 +2,7 @@
 #include "./modules/boolean.h"
 #include "./modules/menu/menu.h"
 #include "./modules/resep/tree.h"
-// #include "./modules/pengolahan/pengolahan.h"
+#include "./modules/pengolahan/pengolahan.h"
 
 int main() {
     boolean running = true;
@@ -67,19 +67,43 @@ int main() {
             running = false;
             printf("Goodbye!");
         } else if (isBuy(cmd)) {
-            // Buy(&s, &currTime, &cmd, &pesanan, p, canBuy);
+            Buy(&s, &currTime, &cmd, &pesanan, p, canBuy);
         } else if (isFry(cmd)) {
-            printf("Frying here!\n");
-            progressTime(&s, &pesanan, &currTime);
+            if(isObjectInRadius(s, p, 'F')){
+                fry(Catalog, cmd, p, &s, resep, currTime, pesanan);
+            }
+            else{
+                printf("Kamu tidak di lokasi F\n");
+            }
+            // printf("Frying here!\n");
+            // progressTime(&s, &pesanan, &currTime);
         } else if (isChop(cmd)) {
-            printf("Chopping here!\n");
-            progressTime(&s, &pesanan, &currTime);
+            if(isObjectInRadius(s, p, 'C')){
+                chop(Catalog, cmd, p, &s, resep, currTime, pesanan);
+            }
+            else{
+                printf("Kamu tidak di lokasi C\n");
+            }
+            // printf("Chopping here!\n");
+            // progressTime(&s, &pesanan, &currTime);
         } else if (isBoil(cmd)) {
-            printf("Boiling here!\n");
-            progressTime(&s, &pesanan, &currTime);
+            if(isObjectInRadius(s, p, 'B')){
+                Boil(Catalog, cmd, p, &s, resep, currTime, pesanan);
+            }
+            else{
+                printf("Kamu tidak di lokasi B\n");
+            }
+            // printf("Boiling here!\n");
+            // progressTime(&s, &pesanan, &currTime);
         } else if (isMix(cmd)) {
-            printf("Mixing here!\n");
-            progressTime(&s, &pesanan, &currTime);
+            if(isObjectInRadius(s, p, 'M')){
+                mix(Catalog, cmd, p, &s, resep, currTime, pesanan);
+            }
+            else{
+                printf("Kamu tidak di lokasi M\n");
+            }
+            // printf("Mixing here!\n");
+            // progressTime(&s, &pesanan, &currTime);
         } else if (isMoveEast(cmd)) {
             if (canMoveEast(s, p)) {
                 moveEast(&s, &p);
