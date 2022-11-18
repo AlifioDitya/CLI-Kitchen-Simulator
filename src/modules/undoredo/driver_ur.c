@@ -1,7 +1,30 @@
 // How to Compile :
-// gcc driver_ur.c ur.c ../inventory/inventory.c ../time/time.c ../point/point.c ../string/string.c ../word-machine/charmachine.c ../word-machine/wordmachine.c ../prioqueuemakanan/prioqueuemakanan.c ../stack/stack.c ../simulator/simulator.c -o driver_ur
+// cd to undoredo folder
+// gcc driver_ur.c ur.c ../inventory/inventory.c ../time/time.c ../point/point.c ../string/string.c ../word-machine/charmachine.c ../word-machine/wordmachine.c ../prioqueuemakanan/prioqueuemakanan.c ../stack/stack.c ../simulator/simulator.c ../makanan/makanan.c -o driver_ur
 
 #include "ur.h"
+
+// Ini ide cara implement nya
+
+void driverUndo(infotypeStack *New, infotypeStack Old, Stack *Undo, Stack *Redo) {
+    Push(Redo, Old);
+    Pop(Undo, New);
+
+    printf("\n");
+    outputNotification(Old.simul.inv, (*New).simul.inv, Old.pesanan, (*New).pesanan, true);
+    printf("\n");
+}
+
+void driverRedo(infotypeStack *New, infotypeStack Old, Stack *Undo, Stack *Redo) {
+    Push(Undo, Old);
+    Pop(Push, New);
+
+    printf("\n");
+    outputNotification(Old.simul.inv, (*New).simul.inv, Old.pesanan, (*New).pesanan, false);
+    printf("\n");
+}
+
+// Setelah itu LoadSave dari New
 
 int main() {
     // KAMUS
