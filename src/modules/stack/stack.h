@@ -19,7 +19,7 @@ typedef struct {
     PrioQueueMakanan pesanan;
     TIME currentTime;
 } infotypeStack;
-;
+
 typedef int address;   /* indeks tabel */
 
 /* Contoh deklarasi variabel bertype stack dengan ciri TOP : */
