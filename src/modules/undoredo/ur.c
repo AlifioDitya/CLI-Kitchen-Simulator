@@ -53,7 +53,7 @@ infotypeStack CreateSave(Simulator S, PrioQueueMakanan PQ, TIME CT) {
             p = NEXT(p);
         }
 
-        Enqueue(&SS.simul.inv, INFO(p));
+        insertInventory(&SS.simul.inv, INFO(p));
     }
 
     CreatePoint(&SS.simul.loc, S.loc.X, S.loc.Y);
@@ -67,12 +67,15 @@ void outputNotification(Inventory OldInv, Inventory NewInv, PrioQueueMakanan Old
     // Mengeluarkan Notifikasi setelah Undo/Redo
 
     // KAMUS
-    int i, j, idxBool;
+    int i, j, idxBool, idxNotif;
     boolean found, cont;
     boolean doneInv[LengthInventory(OldInv)], donePQ[NBElmtQueue(OldPQ)];
     Address p1, p2;
 
     // ALGORITMA
+    printf("Notifikasi:\n");
+    idxNotif = 1;
+
     // Inisiasi Array Boolean
     for (i = 0; i < LengthInventory(OldInv); i++) {
         doneInv[i] = false;
@@ -94,11 +97,11 @@ void outputNotification(Inventory OldInv, Inventory NewInv, PrioQueueMakanan Old
         // Mencari Makanan di Old Inventory yang Ekivalen dengan Makanan yang berada di New Inventory
         found = false;
         idxBool = 0;
-        for (j = 0; j < LengthInventory(NewInv); j++) {
+        for (j = 0; j < LengthInventory(OldInv); j++) {
             if (j == 0) {
-                p2 = FIRST(NewInv);
+                p2 = FIRST(OldInv);
             } else {
-                p2 = NEXT(NewInv);
+                p2 = NEXT(OldInv);
             }
 
             if (isStringEqual(INFO(p1).name, INFO(p2).name)) {
@@ -116,7 +119,10 @@ void outputNotification(Inventory OldInv, Inventory NewInv, PrioQueueMakanan Old
         }
 
         if (!found) {
-            // Output Makanan Dimasukkan ke Dalam Inventory
+            printf("%d. ", idxNotif);
+            idxNotif++;
+            printString(INFO(p1).name);
+            printf(" telah dimasukkan\n");
         }
     }
 
@@ -128,11 +134,12 @@ void outputNotification(Inventory OldInv, Inventory NewInv, PrioQueueMakanan Old
         }
 
         if (!doneInv[i]) {
-            // Output Makanan Dihapus dari Inventory
+            printf("%d. ", idxNotif);
+            idxNotif++;
+            printString(INFO(p1).name);
+            printf(" telah dikeluarkan\n");
         }
     }
-
-    // Mengecek Queue Pesanan yang Baru dan Hilang
 }
 
 void LoadSave(infotypeStack Saved, Simulator *S, PrioQueueMakanan *PQ, TIME *CT) {
@@ -175,7 +182,7 @@ void LoadSave(infotypeStack Saved, Simulator *S, PrioQueueMakanan *PQ, TIME *CT)
             p = NEXT(p);
         }
 
-        Enqueue(&((*S).inv), INFO(p));
+        insertInventory(&((*S).inv), INFO(p));
     }
 
     CreatePoint(&((*S).loc), Saved.simul.loc.X, Saved.simul.loc.Y);
