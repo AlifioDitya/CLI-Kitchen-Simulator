@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include "./modules/boolean.h"
 #include "./modules/menu/menu.h"
+#include "./modules/resep/tree.h"
+#include "./modules/pengolahan/pengolahan.h"
 #include "./modules/menu/command.h"
 #include "./modules/menu/timemechanism.h"
 
@@ -8,6 +10,7 @@ int main() {
     boolean running = true;
     boolean valid = false;
     String cmd, mode;
+    BinTree resep;
     Peta p;
     Simulator s;
     TIME currTime;
@@ -16,7 +19,7 @@ int main() {
 
     // ALGORITMA
     running = true;
-    Initiate(&s, &p, &Catalog);
+    Initiate(&s, &p, &Catalog, &resep);
     CreateTime(&currTime, 0, 0, 0);
     createString("BUY", 3, &mode);
     createSpecificCatalog(&canBuy, Catalog, p, mode);
@@ -62,17 +65,33 @@ int main() {
         } else if (isBuy(cmd)) {
             Buy(&s, &currTime, &cmd, &pesanan, p, canBuy);
         } else if (isFry(cmd)) {
-            printf("Frying here!\n");
-            progressTime(&s, &pesanan, &currTime);
+            if(isObjectInRadius(s, p, 'F')){
+                fry(Catalog, cmd, p, &s, resep, currTime, pesanan);
+            }
+            else{
+                printf("BNMO tidak berada di area F!\n");
+            }
         } else if (isChop(cmd)) {
-            printf("Chopping here!\n");
-            progressTime(&s, &pesanan, &currTime);
+            if(isObjectInRadius(s, p, 'C')) {
+                chop(Catalog, cmd, p, &s, resep, currTime, pesanan);
+            }
+            else{
+                printf("BNMO tidak berada di area C!\n");
+            }
         } else if (isBoil(cmd)) {
-            printf("Boiling here!\n");
-            progressTime(&s, &pesanan, &currTime);
+            if(isObjectInRadius(s, p, 'B')){
+                Boil(Catalog, cmd, p, &s, resep, currTime, pesanan);
+            }
+            else{
+                printf("BNMO tidak berada di area B!\n");
+            }
         } else if (isMix(cmd)) {
-            printf("Mixing here!\n");
-            progressTime(&s, &pesanan, &currTime);
+            if(isObjectInRadius(s, p, 'M')){
+                mix(Catalog, cmd, p, &s, resep, currTime, pesanan);
+            }
+            else{
+                printf("BNMO tidak berada di area M!\n");
+            }
         } else if (isMoveEast(cmd)) {
             if (canMoveEast(s, p)) {
                 moveEast(&s, &p);

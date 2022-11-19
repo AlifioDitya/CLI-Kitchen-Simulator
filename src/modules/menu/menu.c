@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include "menu.h"
+#include "../resep/tree.h"
+#include "command.h"
 #include "timemechanism.h"
 
 void Splash(String name) {
@@ -14,14 +16,16 @@ void Splash(String name) {
     printf("!\n");
 }
 
-void Initiate(Simulator *s, Peta *p, ListStatik *catalog) {
+void Initiate(Simulator *s, Peta *p, ListStatik *catalog, BinTree *resep) {
     char* petaFileName = "src/data/map.txt";
     char* makananFileName = "src/data/makanan.txt";
+    char* resepFileName = "src/data/Recipe.txt";
+    
     String name;
-
+    
     readPeta(petaFileName, p);
-    printf("\n");
-
+    readResep(resepFileName, resep);
+    
     printf("Enter your name: ");
     startString();
     assignString(currentString, &name);
@@ -42,24 +46,6 @@ void Initiate(Simulator *s, Peta *p, ListStatik *catalog) {
     CreateListStatik(catalog);
     readMakanan(makananFileName, *p, catalog);
     printf("\n");
-}
-
-void inputCommand(String *cmd) {
-    printf("Enter command : ");
-    startString();
-    assignString(currentString, cmd);
-    printf("\n");
-}
-
-int parseToInteger(String s) {
-    int i;
-    int total = 0;
-    if (isCommandInteger(s)) {
-        for (i=0; i<s.Length; i++) {
-            total = total*10 + (s.str[i]-48);
-        }
-    }
-    return total;
 }
 
 void printBuyMakanan(ListStatik canBuy) {

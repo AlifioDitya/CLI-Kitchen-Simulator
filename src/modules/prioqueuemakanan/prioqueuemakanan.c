@@ -180,11 +180,10 @@ void PrintPrioQueueMakanan (PrioQueueMakanan Q) {
 void DecDeliveryTimeQueue(PrioQueueMakanan *PQ) {
     int i;
     i = Head(*PQ);
-    
     if (!IsEmptyQueue(*PQ)) {
         DecMinute(&DeliveryTime(ElmtQueue(*PQ, i)));
         while (i != Tail(*PQ)) {
-            i = (i+1) % (NBElmtQueue(*PQ));
+            i = (i+1) % (MaxEl(*PQ));
             DecMinute(&DeliveryTime(ElmtQueue(*PQ, i)));
         }
     }
@@ -192,7 +191,7 @@ void DecDeliveryTimeQueue(PrioQueueMakanan *PQ) {
 
 void DequeueZeroToInventory(PrioQueueMakanan *PQ, Simulator *s) {
     infotype val;
-    while (Day(DeliveryTime(InfoHead(*PQ))) == 0 && Hour(DeliveryTime(InfoHead(*PQ))) == 0 && Minute(DeliveryTime(InfoHead(*PQ))) == 0) {
+    while (Day(DeliveryTime(InfoHead(*PQ))) <= 0 && Hour(DeliveryTime(InfoHead(*PQ))) <= 0 && Minute(DeliveryTime(InfoHead(*PQ))) <= 0) {
         Dequeue(PQ, &val);
         insertInventory(&Inv(*s), val);
     }

@@ -8,15 +8,12 @@
 #include "../simulator/simulator.h"
 #include "../peta/peta.h"
 #include "../liststatik/liststatik.h"
+#include "../pengolahan/pengolahan.h"
 #include "../prioqueuemakanan/prioqueuemakanan.h"
 
 void Splash(String name);
 
-void Initiate(Simulator *s, Peta *p, ListStatik *catalog);
-
-void inputCommand(String *cmd);
-
-int parseToInteger(String s);
+void Initiate(Simulator *s, Peta *p, ListStatik *catalog, BinTree *resep);
 
 void printBuyMakanan(ListStatik canBuy);
 
