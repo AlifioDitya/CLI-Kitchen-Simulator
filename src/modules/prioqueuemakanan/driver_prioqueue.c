@@ -3,12 +3,12 @@
 
 int main () {
     Simulator s;  
-    PrioQueueMakanan q ;
-    Makanan m , m1 , m2 ; 
+    PrioQueueMakanan q;
+    Makanan m , m1 , m2; 
     String c , c1 ,c2 ,name;
     TIME delivery,delivery1,delivery2;
-    TIME Expired,expired1,expired2 ;
-    Point loc , loc1 ,loc2 ; 
+    TIME Expired,expired1,expired2;
+    Point loc , loc1 ,loc2; 
     
     MakeEmptyQueue(&q,3) ; 
     printf("Empty queue succesfully made?\n");
@@ -41,34 +41,29 @@ int main () {
     printf("\n");
     
     
-    printf("Enqueue first food:\n");
+    printf("Enqueue second food:\n");
     Enqueue(&q,m1); 
-    int l = NBElmtQueue(q) ;
-    printf("%d\n" , l) ;   
-    Enqueue(&q,m2); 
-    int l2 = NBElmtQueue(q) ; 
-    printf("%d\n" , l2) ; 
-    if(IsFullQueue(q)){
-        printf("true\n") ; 
-    }
-    else { 
-        printf("false\n"); 
-    }
-    createString("sim",3,&name) ;
-    CreateSimulation(&s,name,0,0) ; 
+    PrintPrioQueueMakanan(q);
+    printf("\n");
 
-    while(NBElmtQueue(q)!=1) { 
+    printf("Enqueue third food:\n");
+    Enqueue(&q,m2); 
+    PrintPrioQueueMakanan(q);
+    printf("\n");
+
+    printf("Is Queue full? ");
+    IsFullQueue(q) ? printf("True\n") : printf("False\n");
+
+    createString("Name",4, &name);
+    CreateSimulation(&s,name,0,0); 
+
+    while(!IsEmptyQueue(q)!=1) { 
         DecDeliveryTimeQueue(&q) ; 
         DequeueZeroToInventory(&q,&s); 
     }
-    DealokasiQueue(&q);
-    PrintPrioQueueMakanan(q); 
-    // while(!IsEmptyQueue(q) ) { 
-    //     DecDeliveryTimeQueue(&q) ; 
-    //     DequeueZeroToInventory(&q,&s) ;
-    // }
-    
-    // PrintPrioQueueMakanan(q); 
+
+    PrintPrioQueueMakanan(q);
+    displayInventory(Inv(s));
 
     return 0; 
 }
