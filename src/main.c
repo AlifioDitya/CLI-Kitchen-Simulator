@@ -104,6 +104,10 @@ int main() {
             }
             // printf("Mixing here!\n");
             // progressTime(&s, &pesanan, &currTime);
+        } else if (isCookBook(cmd)) {
+            printListResep(resep, p, Catalog);
+            // printf("Mixing here!\n");
+            // progressTime(&s, &pesanan, &currTime);
         } else if (isMoveEast(cmd)) {
             if (canMoveEast(s, p)) {
                 moveEast(&s, &p);

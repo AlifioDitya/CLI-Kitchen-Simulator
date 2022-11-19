@@ -172,3 +172,8 @@ boolean isMix(String s) {
     createString("MIX", 3, &temp);
     return (isStringEqual(s, temp));
 }
+boolean isCookBook(String s) {
+    String temp;
+    createString("COOKBOOK", 8, &temp);
+    return (isStringEqual(s, temp));
+}

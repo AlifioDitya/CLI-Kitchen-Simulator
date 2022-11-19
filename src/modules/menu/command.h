@@ -36,4 +36,6 @@ boolean isBoil(String s);
 
 boolean isMix(String s);
 
+boolean isCookBook(String s);
+
 #endif

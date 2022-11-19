@@ -251,13 +251,15 @@ void printListResep(BinTree resep, Peta p, ListStatik l) {   // Masih perlu revi
       target = getFoodByID(INFOTREE(resep), l);
       int nBahan = lengthListBahan(listBahan(resep));
 
-      printf("%d. %s\n", idx, target.name);
+      printf("%d. ", idx);
+      printString(target.name);
+      printf("\n");
       showProcess(target, p);
       printf(" - ");
 
       for (i; i<nBahan; i++) {
          bahan = getFoodByID(listBahan(resep).bahan[i], l);
-         printf("%s", bahan.name);
+         printString(target.name);
          if (i<nBahan-1) {
             printf(" - ");
          } else {
@@ -268,9 +270,11 @@ void printListResep(BinTree resep, Peta p, ListStatik l) {   // Masih perlu revi
       idx++;
    }
 
-   fc = FCHD(resep);
-   printListResep(fc, p, l);
-   printListResep(NSBG(resep), p, l);
+   if (resep != NULL) {
+      fc = FCHD(resep);
+      printListResep(fc, p, l);
+      printListResep(NSBG(resep), p, l);
+   }
 }
 
 void showProcess (Makanan target, Peta p) {
