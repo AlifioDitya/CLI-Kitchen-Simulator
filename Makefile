@@ -34,6 +34,8 @@ prioqueue: $(addsuffix .exe, $(basename $(patsubst "%", %,$(shell forfiles /s /m
 
 main: $(addsuffix .exe, $(basename $(patsubst "%", %,$(shell forfiles /s /m *main.c /c "cmd /c echo @relpath"))))
 
+pengolahan: $(addsuffix .exe, $(basename $(patsubst "%", %,$(shell forfiles /s /m *driver_pengolahan.c /c "cmd /c echo @relpath"))))
+
 $(addsuffix .exe, $(basename $(TARGETS))): $(SRCS)
 	$(CC) -o $@ $(SRCS) $(addsuffix .c, $(basename $@))
 
