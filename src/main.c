@@ -19,6 +19,7 @@ int main() {
     ListStatik Catalog, canBuy, canFry, canChop, canBoil, canMix;
     PrioQueueMakanan pesanan;
     Stack Undo, Redo;
+    ElType tempPeta;
     infotypeStack NewSave, Last;
 
     // ALGORITMA
@@ -173,6 +174,11 @@ int main() {
                 Push(&Redo, CreateSave(s, pesanan, currTime));
                 Pop(&Undo, &NewSave);
                 LoadSave(NewSave, &s, &pesanan, &currTime);
+                // TulisPoint(InfoTop(Redo).simul.loc);
+                // TulisPoint(s.loc);
+                tempPeta = ELMT(p, Ordinat(InfoTop(Redo).simul.loc), Absis(InfoTop(Redo).simul.loc));
+                ELMT(p, Ordinat(InfoTop(Redo).simul.loc), Absis(InfoTop(Redo).simul.loc)) = ELMT(p, Ordinat(s.loc), Absis(s.loc));
+                ELMT(p, Ordinat(s.loc), Absis(s.loc)) = tempPeta;
             }
         } else if (isRedo(cmd)) {
             if (IsEmpty(Redo)) {
@@ -181,6 +187,9 @@ int main() {
                 Push(&Undo, CreateSave(s, pesanan, currTime));
                 Pop(&Redo, &NewSave);
                 LoadSave(NewSave, &s, &pesanan, &currTime);
+                tempPeta = ELMT(p, Ordinat(InfoTop(Undo).simul.loc), Absis(InfoTop(Undo).simul.loc));
+                ELMT(p, Ordinat(InfoTop(Undo).simul.loc), Absis(InfoTop(Undo).simul.loc)) = ELMT(p, Ordinat(s.loc), Absis(s.loc));
+                ELMT(p, Ordinat(s.loc), Absis(s.loc)) = tempPeta;
             }
         } else {
             commandValid = false;
