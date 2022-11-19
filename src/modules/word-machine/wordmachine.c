@@ -95,6 +95,10 @@ void IGNOREBLANKSFILE() {
     // ALGORITMA
     while (currentChar == BLANK || currentChar == NEWLINE) {
         ADVFILE();
+
+        if (EOP) {
+            break;
+        }
     }
 }
 
@@ -151,7 +155,11 @@ void COPYWORDFILE() {
             currentWord.TabWord[i] = currentChar;
         }
 
-        ADVFILE();
+        if (EOP) {
+            break;
+        } else {
+            ADVFILE();
+        }
         i++;
     }
 
