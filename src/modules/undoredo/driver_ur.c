@@ -11,16 +11,16 @@ void driverUndo(infotypeStack *New, infotypeStack Old, Stack *Undo, Stack *Redo)
     Pop(Undo, New);
 
     printf("\n");
-    outputNotification(Old.simul.inv, (*New).simul.inv, Old.pesanan, (*New).pesanan, true);
+    outputNotification(Old.simul.inv, (*New).simul.inv, Old.pesanan, (*New).pesanan);
     printf("\n");
 }
 
 void driverRedo(infotypeStack *New, infotypeStack Old, Stack *Undo, Stack *Redo) {
     Push(Undo, Old);
-    Pop(Push, New);
+    Pop(Redo, New);
 
     printf("\n");
-    outputNotification(Old.simul.inv, (*New).simul.inv, Old.pesanan, (*New).pesanan, false);
+    outputNotification(Old.simul.inv, (*New).simul.inv, Old.pesanan, (*New).pesanan);
     printf("\n");
 }
 
@@ -74,7 +74,7 @@ int main() {
     printf("\nState Setelah Undo:\n");
 
     printf("\n");
-    outputNotification(InfoTop(Redo).simul.inv, S.inv, InfoTop(Redo).pesanan, PQ, true);
+    outputNotification(InfoTop(Redo).simul.inv, S.inv, InfoTop(Redo).pesanan, PQ);
     printf("\n");
 
     TulisTIME(CT);
@@ -88,7 +88,7 @@ int main() {
     printf("\nState Setelah Redo:\n");
 
     printf("\n");
-    outputNotification(InfoTop(Undo).simul.inv, S.inv, InfoTop(Undo).pesanan, PQ, true);
+    outputNotification(InfoTop(Undo).simul.inv, S.inv, InfoTop(Undo).pesanan, PQ);
     printf("\n");
 
     TulisTIME(CT);

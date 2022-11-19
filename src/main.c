@@ -5,10 +5,12 @@
 #include "./modules/pengolahan/pengolahan.h"
 #include "./modules/menu/command.h"
 #include "./modules/menu/timemechanism.h"
+#include "./modules/undoredo/ur.h"
 
 int main() {
     boolean running = true;
     boolean valid = false;
+    boolean commandValid;
     String cmd, mode;
     BinTree resep;
     Peta p;
@@ -16,6 +18,8 @@ int main() {
     TIME currTime;
     ListStatik Catalog, canBuy, canFry, canChop, canBoil, canMix;
     PrioQueueMakanan pesanan;
+    Stack Undo, Redo;
+    infotypeStack NewSave, Last;
 
     // ALGORITMA
     running = true;
@@ -32,6 +36,7 @@ int main() {
     createString("MIX", 3, &mode);
     createSpecificCatalog(&canMix, Catalog, p, mode);
     MakeEmptyQueue(&pesanan, 100);
+    InitiateURStacks(&Undo, &Redo);
 
     inputCommand(&cmd);
     while (!valid) {
@@ -49,51 +54,59 @@ int main() {
         }
     }
 
+    Last = CreateSave(s, pesanan, currTime);
+
     while (running) {
         printf("BNMO di posisi: ");
         TulisPoint(Loc(s));
         printf("Waktu: ");
         TulisTIME(currTime);
+        outputNotification(Last.simul.inv, s.inv, Last.pesanan, pesanan);
         printf("\n");
         displayPeta(p);
         printf("\n");
         inputCommand(&cmd);
+        commandValid = true;
+
+        Last = CreateSave(s, pesanan, currTime);
 
         if (isExit(cmd)) {
             running = false;
             printf("Goodbye!");
         } else if (isBuy(cmd)) {
+            Push(&Undo, CreateSave(s, pesanan, currTime));
             Buy(&s, &currTime, &cmd, &pesanan, p, canBuy);
         } else if (isFry(cmd)) {
-            if(isObjectInRadius(s, p, 'F')){
+            if (isObjectInRadius(s, p, 'F')) {
+                Push(&Undo, CreateSave(s, pesanan, currTime));
                 fry(Catalog, cmd, p, &s, resep, currTime, pesanan);
-            }
-            else{
+            } else {
                 printf("BNMO tidak berada di area F!\n");
             }
         } else if (isChop(cmd)) {
-            if(isObjectInRadius(s, p, 'C')) {
+            if (isObjectInRadius(s, p, 'C')) {
+                Push(&Undo, CreateSave(s, pesanan, currTime));
                 chop(Catalog, cmd, p, &s, resep, currTime, pesanan);
-            }
-            else{
+            } else {
                 printf("BNMO tidak berada di area C!\n");
             }
         } else if (isBoil(cmd)) {
-            if(isObjectInRadius(s, p, 'B')){
+            if (isObjectInRadius(s, p, 'B')) {
+                Push(&Undo, CreateSave(s, pesanan, currTime));
                 Boil(Catalog, cmd, p, &s, resep, currTime, pesanan);
-            }
-            else{
+            } else {
                 printf("BNMO tidak berada di area B!\n");
             }
         } else if (isMix(cmd)) {
-            if(isObjectInRadius(s, p, 'M')){
+            if (isObjectInRadius(s, p, 'M')) {
+                Push(&Undo, CreateSave(s, pesanan, currTime));
                 mix(Catalog, cmd, p, &s, resep, currTime, pesanan);
-            }
-            else{
+            } else {
                 printf("BNMO tidak berada di area M!\n");
             }
         } else if (isMoveEast(cmd)) {
             if (canMoveEast(s, p)) {
+                Push(&Undo, CreateSave(s, pesanan, currTime));
                 moveEast(&s, &p);
                 progressTime(&s, &pesanan, &currTime);
             } else {
@@ -101,6 +114,7 @@ int main() {
             }
         } else if (isMoveWest(cmd)) {
             if (canMoveWest(s, p)) {
+                Push(&Undo, CreateSave(s, pesanan, currTime));
                 moveWest(&s, &p);
                 progressTime(&s, &pesanan, &currTime);
             } else {
@@ -108,6 +122,7 @@ int main() {
             }
         } else if (isMoveNorth(cmd)) {
             if (canMoveNorth(s, p)) {
+                Push(&Undo, CreateSave(s, pesanan, currTime));
                 moveNorth(&s, &p);
                 progressTime(&s, &pesanan, &currTime);
             } else {
@@ -115,12 +130,15 @@ int main() {
             }
         } else if (isMoveSouth(cmd)) {
             if (canMoveSouth(s, p)) {
+                Push(&Undo, CreateSave(s, pesanan, currTime));
                 moveSouth(&s, &p);
                 progressTime(&s, &pesanan, &currTime);
             } else {
                 printf("Tidak bisa bergerak ke selatan!\n");
             }
         } else if (isWait(cmd)) {
+            Push(&Undo, CreateSave(s, pesanan, currTime));
+
             int i = 0;
             
             while (currentString.str[i] != ' ') {
@@ -148,9 +166,31 @@ int main() {
             displayInventory(Inv(s));
         } else if (isDisplayDelivery(cmd)) {
             PrintPrioQueueMakanan(pesanan);
+        } else if (isUndo(cmd)) {
+            if (IsEmpty(Undo)) {
+                printf("Tidak bisa melakukan Undo\n");
+            } else {
+                Push(&Redo, CreateSave(s, pesanan, currTime));
+                Pop(&Undo, &NewSave);
+                LoadSave(NewSave, &s, &pesanan, &currTime);
+            }
+        } else if (isRedo(cmd)) {
+            if (IsEmpty(Redo)) {
+                printf("Tidak bisa melakukan Redo\n");
+            } else {
+                Push(&Undo, CreateSave(s, pesanan, currTime));
+                Pop(&Redo, &NewSave);
+                LoadSave(NewSave, &s, &pesanan, &currTime);
+            }
         } else {
+            commandValid = false;
             printf("Command tidak valid.\n");
         }
+
+        if (commandValid && !isUndo(cmd) && !isRedo(cmd)) {
+            CreateEmpty(&Redo);
+        }
+
         printf("\n");
     }
 }
