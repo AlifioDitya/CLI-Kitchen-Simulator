@@ -30,6 +30,8 @@ simulator: $(addsuffix .exe, $(basename $(patsubst "%", %,$(shell forfiles /s /m
 
 undoredo: $(addsuffix .exe, $(basename $(patsubst "%", %,$(shell forfiles /s /m *driver_ur.c /c "cmd /c echo @relpath"))))
 
+prioqueue: $(addsuffix .exe, $(basename $(patsubst "%", %,$(shell forfiles /s /m *driver_prioqueue.c /c "cmd /c echo @relpath"))))
+
 main: $(addsuffix .exe, $(basename $(patsubst "%", %,$(shell forfiles /s /m *main.c /c "cmd /c echo @relpath"))))
 
 $(addsuffix .exe, $(basename $(TARGETS))): $(SRCS)

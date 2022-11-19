@@ -21,14 +21,14 @@ boolean isCookable (ListIDBahan bahan, Inventory I, ListStatik katalog);
 ListStatik TidakDimiliki (Inventory I, ListIDBahan bahan, ListStatik katalog);
 //mereturn list staik yang berisi bahan yang tidak dimiliki di INventory
 
-void Boil(ListStatik katalog, String cmd, Peta map, Simulator *s, BinTree resep, TIME currTime, PrioQueueMakanan pesanan);
+void Boil(ListStatik katalog, String cmd, Peta map, Simulator *s, BinTree resep, TIME *currTime, PrioQueueMakanan *pesanan);
 //prosedur untuk merebus
 
-void chop(ListStatik katalog, String cmd, Peta map, Simulator *s, BinTree resep, TIME currTime, PrioQueueMakanan pesanan);
+void chop(ListStatik katalog, String cmd, Peta map, Simulator *s, BinTree resep, TIME *currTime, PrioQueueMakanan *pesanan);
 //prosedur untuk memotong
 
-void fry(ListStatik katalog, String cmd, Peta map, Simulator *s, BinTree resep, TIME currTime, PrioQueueMakanan pesanan);
+void fry(ListStatik katalog, String cmd, Peta map, Simulator *s, BinTree resep, TIME *currTime, PrioQueueMakanan *pesanan);
 //prosedur untuk menggoreng
 
-void mix(ListStatik katalog, String cmd, Peta map, Simulator *s, BinTree resep, TIME currTime, PrioQueueMakanan pesanan);
+void mix(ListStatik katalog, String cmd, Peta map, Simulator *s, BinTree resep, TIME *currTime, PrioQueueMakanan *pesanan);
 //prosedur untuk mencampur
