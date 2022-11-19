@@ -40,6 +40,8 @@ boolean isBoil(String s);
 
 boolean isMix(String s);
 
+boolean isCookBook(String s);
+
 boolean isUndo(String s);
 
 boolean isRedo(String s);

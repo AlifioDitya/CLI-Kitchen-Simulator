@@ -191,6 +191,11 @@ boolean isMix(String s) {
     return (isStringEqual(s, temp));
 }
 
+boolean isCookBook(String s) {
+    String temp;
+    createString("COOKBOOK", 8, &temp);
+}
+
 boolean isUndo(String s) {
     String temp;
     createString("UNDO", 4, &temp);
