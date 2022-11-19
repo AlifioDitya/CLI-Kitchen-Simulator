@@ -45,13 +45,16 @@ Pada tugas besar ini, diminta untuk membuat sebuah program simulasi berbasis CLI
         $ ./src/main.exe
         ```
 
-* Keterangan tambahan
+### Keterangan tambahan
 - Pastikan pre-requisite terpenuhi.
 - Pastikan Current Working Directory ada pada root.
 - Pastikan menggunakan terminal Powershell untuk Windows OS.
 - Saat dijalankan, pastikan seluruh input merupakan huruf kapital dan tidak mengandung titik.
 
 ## Daftar Fitur dan Status Penyelesaian
+* [x] (Finished)
+* [] (Unfinished)
+
 1. Inisiasi                     - [x]
 2. Simulator                    - [x]
 3. Makanan                      - [x]
