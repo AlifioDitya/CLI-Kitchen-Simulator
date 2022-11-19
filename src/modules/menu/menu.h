@@ -1,4 +1,5 @@
 /* Header untuk file MENU */
+/* Implementasi driver ada pada program utama main.c */
 
 #ifndef MENU_H
 #define MENU_H
