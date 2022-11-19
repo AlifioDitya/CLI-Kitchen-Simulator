@@ -161,6 +161,9 @@ void PrintPrioQueueMakanan (PrioQueueMakanan Q) {
                 }
             }
             if (Minute(DeliveryTime(currMakanan)) != 0) {
+                if(Day(DeliveryTime(currMakanan)) != 0 && Hour(DeliveryTime(currMakanan)) == 0) { 
+                    printf(", ") ; 
+                }
                 printf("%d Menit", Minute(DeliveryTime(currMakanan)));
             }
             printf("\n");
