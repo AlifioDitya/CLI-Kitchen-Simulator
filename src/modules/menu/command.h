@@ -40,4 +40,8 @@ boolean isBoil(String s);
 
 boolean isMix(String s);
 
+boolean isUndo(String s);
+
+boolean isRedo(String s);
+
 #endif
