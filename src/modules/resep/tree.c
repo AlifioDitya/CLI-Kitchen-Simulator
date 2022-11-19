@@ -239,42 +239,70 @@ AddressTree searchByID(TreeElType id, BinTree resep) {
    }
 }
 
-void printListResep(BinTree resep, Peta p, ListStatik l) {   // Masih perlu revisi di bagian conditional
-// Mencetak List Resep 
-
-   int i = 0;
-   int idx = 1;
-   AddressTree fc;
+void printListResep(Peta p, ListStatik l) {
+   int n, i, j, k;
+   int id, nChild, idChild;
    Makanan target, bahan;
 
-   if (FCHD(FCHD(resep)) != NULL && resep != NULL) {
-      target = getFoodByID(INFOTREE(resep), l);
-      int nBahan = lengthListBahan(listBahan(resep));
+   STARTWORDFILE("src/data/Recipe.txt");  
+   
+   n = 0;
+   for (i=0; i<currentWord.Length; i++) {  // Baca jumlah resep
+      n = n*10 + ((int) currentWord.TabWord[i]-'0');
+   }
+   
+   ADVWORDFILE();
 
-      printf("%d. ", idx);
+   for (i=0; i<n; i++) {   // Pengulangan sebanyak jumlah resep
+      printf("%d. ", i+1);
+      
+      id = 0;
+      for (j=0; j<currentWord.Length; j++) {
+         id = id*10 + ((int) currentWord.TabWord[j]-'0');
+      }
+
+      target = getFoodByID(id, l);
+
       printString(target.name);
       printf("\n");
       showProcess(target, p);
       printf(" - ");
 
-      for (i; i<nBahan; i++) {
-         bahan = getFoodByID(listBahan(resep).bahan[i], l);
-         printString(target.name);
-         if (i<nBahan-1) {
+      ADVWORDFILE();
+
+      nChild = 0;
+      for (k=0; k<currentWord.Length; k++) {    // Baca jumlah bahan yang diperlukan untuk suatu resep
+         nChild = nChild*10 + ((int) currentWord.TabWord[k]-48);
+      }
+       
+      ADVWORDFILE();
+   
+      for (j=0; j<nChild; j++) {    // Ulangi pembacaan id bahan sebanyak nChild jika nChild > 1
+
+         idChild = 0;
+         for (k=0; k<currentWord.Length; k++) {
+            idChild = idChild*10 + ((int) currentWord.TabWord[k]-48);
+         }
+
+         bahan = getFoodByID(idChild, l);
+         printString(bahan.name);
+         if (j+1<nChild) {
             printf(" - ");
          } else {
             printf("\n");
          };
+         
+         ADVWORDFILE();
+         if (EOP) {
+            break;
+         }
       }
 
-      idx++;
+      if (EOP) {
+         break;
+      }
    }
 
-   if (resep != NULL) {
-      fc = FCHD(resep);
-      printListResep(fc, p, l);
-      printListResep(NSBG(resep), p, l);
-   }
 }
 
 void showProcess (Makanan target, Peta p) {
@@ -286,8 +314,10 @@ void showProcess (Makanan target, Peta p) {
       printf("CHOP"); 
    } else if (EQ(target.loc, Locate(p, 'F'))) {
       printf("FRY"); 
-   } else {
+   } else if (EQ(target.loc, Locate(p, 'M'))) {
       printf("MIX"); 
+   } else {
+      printf("undefined");
    }
 
 }

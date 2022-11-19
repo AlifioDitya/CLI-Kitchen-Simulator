@@ -106,7 +106,7 @@ int main() {
                 printf("BNMO tidak berada di area M!\n");
             }
         } else if (isCookBook(cmd)) {
-            printListResep(resep, p, Catalog);
+            printListResep(p, Catalog);
         } else if (isMoveEast(cmd)) {
             if (canMoveEast(s, p)) {
                 Push(&Undo, CreateSave(s, pesanan, currTime));

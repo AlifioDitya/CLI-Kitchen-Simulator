@@ -82,7 +82,7 @@ void copyListBahan(ListIDBahan *listID1, ListIDBahan *listID2);
 AddressTree searchByID(TreeElType id, BinTree resep);
 // Memberi keluaran addressTree dari makanan berdasarkan input id dan resep
 
-void printListResep(BinTree resep, Peta p, ListStatik l);
+void printListResep(Peta p, ListStatik l);
 // Mencetak List Resep 
 
 void printKatalog(BinTree resep, Peta p, ListStatik l);
