@@ -1,4 +1,4 @@
-#include "tree.c"
+#include "tree.h"
 #include <stdio.h>
 
 int main() {
@@ -27,6 +27,5 @@ int main() {
             printf("\n");
         }
     }
-    
-    printListResep(resep, map, l);
+    printListResep(map, l);
 }
