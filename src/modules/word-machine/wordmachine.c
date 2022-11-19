@@ -95,6 +95,10 @@ void IGNOREBLANKSFILE() {
     // ALGORITMA
     while (currentChar == BLANK || currentChar == NEWLINE) {
         ADVFILE();
+
+        if (EOP) {
+            break;
+        }
     }
 }
 
@@ -156,7 +160,6 @@ void COPYWORDFILE() {
         } else {
             ADVFILE();
         }
-
         i++;
     }
 
