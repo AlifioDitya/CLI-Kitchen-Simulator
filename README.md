@@ -52,20 +52,18 @@ Pada tugas besar ini, diminta untuk membuat sebuah program simulasi berbasis CLI
 - Saat dijalankan, pastikan seluruh input merupakan huruf kapital dan tidak mengandung titik.
 
 ## Daftar Fitur dan Status Penyelesaian
-* [x] (Finished)
-* [] (Unfinished)
 
-1. Inisiasi                     - [x]
-2. Simulator                    - [x]
-3. Makanan                      - [x]
-4. Resep                        - [x]
-5. Inventory                    - [x]
-6. Delivery                     - [x]
-7. Peta                         - [x]
-8. Pengolahan Makanan           - [x]
-9. Mekanisme Waktu              - [x]
-10. Print Catalog & Cookbook    - [x]
-11. Undo/Redo                   - [x]
+[x] 1. Inisiasi
+[x] 2. Simulator
+[x] 3. Makanan
+[x] 4. Resep
+[x] 5. Inventory
+[x] 6. Delivery
+[x] 7. Peta
+[x] 8. Pengolahan Makanan
+[x] 9. Mekanisme Waktu
+[x] 10. Print Catalog & Cookbook
+[x] 11. Undo/Redo
 
 ## Pembagian Tugas
 1. Inisiasi - Enrique Alifio Ditya
