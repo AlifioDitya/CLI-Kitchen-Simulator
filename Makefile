@@ -36,6 +36,8 @@ pengolahan: $(addsuffix .exe, $(basename $(patsubst "%", %,$(shell forfiles /s /
 
 makanan: $(addsuffix .exe, $(basename $(patsubst "%", %,$(shell forfiles /s /m *driver_makanan.c /c "cmd /c echo @relpath"))))
 
+string: $(addsuffix .exe, $(basename $(patsubst "%", %,$(shell forfiles /s /m *driver_string.c /c "cmd /c echo @relpath"))))
+
 main: $(addsuffix .exe, $(basename $(patsubst "%", %,$(shell forfiles /s /m *main.c /c "cmd /c echo @relpath"))))
 
 
