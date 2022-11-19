@@ -34,6 +34,8 @@ prioqueue: $(addsuffix .exe, $(basename $(patsubst "%", %,$(shell forfiles /s /m
 
 pengolahan: $(addsuffix .exe, $(basename $(patsubst "%", %,$(shell forfiles /s /m *driver_pengolahan.c /c "cmd /c echo @relpath"))))
 
+point : $(addsuffix .exe, $(basename $(patsubst "%", %,$(shell forfiles /s /m *driver_point.c /c "cmd /c echo @relpath"))))
+
 makanan: $(addsuffix .exe, $(basename $(patsubst "%", %,$(shell forfiles /s /m *driver_makanan.c /c "cmd /c echo @relpath"))))
 
 string: $(addsuffix .exe, $(basename $(patsubst "%", %,$(shell forfiles /s /m *driver_string.c /c "cmd /c echo @relpath"))))
