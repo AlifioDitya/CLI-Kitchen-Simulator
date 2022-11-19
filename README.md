@@ -33,7 +33,7 @@ Pada tugas besar ini, diminta untuk membuat sebuah program simulasi berbasis CLI
         ```
       2. Run
         ```Powershell
-        % ./src/modules/<nama_ADT>/driver_<nama_ADT>.exe
+        $ ./src/modules/<nama_ADT>/driver_<nama_ADT>.exe
         ```
     * Menjalankan program utama
       1. Compile
