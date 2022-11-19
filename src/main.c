@@ -67,47 +67,33 @@ int main() {
         } else if (isFry(cmd)) {
             if(isObjectInRadius(s, p, 'F')){
                 fry(Catalog, cmd, p, &s, resep, currTime, pesanan);
-                inputCommand(&cmd);
             }
             else{
-                printf("Kamu tidak di lokasi F\n");
+                printf("BNMO tidak berada di area F!\n");
             }
-            // printf("Frying here!\n");
-            // progressTime(&s, &pesanan, &currTime);
         } else if (isChop(cmd)) {
             if(isObjectInRadius(s, p, 'C')) {
                 chop(Catalog, cmd, p, &s, resep, currTime, pesanan);
-                inputCommand(&cmd);
             }
             else{
-                printf("Kamu tidak di lokasi C\n");
+                printf("BNMO tidak berada di area C!\n");
             }
-            // printf("Chopping here!\n");
-            // progressTime(&s, &pesanan, &currTime);
         } else if (isBoil(cmd)) {
             if(isObjectInRadius(s, p, 'B')){
                 Boil(Catalog, cmd, p, &s, resep, currTime, pesanan);
-                inputCommand(&cmd);
             }
             else{
-                printf("Kamu tidak di lokasi B\n");
+                printf("BNMO tidak berada di area B!\n");
             }
-            // printf("Boiling here!\n");
-            // progressTime(&s, &pesanan, &currTime);
         } else if (isMix(cmd)) {
             if(isObjectInRadius(s, p, 'M')){
                 mix(Catalog, cmd, p, &s, resep, currTime, pesanan);
-                inputCommand(&cmd);
             }
             else{
-                printf("Kamu tidak di lokasi M\n");
+                printf("BNMO tidak berada di area M!\n");
             }
-            // printf("Mixing here!\n");
-            // progressTime(&s, &pesanan, &currTime);
         } else if (isCookBook(cmd)) {
             printListResep(resep, p, Catalog);
-            // printf("Mixing here!\n");
-            // progressTime(&s, &pesanan, &currTime);
         } else if (isMoveEast(cmd)) {
             if (canMoveEast(s, p)) {
                 moveEast(&s, &p);

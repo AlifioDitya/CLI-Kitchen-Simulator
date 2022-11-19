@@ -1,11 +1,6 @@
 #include "pengolahan.h"
+#include "../menu/command.h"
 
-// extern ListStatik katalog;
-// Peta map;
-// String cmd;
-// BinTree resep;
-// Inventory I;
-// TIME progTime;
 ListStatik katalogByProses(ListStatik katalog, String proses, Peta p){
     ListStatik katalogProses;
     CreateListStatik(&katalogProses);
@@ -94,16 +89,26 @@ void Boil(ListStatik katalog, String cmd, Peta map, Simulator *s, BinTree resep,
     Makanan val;
     int target;
     AddressTree p;
-    printf("==========================================\n");
-    printf("===                  BOIL              ===\n");
-    printf("==========================================\n");
+    printf("======================\n");
+    printf("=        BOIL        =\n");
+    printf("======================\n");
     CreateListStatik(&Rebus);
     Rebus = katalogByProses(katalog, cmd, map);
     displayKatalogProses(Rebus);
-    printf("kirim 0 untuk exit\n");
-    printf("enter comand: ");
-    scanf("%d", &target);
-    while(target != 0){
+    printf("\n");
+    printf("Kirim 0 untuk exit\n");
+    printf("\n");
+    inputCommand(&cmd);
+
+    while (!isCommandInteger(cmd)) {
+        printf("\n");
+        printf("Command tidak valid.\n");
+        printf("\n");
+        inputCommand(&cmd);
+    }
+
+    target = parseToInteger(cmd);
+    while(target != 0) {
         p = searchByID(ID(Elmt(Rebus,(target-1))), resep);
         p = FCHD(p); //hanya diperlukan satu bahan untuk merebus, jadi bahan hanyalah firstchild di tree resep
         if(indexOfInventory(Inv(*s), getFoodByID(INFOTREE(p), katalog)) != IDX_UNDEF){
@@ -113,14 +118,16 @@ void Boil(ListStatik katalog, String cmd, Peta map, Simulator *s, BinTree resep,
             printf(" berhasil dibuat dan sudah dimasukkan di inventory\n");
             progressTime(s, &pesanan, &currTime);
         }
-        else{
-            printf("gagal membuat ");
+        else {
+            printf("Gagal membuat ");
             printString(FoodName(Elmt(Rebus, target-1)));
             printf(" karena tidak memiliki bahan berikut : \n");
             printf("1. %s\n", FoodName(getFoodByID(INFOTREE(p), katalog)));
+            printf("\n");
         }
-        printf("enter comand: ");
-        scanf("%d", &target);
+        printf("\n");
+        inputCommand(&cmd);
+        target = parseToInteger(cmd);
     }
 }
 
@@ -129,15 +136,25 @@ void chop(ListStatik katalog, String cmd, Peta map, Simulator *s, BinTree resep,
     Makanan val;
     int target;
     AddressTree p;
-    printf("==========================================\n");
-    printf("===                  CHOP              ===\n");
-    printf("==========================================\n");
+    printf("======================\n");
+    printf("=        CHOP        =\n");
+    printf("======================\n");
     CreateListStatik(&Potong);
     Potong = katalogByProses(katalog, cmd, map);
     displayKatalogProses(Potong);
-    printf("kirim 0 untuk exit\n");
-    printf("enter comand: ");
-    scanf("%d", &target);
+    printf("\n");
+    printf("Kirim 0 untuk exit\n");
+    printf("\n");
+    inputCommand(&cmd);
+
+    while (!isCommandInteger(cmd)) {
+        printf("\n");
+        printf("Command tidak valid.\n");
+        printf("\n");
+        inputCommand(&cmd);
+    }
+
+    target = parseToInteger(cmd);
     while(target != 0){
         p = searchByID(ID(Elmt(Potong,(target-1))), resep);
         p = FCHD(p); //hanya diperlukan satu bahan untuk dipotong, jadi bahan hanyalah firstchild di tree resep
@@ -149,13 +166,14 @@ void chop(ListStatik katalog, String cmd, Peta map, Simulator *s, BinTree resep,
             progressTime(s, &pesanan, &currTime);
         }
         else{
-            printf("gagal membuat ");
+            printf("Gagal membuat ");
             printString(FoodName(Elmt(Potong, target-1)));
             printf(" karena tidak memiliki bahan berikut : \n");
             printf("1. %s\n", FoodName(getFoodByID(INFOTREE(p), katalog)));
         }
-        printf("enter comand: ");
-        scanf("%d", &target);
+        printf("\n");
+        inputCommand(&cmd);
+        target = parseToInteger(cmd);
     }
 }
 
@@ -165,16 +183,26 @@ void fry(ListStatik katalog, String cmd, Peta map, Simulator *s, BinTree resep, 
     Makanan val;
     int target;
     AddressTree p;
-    printf("==========================================\n");
-    printf("===                  FRY               ===\n");
-    printf("==========================================\n");
+    printf("======================\n");
+    printf("=        FRY         =\n");
+    printf("======================\n");
     CreateListStatik(&Goreng);
     CreateListBahan(&bahan);
     Goreng = katalogByProses(katalog, cmd, map);
     displayKatalogProses(Goreng);
-    printf("kirim 0 untuk exit\n");
-    printf("enter comand: ");
-    scanf("%d", &target);
+    printf("\n");
+    printf("Kirim 0 untuk exit\n");
+    printf("\n");
+    inputCommand(&cmd);
+
+    while (!isCommandInteger(cmd)) {
+        printf("\n");
+        printf("Command tidak valid.\n");
+        printf("\n");
+        inputCommand(&cmd);
+    }
+
+    target = parseToInteger(cmd);
     while(target != 0){
         p = searchByID(ID(Elmt(Goreng,(target-1))), resep);
         bahan = listBahan(p);
@@ -190,7 +218,7 @@ void fry(ListStatik katalog, String cmd, Peta map, Simulator *s, BinTree resep, 
         else{
             CreateListStatik(&unHave);
             unHave = TidakDimiliki(Inv(*s), bahan, katalog);
-            printf("gagal membuat ");
+            printf("Gagal membuat ");
             printString(FoodName(Elmt(Goreng, target-1)));
             printf(" karena tidak memiliki bahan berikut : \n");
             for(int i = 0; i<listLength(unHave); i++){
@@ -198,10 +226,10 @@ void fry(ListStatik katalog, String cmd, Peta map, Simulator *s, BinTree resep, 
                 printString(FoodName(Elmt(unHave,i)));
                 printf("\n");
             }
-
         }
-        printf("enter comand: ");
-        scanf("%d", &target);
+        printf("\n");
+        inputCommand(&cmd);
+        target = parseToInteger(cmd);
     }
 }
 void mix(ListStatik katalog, String cmd, Peta map, Simulator *s, BinTree resep, TIME currTime, PrioQueueMakanan pesanan){
@@ -210,16 +238,26 @@ void mix(ListStatik katalog, String cmd, Peta map, Simulator *s, BinTree resep, 
     Makanan val;
     int target;
     AddressTree p;
-    printf("==========================================\n");
-    printf("===                  MIX               ===\n");
-    printf("==========================================\n");
+    printf("======================\n");
+    printf("=        MIX         =\n");
+    printf("======================\n");
     CreateListStatik(&Campur);
     CreateListBahan(&bahan);
     Campur = katalogByProses(katalog, cmd, map);
     displayKatalogProses(Campur);
-    printf("kirim 0 untuk exit\n");
-    printf("enter comand: ");
-    scanf("%d", &target);
+    printf("\n");
+    printf("Kirim 0 untuk exit\n");
+    printf("\n");
+    inputCommand(&cmd);
+
+    while (!isCommandInteger(cmd)) {
+        printf("\n");
+        printf("Command tidak valid.\n");
+        printf("\n");
+        inputCommand(&cmd);
+    }
+
+    target = parseToInteger(cmd);
     while(target != 0){
         p = searchByID(ID(Elmt(Campur,(target-1))), resep);
         bahan = listBahan(p);
@@ -235,8 +273,7 @@ void mix(ListStatik katalog, String cmd, Peta map, Simulator *s, BinTree resep, 
         else{
             CreateListStatik(&unHave);
             unHave = TidakDimiliki(Inv(*s), bahan, katalog);
-            // printf("%d\n", listLength(unHave));
-            printf("gagal membuat ");
+            printf("Gagal membuat ");
             printString(FoodName(Elmt(Campur, target-1)));
             printf(" karena tidak memiliki bahan berikut : \n");
             for(int i = 0; i<listLength(unHave); i++){
@@ -245,7 +282,8 @@ void mix(ListStatik katalog, String cmd, Peta map, Simulator *s, BinTree resep, 
                 printf("\n");
             }
         }
-        printf("enter comand: ");
-        scanf("%d", &target);
+        printf("\n");
+        inputCommand(&cmd);
+        target = parseToInteger(cmd);
     }
 }

@@ -15,10 +15,6 @@ void Splash(String name);
 
 void Initiate(Simulator *s, Peta *p, ListStatik *catalog, BinTree *resep);
 
-void inputCommand(String *cmd);
-
-int parseToInteger(String s);
-
 void printBuyMakanan(ListStatik canBuy);
 
 void Buy(Simulator *s, TIME *currTIME, String *cmd, PrioQueueMakanan *prioQueue, Peta p, ListStatik canBuy);

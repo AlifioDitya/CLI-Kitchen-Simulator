@@ -18,7 +18,7 @@ int main() {
     STARTWORDFILE(input);
     printf("isi dari file adalah sebagai berikut: \n\n");
 
-    while (!EOP) {
+    while (true) {
         // Menampilkan Kata yang Dibaca
         for (i = 0; i < currentWord.Length; i++) {
             printf("%c", currentWord.TabWord[i]);
@@ -33,7 +33,11 @@ int main() {
 
         // Pembacaan Berhenti
         if (EOP) {
-            STOPWORDFILE();
+            for (i = 0; i < currentWord.Length; i++) {
+                printf("%c", currentWord.TabWord[i]);
+            }
+            printf("\n");
+            break;
         }
     }
 

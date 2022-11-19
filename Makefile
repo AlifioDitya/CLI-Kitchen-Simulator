@@ -28,6 +28,8 @@ word-machine: $(addsuffix .exe, $(basename $(patsubst "%", %,$(shell forfiles /s
 
 simulator: $(addsuffix .exe, $(basename $(patsubst "%", %,$(shell forfiles /s /m *driver_simulator.c /c "cmd /c echo @relpath"))))
 
+undoredo: $(addsuffix .exe, $(basename $(patsubst "%", %,$(shell forfiles /s /m *driver_ur.c /c "cmd /c echo @relpath"))))
+
 main: $(addsuffix .exe, $(basename $(patsubst "%", %,$(shell forfiles /s /m *main.c /c "cmd /c echo @relpath"))))
 
 $(addsuffix .exe, $(basename $(TARGETS))): $(SRCS)

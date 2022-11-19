@@ -4,6 +4,8 @@
 #ifndef COMMAND_H
 #define COMMAND_H
 
+void inputCommand(String *cmd);
+
 boolean isExit(String s);
 
 boolean isStart(String s);
@@ -17,6 +19,8 @@ boolean isMoveNorth(String s);
 boolean isMoveSouth(String s);
 
 boolean isCommandInteger(String cmd);
+
+int parseToInteger(String s);
 
 boolean isWait(String s);
 

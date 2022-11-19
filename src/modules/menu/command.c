@@ -2,6 +2,13 @@
 #include "../string/string.h"
 #include "../boolean.h"
 
+void inputCommand(String *cmd) {
+    printf("Enter command : ");
+    startString();
+    assignString(currentString, cmd);
+    printf("\n");
+}
+
 boolean isExit(String s) {
     String temp;
     createString("EXIT", 4, &temp);
@@ -22,6 +29,17 @@ boolean isCommandInteger(String cmd) {
         }
     }
     return true;
+}
+
+int parseToInteger(String s) {
+    int i;
+    int total = 0;
+    if (isCommandInteger(s)) {
+        for (i=0; i<s.Length; i++) {
+            total = total*10 + (s.str[i]-48);
+        }
+    }
+    return total;
 }
 
 boolean isMoveEast(String s) {
