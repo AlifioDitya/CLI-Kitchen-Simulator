@@ -53,17 +53,19 @@ Pada tugas besar ini, diminta untuk membuat sebuah program simulasi berbasis CLI
 
 ## Daftar Fitur dan Status Penyelesaian
 
-[x] 1. Inisiasi
-[x] 2. Simulator
-[x] 3. Makanan
-[x] 4. Resep
-[x] 5. Inventory
-[x] 6. Delivery
-[x] 7. Peta
-[x] 8. Pengolahan Makanan
-[x] 9. Mekanisme Waktu
-[x] 10. Print Catalog & Cookbook
-[x] 11. Undo/Redo
+1. Inisiasi
+2. Simulator
+3. Makanan
+4. Resep
+5. Inventory
+6. Delivery
+7. Peta
+8. Pengolahan Makanan
+9. Mekanisme Waktu
+10. Print Catalog & Cookbook
+11. Undo/Redo
+
+* Status: All finished
 
 ## Pembagian Tugas
 1. Inisiasi - Enrique Alifio Ditya
