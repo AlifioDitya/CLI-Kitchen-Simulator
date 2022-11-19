@@ -80,28 +80,28 @@ int main() {
         } else if (isFry(cmd)) {
             if (isObjectInRadius(s, p, 'F')) {
                 Push(&Undo, CreateSave(s, pesanan, currTime));
-                fry(Catalog, cmd, p, &s, resep, currTime, pesanan);
+                fry(Catalog, cmd, p, &s, resep, &currTime, &pesanan);
             } else {
                 printf("BNMO tidak berada di area F!\n");
             }
         } else if (isChop(cmd)) {
             if (isObjectInRadius(s, p, 'C')) {
                 Push(&Undo, CreateSave(s, pesanan, currTime));
-                chop(Catalog, cmd, p, &s, resep, currTime, pesanan);
+                chop(Catalog, cmd, p, &s, resep, &currTime, &pesanan);
             } else {
                 printf("BNMO tidak berada di area C!\n");
             }
         } else if (isBoil(cmd)) {
             if (isObjectInRadius(s, p, 'B')) {
                 Push(&Undo, CreateSave(s, pesanan, currTime));
-                Boil(Catalog, cmd, p, &s, resep, currTime, pesanan);
+                Boil(Catalog, cmd, p, &s, resep, &currTime, &pesanan);
             } else {
                 printf("BNMO tidak berada di area B!\n");
             }
         } else if (isMix(cmd)) {
             if (isObjectInRadius(s, p, 'M')) {
                 Push(&Undo, CreateSave(s, pesanan, currTime));
-                mix(Catalog, cmd, p, &s, resep, currTime, pesanan);
+                mix(Catalog, cmd, p, &s, resep, &currTime, &pesanan);
             } else {
                 printf("BNMO tidak berada di area M!\n");
             }

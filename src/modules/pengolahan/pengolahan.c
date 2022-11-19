@@ -84,7 +84,7 @@ ListStatik TidakDimiliki (Inventory I, ListIDBahan bahan, ListStatik katalog){
 // }
 
 
-void Boil(ListStatik katalog, String cmd, Peta map, Simulator *s, BinTree resep, TIME currTime, PrioQueueMakanan pesanan){
+void Boil(ListStatik katalog, String cmd, Peta map, Simulator *s, BinTree resep, TIME *currTime, PrioQueueMakanan *pesanan){
     ListStatik Rebus;
     Makanan val;
     int target;
@@ -118,7 +118,7 @@ void Boil(ListStatik katalog, String cmd, Peta map, Simulator *s, BinTree resep,
                 insertInventory(&Inv(*s), Elmt(Rebus, target-1));
                 printString(FoodName(Elmt(Rebus, target-1)));
                 printf(" berhasil dibuat dan sudah dimasukkan di inventory\n");
-                progressTime(s, &pesanan, &currTime);
+                progressTime(s, pesanan, currTime);
             }
             else {
                 printf("Gagal membuat ");
@@ -144,7 +144,7 @@ void Boil(ListStatik katalog, String cmd, Peta map, Simulator *s, BinTree resep,
     }
 }
 
-void chop(ListStatik katalog, String cmd, Peta map, Simulator *s, BinTree resep, TIME currTime, PrioQueueMakanan pesanan){
+void chop(ListStatik katalog, String cmd, Peta map, Simulator *s, BinTree resep, TIME *currTime, PrioQueueMakanan *pesanan){
     ListStatik Potong;
     Makanan val;
     int target;
@@ -177,7 +177,7 @@ void chop(ListStatik katalog, String cmd, Peta map, Simulator *s, BinTree resep,
                 insertInventory(&Inv(*s), Elmt(Potong, target-1));
                 printString(FoodName(Elmt(Potong, target-1)));
                 printf(" berhasil dibuat dan sudah dimasukkan di inventory\n");
-                progressTime(s, &pesanan, &currTime);
+                progressTime(s, pesanan, currTime);
             }
             else{
                 printf("Gagal membuat ");
@@ -202,7 +202,7 @@ void chop(ListStatik katalog, String cmd, Peta map, Simulator *s, BinTree resep,
     }
 }
 
-void fry(ListStatik katalog, String cmd, Peta map, Simulator *s, BinTree resep, TIME currTime, PrioQueueMakanan pesanan){
+void fry(ListStatik katalog, String cmd, Peta map, Simulator *s, BinTree resep, TIME *currTime, PrioQueueMakanan *pesanan){
     ListStatik Goreng, unHave;
     ListIDBahan bahan;
     Makanan val;
@@ -239,7 +239,7 @@ void fry(ListStatik katalog, String cmd, Peta map, Simulator *s, BinTree resep, 
                 insertInventory(&Inv(*s), Elmt(Goreng, (target-1)));
                 printString(FoodName(Elmt(Goreng, target-1)));
                 printf(" berhasil dibuat dan sudah dimasukkan di inventory\n");
-                progressTime(s, &pesanan, &currTime);
+                progressTime(s, pesanan, currTime);
             }
             else{
                 CreateListStatik(&unHave);
@@ -268,7 +268,7 @@ void fry(ListStatik katalog, String cmd, Peta map, Simulator *s, BinTree resep, 
         target = parseToInteger(cmd);
     }
 }
-void mix(ListStatik katalog, String cmd, Peta map, Simulator *s, BinTree resep, TIME currTime, PrioQueueMakanan pesanan){
+void mix(ListStatik katalog, String cmd, Peta map, Simulator *s, BinTree resep, TIME *currTime, PrioQueueMakanan *pesanan){
     ListStatik Campur, unHave;
     ListIDBahan bahan;
     Makanan val;
@@ -305,7 +305,7 @@ void mix(ListStatik katalog, String cmd, Peta map, Simulator *s, BinTree resep, 
                 insertInventory(&Inv(*s), Elmt(Campur, (target-1)));
                 printString(FoodName(Elmt(Campur, target-1)));
                 printf(" berhasil dibuat dan sudah dimasukkan di inventory\n");
-                progressTime(s, &pesanan, &currTime);
+                progressTime(s, pesanan, currTime);
             }
             else{
                 CreateListStatik(&unHave);
