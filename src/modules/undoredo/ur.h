@@ -11,7 +11,7 @@ void InitiateURStacks(Stack *U, Stack *R);
 infotypeStack CreateSave(Simulator S, PrioQueueMakanan PQ, TIME CT);
 // Membuat sebuah save kondisi program disuatu waktu
 
-void outputNotification(Inventory OldInv, Inventory NewInv, PrioQueueMakanan OldPQ, PrioQueueMakanan NewPQ, boolean isUndo);
+void outputNotification(Inventory OldInv, Inventory NewInv, PrioQueueMakanan OldPQ, PrioQueueMakanan NewPQ);
 // Mengeluarkan Notifikasi setelah Undo/Redo
 
 void LoadSave(infotypeStack Saved, Simulator *S, PrioQueueMakanan *PQ, TIME *CT);

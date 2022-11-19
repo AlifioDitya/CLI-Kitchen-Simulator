@@ -3,7 +3,7 @@
 #include "../boolean.h"
 #include "../word-machine/wordmachine.h"
 
-boolean endWord;
+// boolean endWord;
 String currentString;
 
 void strfy() {

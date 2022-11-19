@@ -190,8 +190,20 @@ boolean isMix(String s) {
     createString("MIX", 3, &temp);
     return (isStringEqual(s, temp));
 }
+
 boolean isCookBook(String s) {
     String temp;
     createString("COOKBOOK", 8, &temp);
+}
+
+boolean isUndo(String s) {
+    String temp;
+    createString("UNDO", 4, &temp);
+    return (isStringEqual(s, temp));
+}
+
+boolean isRedo(String s) {
+    String temp;
+    createString("REDO", 4, &temp);
     return (isStringEqual(s, temp));
 }

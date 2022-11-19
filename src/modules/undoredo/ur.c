@@ -63,7 +63,7 @@ infotypeStack CreateSave(Simulator S, PrioQueueMakanan PQ, TIME CT) {
     return SS;
 }
 
-void outputNotification(Inventory OldInv, Inventory NewInv, PrioQueueMakanan OldPQ, PrioQueueMakanan NewPQ, boolean isUndo) {
+void outputNotification(Inventory OldInv, Inventory NewInv, PrioQueueMakanan OldPQ, PrioQueueMakanan NewPQ) {
     // Mengeluarkan Notifikasi setelah Undo/Redo
 
     // KAMUS
@@ -101,7 +101,7 @@ void outputNotification(Inventory OldInv, Inventory NewInv, PrioQueueMakanan Old
             if (j == 0) {
                 p2 = FIRST(OldInv);
             } else {
-                p2 = NEXT(OldInv);
+                p2 = NEXT(p2);
             }
 
             if (isStringEqual(INFO(p1).name, INFO(p2).name)) {
@@ -139,6 +139,10 @@ void outputNotification(Inventory OldInv, Inventory NewInv, PrioQueueMakanan Old
             printString(INFO(p1).name);
             printf(" telah dikeluarkan\n");
         }
+    }
+
+    if (idxNotif == 1) {
+        printf("-\n");
     }
 }
 
