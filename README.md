@@ -42,7 +42,7 @@ Pada tugas besar ini, diminta untuk membuat sebuah program simulasi berbasis CLI
         ```
       2. Run
         ```Powershell
-        % ./src/main.exe
+        $ ./src/main.exe
         ```
 
 * Keterangan tambahan
