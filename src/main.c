@@ -16,7 +16,7 @@ int main() {
     Peta p;
     Simulator s;
     TIME currTime;
-    ListStatik Catalog, canBuy, canFry, canChop, canBoil, canMix;
+    ListStatik Catalog, canBuy;
     PrioQueueMakanan pesanan;
     Stack Undo, Redo;
     ElType tempPeta;
@@ -28,14 +28,6 @@ int main() {
     CreateTime(&currTime, 0, 0, 0);
     createString("BUY", 3, &mode);
     createSpecificCatalog(&canBuy, Catalog, p, mode);
-    createString("FRY", 3, &mode);
-    createSpecificCatalog(&canFry, Catalog, p, mode);
-    createString("CHOP", 4, &mode);
-    createSpecificCatalog(&canChop, Catalog, p, mode);
-    createString("BOIL", 4, &mode);
-    createSpecificCatalog(&canBoil, Catalog, p, mode);
-    createString("MIX", 3, &mode);
-    createSpecificCatalog(&canMix, Catalog, p, mode);
     MakeEmptyQueue(&pesanan, 100);
     InitiateURStacks(&Undo, &Redo);
 
