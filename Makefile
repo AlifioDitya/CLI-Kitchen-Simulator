@@ -34,9 +34,18 @@ undoredo: $(addsuffix .exe, $(basename $(patsubst "%", %,$(shell forfiles /s /m 
 
 prioqueue: $(addsuffix .exe, $(basename $(patsubst "%", %,$(shell forfiles /s /m *driver_prioqueue.c /c "cmd /c echo @relpath"))))
 
-main: $(addsuffix .exe, $(basename $(patsubst "%", %,$(shell forfiles /s /m *main.c /c "cmd /c echo @relpath"))))
+tree: $(addsuffix .exe, $(basename $(patsubst "%", %,$(shell forfiles /s /m *driver_tree.c /c "cmd /c echo @relpath"))))
 
 pengolahan: $(addsuffix .exe, $(basename $(patsubst "%", %,$(shell forfiles /s /m *driver_pengolahan.c /c "cmd /c echo @relpath"))))
+
+point : $(addsuffix .exe, $(basename $(patsubst "%", %,$(shell forfiles /s /m *driver_point.c /c "cmd /c echo @relpath"))))
+
+makanan: $(addsuffix .exe, $(basename $(patsubst "%", %,$(shell forfiles /s /m *driver_makanan.c /c "cmd /c echo @relpath"))))
+
+string: $(addsuffix .exe, $(basename $(patsubst "%", %,$(shell forfiles /s /m *driver_string.c /c "cmd /c echo @relpath"))))
+
+main: $(addsuffix .exe, $(basename $(patsubst "%", %,$(shell forfiles /s /m *main.c /c "cmd /c echo @relpath"))))
+
 
 $(addsuffix .exe, $(basename $(TARGETS))): $(SRCS)
 	$(CC) -o $@ $(SRCS) $(addsuffix .c, $(basename $@))

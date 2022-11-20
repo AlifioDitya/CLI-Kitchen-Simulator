@@ -76,14 +76,6 @@ ListStatik TidakDimiliki (Inventory I, ListIDBahan bahan, ListStatik katalog){
     return unhave;
 }
 
-
-// void copyListID (listIDBahan  *newList, listIDBahan  List){
-//     for(int i =0; i<lengthListBahan; i++){
-//         ELMTLB(*newList, i) = ELMTLB(List, i);
-//     }
-// }
-
-
 void Boil(ListStatik katalog, String cmd, Peta map, Simulator *s, BinTree resep, TIME *currTime, PrioQueueMakanan *pesanan){
     ListStatik Rebus;
     Makanan val;

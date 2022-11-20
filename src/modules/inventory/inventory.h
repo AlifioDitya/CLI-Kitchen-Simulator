@@ -40,14 +40,6 @@ boolean isEmptyInventory(Inventory I);
 /* Mengirim true jika list kosong */
 
 /****************** GETTER SETTER ******************/
-InfotypeInventory getElmtInventory(Inventory I, int idx);
-/* I.S. I terdefinisi, idx indeks yang valid dalam I, yaitu 0..length(I) - 1 */
-/* F.S. Mengembalikan nilai elemen I pada indeks idx */
-
-void setElmtInventory(Inventory *I, int idx, InfotypeInventory val);
-/* I.S. I terdefinisi, idx indeks yang valid dalam I, yaitu 0..length(I) - 1 */
-/* F.S. Mengubah elemen I pada indeks ke-idx menjadi val */
-
 int indexOfInventory(Inventory I, InfotypeInventory val);
 /* I.S. I, val terdefinisi */
 /* F.S. Mencari apakah ada elemen list I yang bernilai val */

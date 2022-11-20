@@ -1,8 +1,5 @@
 #include <stdio.h>
 #include "peta.h"
-// #include "../simulator/simulator.c"
-// #include "../point/point.c"
-// #include "../word-machine/wordmachine.c"
 
 /* *** Konstruktor membentuk Matrix peta *** */
 void createPeta(int nRows, int nCols, Peta *p) {

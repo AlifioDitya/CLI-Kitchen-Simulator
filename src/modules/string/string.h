@@ -24,11 +24,15 @@ void strfyFILE();
 
 void startString();
 // I.S currentString sembarang
-// I.S currentString diinisiasi untuk dibaca
+// F.S currentString diinisiasi untuk dibaca
 
 void advString();
+// I.S currentString sembarang
+// F.S Terbaca next string dari pita karakter
 
 void advStringFILE();
+// I.S currentString sembarang
+// F.S Terbaca next string dari pita karakter dalam file
 
 void assignString(String a, String *b);
 // I.S String b sembarang

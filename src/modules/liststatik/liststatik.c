@@ -280,18 +280,6 @@ void readMakanan(char* filename, Peta p, ListStatik *l) {
             CreatePoint(&ActionLoc(currMakanan), POINT_UNDEF, POINT_UNDEF);
         }
         
-        // printf("ID : %d\n", ID(currMakanan));
-        // printf("Food Name : ");
-        // printString(FoodName(currMakanan));
-        // printf("\n");
-        // printf("Expiry date : ");
-        // TulisTIME(Expire(currMakanan));
-        // printf("Action location : ");
-        // TulisPoint(ActionLoc(currMakanan));
-        // printf("Delivery time :");
-        // TulisTIME(DeliveryTime(currMakanan));
-        // printf("\n");
-        
         insertLast(l, currMakanan);
 
         if (i != (n-1)) {

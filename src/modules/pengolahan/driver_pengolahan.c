@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include "pengolahan.h"
-
+#include "../menu/menu.h"
+#include "../menu/timemechanism.h"
+#include "../menu/command.h"
 
 int main() {
     boolean running = true;
