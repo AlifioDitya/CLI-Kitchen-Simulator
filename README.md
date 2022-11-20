@@ -67,7 +67,7 @@ Pada tugas besar ini, diminta untuk membuat sebuah program simulasi berbasis CLI
 
 * Status: All finished
 
-## Pembagian Tugas
+## Pembagian Tugas Program
 1. Inisiasi - Enrique Alifio Ditya
 2. Simulator - Enrique Alifio Ditya
 3. Makanan - Enrique Alifio Ditya, Satria Octavianus Nababan
@@ -79,3 +79,12 @@ Pada tugas besar ini, diminta untuk membuat sebuah program simulasi berbasis CLI
 9. Mekanisme Waktu - Farhan Nabil Suryono, Enrique Alifio Ditya
 10. Print Catalog & Cookbook - Enrique Alifio Ditya, M. Dimas Sakti Widyatmaja
 11. Undo/Redo - Farhan Nabil Suryono
+
+## Pembagian Tugas laporan
+1	Ringkasan	- Satria Octavianus Nababan
+2	Penjelasan Tambahan Spesifikasi	- Satria Octavianus Nababan
+3	Struktur Data -	Satria Octavianus Nababan, Enrique Alifio Ditya
+4	Program Utama -	Satria Octavianus Nababan
+5	Data Test -	Satria Octavianus Nababan, Enrique Alifio Ditya
+6	Test Script -	Satria Octavianus Nababan, Ulung Adi Putra
+7	Lampiran -	Satria Octavianus Nababan
