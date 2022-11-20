@@ -77,7 +77,8 @@ ListStatik TidakDimiliki (Inventory I, ListIDBahan bahan, ListStatik katalog){
 }
 
 void Boil(ListStatik katalog, String cmd, Peta map, Simulator *s, BinTree resep, TIME *currTime, PrioQueueMakanan *pesanan){
-    ListStatik Rebus;
+    ListStatik Rebus, unHave;
+    ListIDBahan bahan;
     Makanan val;
     int target;
     AddressTree p;
@@ -85,6 +86,7 @@ void Boil(ListStatik katalog, String cmd, Peta map, Simulator *s, BinTree resep,
     printf("=        BOIL        =\n");
     printf("======================\n");
     CreateListStatik(&Rebus);
+    CreateListBahan(&bahan);
     Rebus = katalogByProses(katalog, cmd, map);
     displayKatalogProses(Rebus);
     printf("\n");
@@ -104,20 +106,28 @@ void Boil(ListStatik katalog, String cmd, Peta map, Simulator *s, BinTree resep,
     while(target != 0) {
         if(target>=0 && target <=listLength(Rebus)){
             p = searchByID(ID(Elmt(Rebus,(target-1))), resep);
-            p = FCHD(p); //hanya diperlukan satu bahan untuk merebus, jadi bahan hanyalah firstchild di tree resep
-            if(indexOfInventory(Inv(*s), getFoodByID(INFOTREE(p), katalog)) != IDX_UNDEF){
-                deleteAtInventory(&Inv(*s), indexOfInventory(Inv(*s), getFoodByID(INFOTREE(p), katalog)), &val);
+            bahan = listBahan(p);
+            // p = FCHD(p); //hanya diperlukan satu bahan untuk merebus, jadi bahan hanyalah firstchild di tree resep
+            if(isCookable(bahan, Inv(*s), katalog)){
+                for(int i = 0; i<lengthListBahan(bahan); i++){
+                    deleteAtInventory(&Inv(*s), indexOfInventory(Inv(*s), getFoodByID(ELMTLB(bahan,i), katalog)), &val);
+                }
                 insertInventory(&Inv(*s), Elmt(Rebus, target-1));
                 printString(FoodName(Elmt(Rebus, target-1)));
                 printf(" berhasil dibuat dan sudah dimasukkan di inventory\n");
                 progressTime(s, pesanan, currTime);
             }
             else {
+                CreateListStatik(&unHave);
+                unHave = TidakDimiliki(Inv(*s), bahan, katalog);
                 printf("Gagal membuat ");
                 printString(FoodName(Elmt(Rebus, target-1)));
                 printf(" karena tidak memiliki bahan berikut : \n");
-                printf("1. %s\n", FoodName(getFoodByID(INFOTREE(p), katalog)));
-                printf("\n");
+                for(int i = 0; i<listLength(unHave); i++){
+                    printf("%d. ", (i+1));
+                    printString(FoodName(Elmt(unHave,i)));
+                    printf("\n");
+                }
             }
         }
         else{
@@ -137,14 +147,17 @@ void Boil(ListStatik katalog, String cmd, Peta map, Simulator *s, BinTree resep,
 }
 
 void chop(ListStatik katalog, String cmd, Peta map, Simulator *s, BinTree resep, TIME *currTime, PrioQueueMakanan *pesanan){
-    ListStatik Potong;
+    ListStatik Potong, unHave;
     Makanan val;
+    ListIDBahan bahan;
     int target;
     AddressTree p;
     printf("======================\n");
     printf("=        CHOP        =\n");
     printf("======================\n");
     CreateListStatik(&Potong);
+    CreateListBahan(&bahan);
+    
     Potong = katalogByProses(katalog, cmd, map);
     displayKatalogProses(Potong);
     printf("\n");
@@ -163,19 +176,28 @@ void chop(ListStatik katalog, String cmd, Peta map, Simulator *s, BinTree resep,
     while(target != 0){
         if(target>=0 && target <=listLength(Potong)){
             p = searchByID(ID(Elmt(Potong,(target-1))), resep);
-            p = FCHD(p); //hanya diperlukan satu bahan untuk dipotong, jadi bahan hanyalah firstchild di tree resep
-            if(indexOfInventory(Inv(*s), getFoodByID(INFOTREE(p), katalog)) != IDX_UNDEF){
-                deleteAtInventory(&Inv(*s), indexOfInventory(Inv(*s), getFoodByID(INFOTREE(p), katalog)), &val);
+            // p = FCHD(p); //hanya diperlukan satu bahan untuk dipotong, jadi bahan hanyalah firstchild di tree resep
+            bahan = listBahan(p);
+            if(isCookable(bahan, Inv(*s), katalog)){
+                for(int i = 0; i<lengthListBahan(bahan); i++){
+                    deleteAtInventory(&Inv(*s), indexOfInventory(Inv(*s), getFoodByID(ELMTLB(bahan,i), katalog)), &val);
+                }
                 insertInventory(&Inv(*s), Elmt(Potong, target-1));
                 printString(FoodName(Elmt(Potong, target-1)));
                 printf(" berhasil dibuat dan sudah dimasukkan di inventory\n");
                 progressTime(s, pesanan, currTime);
             }
             else{
+                CreateListStatik(&unHave);
+                unHave = TidakDimiliki(Inv(*s), bahan, katalog);
                 printf("Gagal membuat ");
                 printString(FoodName(Elmt(Potong, target-1)));
                 printf(" karena tidak memiliki bahan berikut : \n");
-                printf("1. %s\n", FoodName(getFoodByID(INFOTREE(p), katalog)));
+                for(int i = 0; i<listLength(unHave); i++){
+                    printf("%d. ", (i+1));
+                    printString(FoodName(Elmt(unHave,i)));
+                    printf("\n");
+                }
             }
         }
         else{
