@@ -103,19 +103,17 @@ void outputNotification(Inventory OldInv, Inventory NewInv, PrioQueueMakanan Old
             } else {
                 p2 = NEXT(p2);
             }
-
+            
             if (isStringEqual(INFO(p1).name, INFO(p2).name)) {
                 // Buat Menghindari Kasus Makanan dihitung 2x
-                if (doneInv[idxBool]) {
+                if (doneInv[j]) {
                     continue;
                 } else {
-                    doneInv[idxBool] = true;
+                    doneInv[j] = true;
                     found = true;
                     break;
                 }
             }
-
-            idxBool++;
         }
 
         if (!found) {
