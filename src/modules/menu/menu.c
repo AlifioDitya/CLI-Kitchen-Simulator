@@ -7,6 +7,8 @@
 #include "timemechanism.h"
 
 void Splash(String name) {
+// I.S Tampilan sembarang
+// F.S Tampilan berupa splash screen
     printf("  ;)( ;\n");
     printf(" :----:     o8Oo./\n");
     printf("C|====| ._o8o8o8Oo_.\n");
@@ -19,6 +21,8 @@ void Splash(String name) {
 }
 
 void Initiate(Simulator *s, Peta *p, ListStatik *catalog, BinTree *resep) {
+// I.S Data terdefinisi dan valid
+// F.S Data loaded ke dalam program
     char* petaFileName = "src/data/map.txt";
     char* makananFileName = "src/data/makanan.txt";
     char* resepFileName = "src/data/Recipe.txt";
@@ -33,14 +37,6 @@ void Initiate(Simulator *s, Peta *p, ListStatik *catalog, BinTree *resep) {
     assignString(currentString, &name);
     printf("\n");
 
-    // while (currentString.Length == 0) {
-    //     printf("Nama tidak boleh kosong!\n\n");
-    //     printf("Enter your name: ");
-    //     startString();
-    //     assignString(currentString, &name);
-    // }
-
-
     CreateSimulation(s, name, Absis(Locate(*p, 'S')), Ordinat(Locate(*p, 'S')));
 
     Splash(name);
@@ -51,6 +47,8 @@ void Initiate(Simulator *s, Peta *p, ListStatik *catalog, BinTree *resep) {
 }
 
 void printBuyMakanan(ListStatik canBuy) {
+// I.S List makanan yang bisa dibeli terdefinisi
+// F.S Makanan yang bisa dibeli ditampilkan
     int i;
     int ctr = 1;
     for (i=0; i<canBuy.nEff; i++) {
@@ -78,6 +76,8 @@ void printBuyMakanan(ListStatik canBuy) {
 }
 
 void Buy(Simulator *s, TIME *currTIME, String *cmd, PrioQueueMakanan *prioQueue, Peta p, ListStatik canBuy) {
+// I.S List makanan yang bisa dibeli terdefinisi
+// F.S Makanan dipesan
     if (isObjectInRadius(*s, p, 'T')) {
         boolean buying = true;
         int select;

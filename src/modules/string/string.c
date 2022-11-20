@@ -7,6 +7,9 @@
 String currentString;
 
 void strfy() {
+// I.S currentString sembarang
+// F.S endWord = true, currentChar = MARK, currentString terisi oleh seluruh Word sebelum mark. 
+// Beda dari mesin kata, string mungkin mengandung BLANK di dalamnya, kecuali di awal kalimat.
     currentString.Length = 0;
     while (currentChar != MARK && currentChar != NEWLINE) {
         if (currentString.Length < STR_CAP) {
@@ -20,6 +23,9 @@ void strfy() {
 }
 
 void strfyFILE() {
+// I.S currentString sembarang
+// F.S endWord = true, currentChar = MARK, currentString terisi oleh seluruh Word sebelum mark. 
+// Beda dari mesin kata, string mungkin mengandung BLANK di dalamnya, kecuali di awal kalimat.
     currentString.Length = 0;
     while (!EOP && currentChar != NEWLINE) {
         if (currentString.Length < STR_CAP) {
@@ -33,8 +39,8 @@ void strfyFILE() {
 }
 
 void startString() {
-    // I.S currentString sembarang
-    // I.S currentString diinisiasi untuk dibaca
+// I.S currentString sembarang
+// F.S currentString diinisiasi untuk dibaca
     START();
     IGNOREBLANKS();
     if (currentChar == MARK || currentChar == NEWLINE) {
@@ -46,6 +52,8 @@ void startString() {
 }
 
 void advString() {
+// I.S currentString sembarang
+// F.S Terbaca next string dari pita karakter
     IGNOREBLANKS();
     if (currentChar == MARK || currentChar == NEWLINE) {
         endWord = true;
@@ -56,6 +64,8 @@ void advString() {
 }
 
 void advStringFILE() {
+// I.S currentString sembarang
+// F.S Terbaca next string dari pita karakter dalam file
     IGNOREBLANKSFILE();
     if (currentChar == MARK || currentChar == NEWLINE) {
         endWord = true;
@@ -66,7 +76,8 @@ void advStringFILE() {
 }
 
 void assignString(String a, String *b) {
-    // Assign string a ke b
+// I.S String b sembarang
+// F.S String a diassign ke b
     int i;
 
     (*b).Length = (a).Length;
@@ -76,6 +87,7 @@ void assignString(String a, String *b) {
 }
 
 boolean isStringEqual(String a, String b) {
+// Mengembalikan true apabila string a == b
     int i;
     boolean equal = true;
     if (a.Length == b.Length) {
@@ -92,7 +104,7 @@ boolean isStringEqual(String a, String b) {
 }
 
 void createString(char* kata, int length, String *w) {
-    /* Membuat suatu String dari masukan array of char dan panjang String */
+/* Membuat suatu String dari masukan array of char dan panjang String */
 
     // KAMUS
     String temp;
@@ -109,6 +121,7 @@ void createString(char* kata, int length, String *w) {
 }
 
 void printString(String a) {
+// Memberi output print dari tipe data String
     int i;
     for (i=0; i < (a).Length; i++) {
         printf("%c", (a).str[i]);

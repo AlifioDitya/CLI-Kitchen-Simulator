@@ -2,6 +2,8 @@
 #include "timemechanism.h"
 
 void wait(Simulator *s, PrioQueueMakanan *pesanan, TIME *currTime, int x, int y) {
+// I.S Simulator, pesanan, dan waktu program terdefinisi
+// F.S Simulator progress waktu sebanyak x jam y menit
     // KAMUS
     TIME t;
     int i;
@@ -15,6 +17,8 @@ void wait(Simulator *s, PrioQueueMakanan *pesanan, TIME *currTime, int x, int y)
 }
 
 void progressTime(Simulator *s, PrioQueueMakanan *pesanan, TIME *currTime) {
+// I.S Simulator, pesanan, dan waktu program terdefinisi
+// F.S Simulator progress waktu sebanyak 1 menit  
     AdvMinute(currTime);
     DecDeliveryTimeQueue(pesanan);
     DecExpiredTimeInv(&Inv(*s));

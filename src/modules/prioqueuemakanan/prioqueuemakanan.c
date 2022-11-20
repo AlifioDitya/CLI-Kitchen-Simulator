@@ -181,6 +181,8 @@ void PrintPrioQueueMakanan (PrioQueueMakanan Q) {
 }
 
 void DecDeliveryTimeQueue(PrioQueueMakanan *PQ) {
+// I.S Prio queue makanan terdefinisi
+// F.S Seluruh makanan dalam prio queue makanan dikurangi waktu sisa delivery sebanyak 1 menit
     int i;
     i = Head(*PQ);
     if (!IsEmptyQueue(*PQ)) {
@@ -193,6 +195,8 @@ void DecDeliveryTimeQueue(PrioQueueMakanan *PQ) {
 }
 
 void DequeueZeroToInventory(PrioQueueMakanan *PQ, Simulator *s) {
+// I.S Prio queue makanan dan simulator terdefinisi
+// F.S Seluruh makanan dengan sisa waktu delivery sama dengan nol di-dequeue dan dimasukkan ke inventory 
     infotype val;
     while (Day(DeliveryTime(InfoHead(*PQ))) <= 0 && Hour(DeliveryTime(InfoHead(*PQ))) <= 0 && Minute(DeliveryTime(InfoHead(*PQ))) <= 0) {
         Dequeue(PQ, &val);
