@@ -93,7 +93,6 @@ void Buy(Simulator *s, TIME *currTIME, String *cmd, PrioQueueMakanan *prioQueue,
 
             inputCommand(cmd);
             while (!isCommandInteger(*cmd)) {
-                printf("\n");
                 printf("Command tidak valid.\n");
                 printf("\n");
                 inputCommand(cmd);
