@@ -122,7 +122,7 @@ void outputNotification(Inventory OldInv, Inventory NewInv, PrioQueueMakanan Old
             printf("%d. ", idxNotif);
             idxNotif++;
             printString(INFO(p1).name);
-            printf(" telah dimasukkan\n");
+            printf(" telah dimasukkan ke dalam inventory.\n");
         }
     }
 
@@ -137,7 +137,7 @@ void outputNotification(Inventory OldInv, Inventory NewInv, PrioQueueMakanan Old
             printf("%d. ", idxNotif);
             idxNotif++;
             printString(INFO(p1).name);
-            printf(" telah dikeluarkan\n");
+            printf(" telah dikeluarkan dari inventory.\n");
         }
     }
 
