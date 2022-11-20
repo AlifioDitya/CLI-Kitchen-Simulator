@@ -95,7 +95,6 @@ void Boil(ListStatik katalog, String cmd, Peta map, Simulator *s, BinTree resep,
     inputCommand(&cmd);
 
     while (!isCommandInteger(cmd)) {
-        printf("\n");
         printf("Command tidak valid.\n");
         printf("\n");
         inputCommand(&cmd);
@@ -137,7 +136,6 @@ void Boil(ListStatik katalog, String cmd, Peta map, Simulator *s, BinTree resep,
         printf("\n");
         inputCommand(&cmd);
         while (!isCommandInteger(cmd)) {
-            printf("\n");
             printf("Command tidak valid.\n");
             printf("\n");
             inputCommand(&cmd);
@@ -166,7 +164,6 @@ void chop(ListStatik katalog, String cmd, Peta map, Simulator *s, BinTree resep,
     inputCommand(&cmd);
 
     while (!isCommandInteger(cmd)) {
-        printf("\n");
         printf("Command tidak valid.\n");
         printf("\n");
         inputCommand(&cmd);
@@ -207,7 +204,6 @@ void chop(ListStatik katalog, String cmd, Peta map, Simulator *s, BinTree resep,
         printf("\n");
         inputCommand(&cmd);
         while (!isCommandInteger(cmd)) {
-            printf("\n");
             printf("Command tidak valid.\n");
             printf("\n");
             inputCommand(&cmd);
@@ -235,7 +231,6 @@ void fry(ListStatik katalog, String cmd, Peta map, Simulator *s, BinTree resep, 
     inputCommand(&cmd);
 
     while (!isCommandInteger(cmd)) {
-        printf("\n");
         printf("Command tidak valid.\n");
         printf("\n");
         inputCommand(&cmd);
@@ -274,7 +269,6 @@ void fry(ListStatik katalog, String cmd, Peta map, Simulator *s, BinTree resep, 
         printf("\n");
         inputCommand(&cmd);
         while (!isCommandInteger(cmd)) {
-            printf("\n");
             printf("Command tidak valid.\n");
             printf("\n");
             inputCommand(&cmd);
@@ -301,7 +295,6 @@ void mix(ListStatik katalog, String cmd, Peta map, Simulator *s, BinTree resep, 
     inputCommand(&cmd);
 
     while (!isCommandInteger(cmd)) {
-        printf("\n");
         printf("Command tidak valid.\n");
         printf("\n");
         inputCommand(&cmd);
@@ -341,7 +334,6 @@ void mix(ListStatik katalog, String cmd, Peta map, Simulator *s, BinTree resep, 
         printf("\n");
         inputCommand(&cmd);
         while (!isCommandInteger(cmd)) {
-            printf("\n");
             printf("Command tidak valid.\n");
             printf("\n");
             inputCommand(&cmd);
