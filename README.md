@@ -2,7 +2,7 @@
 Pada tugas besar ini, diminta untuk membuat sebuah program simulasi berbasis CLI (command-line interface), program dibuat dalam bahasa C dengan menggunakan struktur data yang telah dipelajari pada mata kuliah Algoritma dan Struktur Data. Terdapat beberapa kebutuhan program, diantaranya yaitu Inisiasi, Simulator, Makanan, Resep, Inventory, Pemesanan Bahan Makanan dan Delivery, Peta, Pengolahan Makanan (MIX, CHOP, FRY, BOIL), Mekanisme Waktu, Command-command Lain (UNDO / REDO, CATALOG, COOKBOOK), Validasi dan Error Handling, Notifikasi. 
 
 ## Anggota Kelompok
-Kelompok D:
+Kelompok D
 - Farhan Nabil Suryono (13521114) 
 - Ulung Adi Putra (13521122) 
 - Enrique Alifio Ditya (13521142) 
